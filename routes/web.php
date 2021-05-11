@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','Front\FrontCtrl');
-Route::get('/simulasi','Front\FrontCtrl@simulasi');
+Route::get('/','Admin\AdminCtrl');
+// Route::get('/simulasi','Front\FrontCtrl@simulasi');
 
 
 /*
@@ -23,7 +23,7 @@ Route::get('/simulasi','Front\FrontCtrl@simulasi');
 ===========================
 */
 
-Route::get('/login/tes' ,'Auth\UserController@tes');
+// Route::get('/login/tes' ,'Auth\UserController@tes');
 
-Route::get('/tes','Anggota\GabungCtrl@tes');
+// Route::get('/tes','Anggota\GabungCtrl@tes');
 	//
