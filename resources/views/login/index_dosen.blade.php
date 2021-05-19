@@ -9,13 +9,13 @@
   <div class="card">
     <div class="card-body login-card-body">
       <!-- <p class="login-box-msg">Sign in to start your session</p> -->
-       {{ show_alert() }}
+       {{ show_alert()}}
 
-      <form action="{{ url('/LoginValidate') }}" method="post">
+      <form action="{{ url('/AdminValidate') }}" method="post">
         {{ csrf_field() }}
 
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Username / NIDN / NIM" name="username">
+          <input type="text" class="form-control" placeholder="Username" name="username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -37,6 +37,11 @@
             <button type="submit" class="btn btn-primary btn-block">Login</button>
           </div>
           <!-- /.col -->
+        
+
+          <p class="mb-0" style="margin-top:15git add px;margin-left:10px">
+            <a  class="text-center" href="{{url('daftar/anggota')}}">Daftar Menjadi Anggota</a>
+          </p>
         </div>
       </form>
  

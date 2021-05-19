@@ -12,12 +12,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 use App\Model\Admin;
-use App\Model\Anggota;
-use App\Model\Operator;
+use App\Model\Mahasiswa;
+use App\Model\Dosen;
+use App\Model\Pengguna;
 
-use App\Model\User;
 use App\Model\Notif;
-use App\Model\BuktiBayar;
 use App\Model\Syarat;
 class AdminLogin extends Controller
 {
@@ -32,22 +31,24 @@ class AdminLogin extends Controller
     function loginCheck(Request $request){
     	$username = $request->username;
         $password = $request->password;
-        $data = User::where('username',$username)->first();
+        $data = Pengguna::where('username',$username)->first();
+        $data_ds=Dosen::where('nidn', $username)->first();
+
 
         if($data){
             if($data->level == 1){
                     Session::flush();
+                    $data_adm=Admin::where('username', $username)->first();
                     
                     if(Hash::check($password,$data->password)){
                         Session::put('adm_id', $data->id);
-                        Session::put('adm_nama', $data->nama);
                         Session::put('adm_username', $data->username);
-                        Session::put('adm_kode', $data->kode_user);
+                        Session::put('nama', $data_adm->nama);
                         Session::put('level', 1);
                         Session::put('login-adm',TRUE);
-                        return redirect('/dashboard/admin')->with('alert-success','Selamat Datang Kembali Admin');
+                        return redirect('/dashboard/admin')->with('alert-success','Selamat Datang Kembali');
                     }else{
-                        return redirect('/login/user')->with('alert-danger','Password atau Email, Salah !');
+                        return redirect('/login/user')->with('alert-danger','Password atau Username, Salah !');
                     }
             
 
@@ -57,68 +58,53 @@ class AdminLogin extends Controller
                  Session::flush();
                 
                 if(Hash::check($password,$data->password)){
-                    Session::put('op_id', $data->id);
-                    Session::put('op_nama', $data->nama);
-                    Session::put('op_username', $data->username);
-                    Session::put('op_kode', $data->kode_user);
+                    Session::put('ds_id', $data->id);
+                    Session::put('ds_username', $data_ds->username);
+                    Session::put('nama', $data_ds->nama);
                     Session::put('level', 2);
-                    Session::put('login-op',TRUE);
-                    return redirect('/dashboard/operator')->with('alert-success','Selamat Datang Kembali Pengurus');
+                    Session::put('login-ds',TRUE);
+                    return redirect('/dashboard/dospem')->with('alert-success','Selamat Datang');
                 }else{
-                    return redirect('/login/user')->with('alert-danger','Password atau Email, Salah !');
+                    return redirect('/login/user')->with('alert-danger','Password atau NIDN, Salah !');
                 }
          
             // end cek data ada atau tidak
             }elseif($data->level == 3){
                 Session::flush();
-                $data_ang=Anggota::where('anggota_username', $username)->first();
-
-                    if($data_ang->status == "1"){
+                   
                         if(Hash::check($password,$data->password)){
-                        Session::put('ang_id', $data_ang->anggota_id);
-                        Session::put('ang_nama', $data_ang->anggota_nama);
-                        Session::put('ang_username', $data_ang->anggota_username);
-                        Session::put('ang_kontak', $data_ang->anggota_kontak);
-                        Session::put('ang_nik', $data_ang->anggota_nik);
-                        Session::put('ang_status', $data_ang->status);
-                        Session::put('ang_kode', $data_ang->anggota_kode);
+                        Session::put('rv_id', $data->id);
+                        Session::put('rv_username', $data_ds->username);
+                        Session::put('nama', $data_ds->nama);
 
                         Session::put('level', 3);
-                        Session::put('login-ang',TRUE);
-                            return redirect('/dashboard/anggota')->with('alert-success','Selamat Datang Kembali Anggota');
+                        Session::put('login-rv',TRUE);
+                            return redirect('/dashboard/reviewer')->with('alert-success','Selamat Datang Kembali');
                         }else{
-                            return redirect('/login/user')->with('alert-danger','Password atau Email, Salah !');
+                            return redirect('/login/user')->with('alert-danger','Password atau NIDN, Salah !');
                         }   
 
-                    }elseif($data_ang->status == "2"){
-                        return redirect('/login/user')->with('alert-danger','Akun Keanggotaan Kamu ditolak mohon ajukan ulang dengan data yang sesuai persyaratan!');
-                    }else{
-                         return redirect('/login/user')->with('alert-danger','Akun Keanggotaan Kamu belum di verifikasi mohon bersabar!');
-                    } 
-
-             // end cek level anggota
             }elseif($data->level == 4){
                 Session::flush();
+                $data_mh=Mahasiswa::where('nim', $username)->first();
                 
                 if(Hash::check($password,$data->password)){
-                    Session::put('mg_id', $data->id);
-                    Session::put('mg_nama', $data->nama);
-                    Session::put('mg_username', $data->username);
-                    Session::put('mg_kode', $data->kode_user);
+                    Session::put('mh_id', $data->id);
+                    Session::put('mh_username', $data_mh->username);
+                    Session::put('nama', $data_mh->nama);
                     Session::put('level', 4);
-                    Session::put('login-adm',TRUE);
-                    return redirect('/dashboard/admin')->with('alert-success','Selamat Datang Kembali Manager');
+                    Session::put('login-mh',TRUE);
+                    return redirect('/dashboard/mahasiswa')->with('alert-success','Selamat Datang Kembali');
                 }else{
-                    return redirect('/login/user')->with('alert-danger','Password atau Email, Salah !');
+                    return redirect('/login/user')->with('alert-danger','Password atau NIIM, Salah !');
                 }
 
-            // end cek data manager di buat
         }else{
                 return redirect('/login/user')->with('alert-danger','Tidak meliki akses kesini');
             }
                 // end cek level 
     }else{
-        return redirect('/login/user')->with('alert-danger','Password atau Email, Salah !');
+        return redirect('/login/user')->with('alert-danger','Password atau Usernam,NIDN,NIM Salah !');
     }
     // cek kebenaran input
 

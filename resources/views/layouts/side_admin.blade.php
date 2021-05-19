@@ -1,346 +1,209 @@
-
-
-    <!-- Right navbar links -->
-
-    <ul class="navbar-nav ml-auto">
-
-      {{-- penarikan dana --}}
-      @php
-      $dana_tarik =App\Model\TarikDana::where('status',0)->orderBy('tgl_aju','desc')->take(7)->get();
-
-      @endphp
-      <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="#">
-        @if (count($dana_tarik) > 0)
-        <i class="fa fa-download bell"></i>
-          <span class="badge badge-warning navbar-badge">{{ count($dana_tarik) }}</span>
-          @else
-          <i class="fa fa-download"></i>
-          @endif
-      </a>
-
-      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <span class="dropdown-item dropdown-header"> {{count($dana_tarik) }} Permohonan Penarikan Dana</span>
-        <div class="dropdown-divider"></div>
-        @if (count($dana_tarik) > 0)
-          @foreach ($dana_tarik as $dn)
-              @php
-                    // $cek_jam = date('Y-m-d H:i:s' strtotime($dn->tgl_aju) - 3600));
-              @endphp   
-          <a href="{{ link_tarik_dana_nulled($dn->jenis, $dn->no_rekening)}}" class="dropdown-item">
-                #{{$dn->kode_transaksi}} 
-                <small class="tgl_text float-right" style="color:#c1c2c3">{{format_notif_jam($dn->tgl_aju)}}</small>
-                <br>
-          <small class="tgl_text"><b>Rp.{{number_format($dn->nominal)}}</b></small>
-          </a>
-          @endforeach
-        @else
-          <span class="dropdown-item">Belum ada penarikan dana....</span>
-        @endif
-
-
-        <div class="dropdown-divider"></div>
-      <a  style="color:#717c86"href="{{url('/admin/data/penarikan/dana')}}" class="dropdown-item dropdown-footer">lihat Selengkapnya <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-      </div>
-      </li>  
-      {{-- end penarikan dana --}}
-
-
-
-
-      {{-- start notifikas --}}
-      @php
-      // nsk =notif transfer simpanan umum // 
-      // nbk =notif transfer deposit  // num=notif transfer umroh
-     // npd=notif transfer pendidikan // npj=notif transfer pinjaman
-     
-        $nda= App\Model\Anggota::where('status',0)->get();
-        // $nbk = App\Model\BuktiBayar::where(['status' => 0, 'jenis_upload'=>"TRBK"]);
-        $nsk = App\Model\BuktiBayar::where(['status' => 0, 'jenis_upload'=>"TRFU"])->get();
-        $num = App\Model\BuktiBayar::where(['status' => 0, 'jenis_upload'=>"TRFH"])->get();
-        $npd = App\Model\BuktiBayar::where(['status' => 0, 'jenis_upload'=>"TRFD"])->get();
-        $npj= App\Model\BuktiBayar::where(['status' => 0, 'jenis_upload'=>"TRFP"])->get();
-        $nt_sim =count($nsk) + count($num) + count($npd) ;
-      $tot_notif = $nt_sim + count($npj) ;
-    @endphp
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          @if ($tot_notif > 0)
-            <i class="far fa-bell bell" ></i>
-             <span class="badge badge-warning navbar-badge">{{ $tot_notif}}</span>
-            @else
-            <i class="far fa-bell"></i>
-            @endif
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header"> {{$tot_notif}} Pemberitahuan</span>
-          <div class="dropdown-divider"></div>
-          <a href="{{url('/admin/bukti-bayar')}}" class="dropdown-item">
-            <i class="fas fa-credit-card mr-2"></i> {{count($npj)}} Transfer Pembiayaan
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="{{url('/admin/bukti-bayar')}}" class="dropdown-item">
-            <i class="fas fa-save mr-2"></i> {{$nt_sim}} Transfer Simpanan
-          </a>
-          <div class="dropdown-divider"></div>
-          {{-- <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a> --}}
-          <div class="dropdown-divider"></div>
-          {{-- <a href="#" class="dropdown-item dropdown-footer">See All Pemberitahuan</a> --}}
-        </div>
-      </li>     
-      {{-- end notif --}}
-
-
-   
-    </ul>
-
-
- 
-  </nav>
-
+<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="#" class="brand-link">
-    <img src="{{asset('lte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-    style="opacity: .8">
-    <span class="brand-text font-weight-light">{{ status_user(Session::get('level'))}}</span>
+  <a href="index3.html" class="brand-link">
+    <img src="{{asset('asset/img/pnj.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">BTAM</span>
   </a>
 
   <!-- Sidebar -->
   <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <i class="fa fa-user-circle" style="font-size:30px;color:#fff" aria-hidden="true"></i>
-       
-        {{-- <img src="{{asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image"> --}}
+        <img src="{{asset('asset/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">{{ Session::get('adm_nama') }}</a>
+        <a href="#" class="d-block">{{Session::get('nama')}}</a>
       </div>
     </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item has-treeview menu-open">
-          <a href="{{url('/dashboard/admin')}}" class="nav-link active">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+        <!-- Add icons to the links using the .nav-icon class
+             with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <a href="{{url('/')}}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
             <p>
               Dashboard
-           
-            </p>
-          </a>            
-        </li>         
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-copy"></i>
-            <p>
-              DATA MASTER
-              <i class="fas fa-angle-left right"></i>
-              {{-- <span class="badge badge-info right">6</span> --}}
             </p>
           </a>
-          <ul class="nav nav-treeview" style="margin-left:20px;font-size:14px">
-            <li class="nav-item">
-              <a href="{{url('/dashboard/admin/operator')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Data Pegawai</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('/dashboard/admin/anggota')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Data Anggota</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('/dashboard/admin/atur_simpanan')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Simpanan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('/dashboard/admin/kategori_pinjaman')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Kategori Pembiayaan</p>
-              </a>
-            </li> 
-            <li class="nav-item">
-              <a href="{{url('/admin/pekerjaan')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Pekerjaan</p>
-              </a>
-            </li>                        
-          </ul>
         </li>
-
-        {{-- data pengaju --}}
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-bookmark"></i>
-            <p>
-              DATA PENGAJU
-              <i class="fas fa-angle-left right"></i>
-              {{-- <span class="badge badge-info right">6</span> --}}
-            </p>
-          </a>
-          <ul class="nav nav-treeview" style="margin-left:20px;font-size:14px">
-            <li class="nav-item">
-              <a href="{{url('/admin/mohon-gabung')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Pengaju Gabung Anggota</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('/admin/data-pinjaman')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Pengaju Pembiayaan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('/admin/pemohon/simpanan')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Pengaju Simpanan</p>
-              </a>
-            </li>
-                                  
-          </ul>
-        </li>
-        {{-- data pengaju end --}}
-         {{-- pembayaran --}}
-         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-print"></i>
-            <p>
-             Pembayaran
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview" style="margin-left:20px;font-size:14px">
-            <li class="nav-item">
-            <a href="{{url('/admin/pembayaran/pinjaman')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Pembayaran Pembiayaan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('/admin/pembayaran/simpanan')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Pembayaran Simpanan</p>
-              </a>
-            </li>
-                           
-          </ul>
-        </li>
-
-        {{-- end pembayaran --}}
-
-        {{-- start transaksi --}}
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-leaf"></i>
-            <p>
-              Riwayat Transaksi
-              <i class="fas fa-angle-left right"></i>
-              {{-- <span class="badge badge-info right">6</span> --}}
-            </p>
-          </a>
-          <ul class="nav nav-treeview" style="margin-left:20px;font-size:14px">
-            <li class="nav-item">
-              <a href="{{url('/admin/transaksi/simpanan')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Transaksi Simpanan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('/admin/transaksi/pinjaman')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Transaksi Pembiayaan</p>
-              </a>
-            </li>
-                                 
-          </ul>
-        </li>
-
-        {{-- <li class="nav-item">
-          <a href="/admin/tabungan" class="nav-link">
-            <i class="nav-icon fa fa-users"></i>
-            <p> TABUNGAN</p>
-          </a>
-        </li> --}}
-      
         <li class="nav-item">
-          <a href="{{url('/admin/laporan/shu')}}" class="nav-link">
-            <i class="nav-icon fas fa-print"></i>
-            <p> LAPORAN</p>
+          <a href="{{url('admin/kategori-bantuan')}}" class="nav-link">
+            <i class="nav-icon fas fa-hands-helping"></i>
+            <p>Daftar Bantuan</p>
           </a>
         </li>
-
-          
         <li class="nav-item">
-          <a href="{{url('/admin/laman/akuntan')}}" class="nav-link">
-            <i class="nav-icon fas fa-credit-card"></i>
-            <p> Keuangan </p>
-          </a>
-        </li>
-
-
-        {{-- pengaturan aplikasi --}}
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-cogs"></i>
+          <a href="{{url('/jadwal')}}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-alt"></i>
             <p>
-             Pengaturan
-              <i class="fas fa-angle-left right"></i>
+              Jadwal Kegiatan
             </p>
           </a>
-          <ul class="nav nav-treeview" style="margin-left:20px;font-size:14px">
+        </li>
+        <li class="nav-item">
+          <a href="{{url('/jurusan')}}"  class="nav-link">
+            <i class="nav-icon fas fa-university"></i>
+            <p>Daftar Jurusan</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{url('/prodi')}}" class="nav-link">
+            <i class="nav-icon fas fa-chalkboard"></i>
+            <p>Daftar Program Studi</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-user-clock"></i>
+            <p>
+              Penugasan Reviewer
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{url('/admin/pengaturan/akses')}}" class="nav-link">
-                 <i class="fa fa-key nav-icon" aria-hidden="true"></i>
-                  <p>Hak Akses</p>
-                </a>
-              </li>
-            <li class="nav-item">
-            <a href="{{url('/admin/pengaturan/web')}}" class="nav-link">
+              <a href="{{url('penugasan/ta')}}"  class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Pengaturan Web</p>
+                <p>Tugas Akhir</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('/admin/pengaturan/syarat')}}" class="nav-link">
+              <a href="{{url('penugasan/skripsi')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Pengaturan Syarat</p>
+                <p>Skripsi</p>
               </a>
             </li>
-
             <li class="nav-item">
-              <a href="{{url('/admin/pengaturan/rekening')}}" class="nav-link">
-                <i class="fa fa-university nav-icon"></i>
-                <p>Pengaturan Rekening Bank</p>
+              <a href="{{url('penugasan/tesis')}}"class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tesis</p>
               </a>
             </li>
-                           
           </ul>
         </li>
-
-        {{-- end pengaturan --}}
-         <li class="nav-item">
+        <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-question"></i>
-            <p> BANTUAN</p>
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Daftar Pengguna
+              <i class="right fas fa-angle-left"></i>
+            </p>
           </a>
-        </li> 
-
-         <li class="nav-item">
-          <a href="{{url('/logout/admin')}}" class="nav-link">
-            <i class="nav-icon fas fa-sign-out-alt"></i>
-            <p> Keluar</p>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{url('pengguna/dosen')}}"class="nav-link  active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Dosen</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('pengguna/reviewer')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Reviewer</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('pengguna/mahasiswa')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Pengusul</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+              Riwayat Penilaian
+              <i class="right fas fa-angle-left"></i>
+            </p>
           </a>
-        </li>                                      
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{url('riwayat_penilaian/tugas_akhir')}}" class="nav-link  active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tugas Akhir</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('riwayat_penilaian/skripsi')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Skripsi</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('riwayat_penilaian/tesis')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tesis</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+              Riwayat Usulan
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{url('riwayat_usulan/tahap_awal')}}" class="nav-link active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tahap Awal</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('riwayat_usulan/laporan_kemajuan')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Laporan Kemajuan</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('riwayat_usulan/laporan_akhir')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Laporan Akhir</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-address-card"></i>
+            <p>
+              Pencairan Dana
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{url('pencairan_dana/daftar_bank')}}" class="nav-link active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Daftar Bank</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('pencairan_dana/daftar_rekening')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Daftar Rekening</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="{{url('panduan/index')}}" class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Panduan
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

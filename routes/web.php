@@ -14,16 +14,37 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','Admin\AdminCtrl');
-// Route::get('/simulasi','Front\FrontCtrl@simulasi');
 
 
 /*
 =========================== 
-		Login
+		Login User
 ===========================
 */
+Route::get('/login/user' ,'Auth\AdminLogin');
+Route::post('/LoginValidate','Auth\AdminLogin@loginCheck');
 
-// Route::get('/login/tes' ,'Auth\UserController@tes');
 
-// Route::get('/tes','Anggota\GabungCtrl@tes');
-	//
+/*
+=========================== 
+		Admin
+===========================
+*/
+Route::get('/dashboard/admin' ,'Admin\AdminCtrl');
+
+
+// daftar bantuan
+Route::get('/admin/kategori-bantuan' ,'Admin\AdminCtrl@kategori_bantuan');
+
+Route::get('/admin/kategori-bantuan/add' ,'Admin\AdminCtrl@kategori_bantuan_add');
+Route::post('/admin/kategori-bantuan/act' ,'Admin\AdminCtrl@kategori_bantuan_act');
+Route::get('/admin/kategori-bantuan/edit/{id}' ,'Admin\AdminCtrl@kategori_bantuan_edit');
+Route::post('/admin/kategori-bantuan/update' ,'Admin\AdminCtrl@kategori_bantuan_update');
+Route::get('/admin/kategori-bantuan/delete/{id}' ,'Admin\AdminCtrl@kategori_bantuan_delete');
+
+
+/*
+=========================== 
+		Dosen
+===========================
+*/
