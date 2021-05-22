@@ -38,7 +38,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{url('/jadwal')}}" class="nav-link">
+          <a href="{{url('/admin/jadwal-kegiatan')}}" class="nav-link">
             <i class="nav-icon fas fa-calendar-alt"></i>
             <p>
               Jadwal Kegiatan
@@ -46,13 +46,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{url('/jurusan')}}"  class="nav-link">
+          <a href="{{url('/admin/daftar-jurusan')}}"  class="nav-link">
             <i class="nav-icon fas fa-university"></i>
             <p>Daftar Jurusan</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{url('/prodi')}}" class="nav-link">
+          <a href="{{url('/admin/daftar-prodi')}}" class="nav-link">
             <i class="nav-icon fas fa-chalkboard"></i>
             <p>Daftar Program Studi</p>
           </a>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Prodi extends Model
 {
     protected $table = "prodi";
-    public $timestamp = false;
+    public $timestamps = false;
     protected $fillable=[
         'id_jurusan',
         'nama',

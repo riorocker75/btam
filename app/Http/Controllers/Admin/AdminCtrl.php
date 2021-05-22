@@ -24,7 +24,7 @@ class AdminCtrl extends Controller
     {
         $this->middleware(function ($request, $next) {
             if(!Session::get('login-adm')){
-                return redirect('login/user')->with('alert-danger','Dilarang Masuk Terlarang');
+                return redirect('login/user');
             }
             return $next($request);
         });

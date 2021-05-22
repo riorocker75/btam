@@ -66,29 +66,6 @@ $(document).ready(function () {
 
   
 $(document).ready(function () {
-   
-   $('#angsur').change(function () {
-    var angsur =$('#angsur').children("option:selected").val(); 
-         if(angsur.length > 0){ 
-
-            $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-              type:"post",
-              url:"/ajax/cek-angsur-fix",
-              data:{angsur:angsur},
-              success: function(data){          
-                $('#skenario-fix').html(data);
-                
-              }
-            });
-          }
-   
-   });
-});
-
-$(document).ready(function () {
 
   $("#format_rupiah").on('keyup', function(){
    
@@ -135,117 +112,49 @@ $(document).ready(function () {
  
 });
 
-// pengecekan deposit ajukan
-$(document).ready(function () {
-   
-  $('#deposit').change(function () {
-    var deposit =$('#deposit').children("option:selected").val(); 
-         if(deposit.length > 0){ 
-
-            $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-              type:"post",
-              url:"/ajax/cek-deposit",
-              data:{deposit:deposit},
-              success: function(data){          
-                $('#review_deposit').html(data);
-                
-              }
-            });
-          }
-   
-   });
-});
-
-
-// pengecekan simpanan umroh aju
-$(document).ready(function () {
-   
-  $('#umroh').change(function () {
-    var umroh =$('#umroh').children("option:selected").val(); 
-         if(umroh.length > 0){ 
-
-            $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-              type:"post",
-              url:"/ajax/cek-umroh",
-              data:{umroh:umroh},
-              success: function(data){          
-                $('#review_umroh').html(data);
-                
-              }
-            });
-          }
-   
-   });
-});
-
-// pengecekan simpanan pendiidkan aju
-$(document).ready(function () {
-   
-  $('#pendidikan').change(function () {
-    var pendidikan =$('#pendidikan').children("option:selected").val(); 
-         if(pendidikan.length > 0){ 
-
-            $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-              type:"post",
-              url:"/ajax/cek-pendidikan",
-              data:{pendidikan:pendidikan},
-              success: function(data){          
-                $('#review_pendidikan').html(data);
-                
-              }
-            });
-          }
-   
-   });
-});
-
-// pengecekan data anggota
-$(document).ready(function () {
-   
-  $('#anggota').change(function () {
-    var anggota =$('#anggota').children("option:selected").val(); 
-         if(anggota.length > 0){ 
-
-            $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-              type:"post",
-              url:"/ajax/cek-anggota",
-              data:{anggota:anggota},
-              success: function(data){          
-                $('#detail-anggota').html(data);
-                
-              }
-            });
-          }
-   
-   });
-});
-
 
 $(document).ready(function () {
-  $('#notif_ang').click(function (e) { 
-    var ang_kode=  $("#ang_kode").val();
-    $.ajax({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-        type:"post",
-        url:"/ajax/notif_ang_update",
-        data:{ang_kode:ang_kode},
-        success: function(data){          
-          
-        }
-      });
+  
+  $("#data1").DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 0 }
+    ],
+    "bSort" : false,
+    "ordering": false
+
+   
+  });
+  $("#data2").DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 0 }
+    ],
+    "bSort" : false,
+    "ordering": false
+
+  });
+  $("#data3").DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 0 }
+    ],
+    "bSort" : false,
+    "ordering": false
+
+  });
+  $("#data4").DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 0 }
+    ],
+    "bSort" : false,
+    "ordering": false
+
+  });
+  $("#data5").DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 0 }
+    ],
+    "bSort" : false,
+    "ordering": false
+
   });
 });
+
