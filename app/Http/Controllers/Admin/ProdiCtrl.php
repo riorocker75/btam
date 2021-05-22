@@ -57,7 +57,6 @@ class ProdiCtrl extends Controller
             return view('admin.prodi.jurusanEdit', [
                 'data' => $data,
                 'data_edit' => $data_edit
-                
                 ]);
            
         }

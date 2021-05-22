@@ -33,7 +33,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{url('/admin/jadwal-kegiatan/act')}}" method="post">
+                <form role="form" action="{{url('/admin/jadwal-kegiatan/act')}}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                   <div class="card-body">  
                     <div class="form-group">
@@ -67,7 +67,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="penawaran" placeholder="pembukaan tawaran">
+                            <input type="date" class="form-control" name="penawaran" placeholder="pembukaan tawaran" required>
                               @if($errors->has('penawaran'))
                               <small class="text-muted text-danger">
                                   {{ $errors->first('penawaran')}}
@@ -83,7 +83,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="deadline_proposal" placeholder="deadline proposal">
+                            <input type="date" class="form-control" name="deadline_proposal" placeholder="deadline proposal" required>
                             @if($errors->has('deadline_proposal'))
                             <small class="text-muted text-danger">
                                 {{ $errors->first('deadline_proposal')}}
@@ -102,7 +102,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="deadline_rekening" >
+                            <input type="date" class="form-control" name="deadline_rekening" required>
                               @if($errors->has('deadline_rekening'))
                               <small class="text-muted text-danger">
                                   {{ $errors->first('deadline_rekening')}}
@@ -118,7 +118,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="deadline_desk" placeholder="deadline desk">
+                            <input type="date" class="form-control" name="deadline_desk" placeholder="deadline desk" required>
                             @if($errors->has('deadline_desk'))
                             <small class="text-muted text-danger">
                                 {{ $errors->first('deadline_desk')}}
@@ -138,7 +138,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="deadline_kemajuan" >
+                            <input type="date" class="form-control" name="deadline_kemajuan" required>
                               @if($errors->has('deadline_kemajuan'))
                               <small class="text-muted text-danger">
                                   {{ $errors->first('deadline_kemajuan')}}
@@ -154,7 +154,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                             </div>
-                            <input type="date" class="form-control" name="deadline_akhir" placeholder="deadline akhir">
+                            <input type="date" class="form-control" name="deadline_akhir" placeholder="deadline akhir" required>
                             @if($errors->has('deadline_akhir'))
                             <small class="text-muted text-danger">
                                 {{ $errors->first('deadline_akhir')}}
@@ -172,12 +172,13 @@
                           <span class="input-group-text"><i class="fas fa-file"></i></span>
                         </div>
                         <input type="file" class="form-control" name="berkas">
-                        @if($errors->has('berkas'))
-                        <small class="text-muted text-danger">
-                            {{ $errors->first('berkas')}}
-                        </small>
-                        @endif 
+                       
                       </div>
+                      @if($errors->has('berkas'))
+                      <small class="text-muted text-danger">
+                          {{ $errors->first('berkas')}}
+                      </small>
+                      @endif 
                     </div>
                      
                        
