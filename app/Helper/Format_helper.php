@@ -200,16 +200,14 @@ function preview_panduan($nama_file){
 
 // start perview bukti
 
-function preview_bukti($nama_file){ /*ini menggunakanan paramerter $nama_file*/
+function preview_user($nama_file){ /*ini menggunakanan paramerter $nama_file*/
     $url_sh=substr($nama_file,0,-4);
-    $url_klik= url('upload/bukti_bayar/'.$nama_file);
+    $url_klik= url('upload/user/'.$nama_file);
     // ini link dari route
-    $url_pdf=url('review/bukti/'.$url_sh);
     
     $link_image="window.open('".$url_klik."','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;";
-    $link_pdf="window.open('".$url_pdf."','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;";
 
-    $file_path = pathinfo(storage_path().'/upload/bukti_bayar/'.$nama_file);
+    $file_path = pathinfo(storage_path().'/upload/user/'.$nama_file);
     switch(strtolower($file_path['extension'])){
         case"jpg":case"png":case"jpeg":
             echo '
@@ -218,16 +216,6 @@ function preview_bukti($nama_file){ /*ini menggunakanan paramerter $nama_file*/
             echo "Klik Untuk Lebih Detail";
             echo "</a>";
         break;
-        case"pdf":
-            echo '
-            <a href="" onclick="'.$link_pdf.'">';
-            
-            echo "<i class='fas fa-file-pdf' style='font-size:100px;color:#D81F28'></i><br/>";
-            echo "Klik Untuk Lebih Detail<br>";
-            echo "Matikan IDM atau sejenisnya";
-
-            echo "</a>";
-        break;	
         default:
         echo "File tidak ditemukan";
         break;	

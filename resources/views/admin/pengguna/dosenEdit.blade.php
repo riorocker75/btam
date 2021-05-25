@@ -33,7 +33,9 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{url('/admin/pengguna/dosen/act')}}" method="post" enctype="multipart/form-data">
+                @foreach ($data as $dt)
+                    
+                <form role="form" action="{{url('/admin/pengguna/dosen/update')}}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                 
                     <div class="card-body"> 
@@ -45,7 +47,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">ID</span>
                                   </div>
-                                  <input type="text" class="form-control" name="nidn" placeholder="NIDN" required>
+                                  <input type="text" class="form-control" name="nidn" placeholder="NIDN" value="{{$dt->nidn}}" required>
                                 </div>
                                 @if($errors->has('nidn'))
                                 <small class="text-muted text-danger">
@@ -62,14 +64,17 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                   </div>
-                                  <input type="text" class="form-control" name="pass" id="password" placeholder="password">
+                                  <input type="text" class="form-control" name="pass" id="password" placeholder="Kosongkan jika tidak ingin merubah password">
+
                                 </div>
                                 @if($errors->has('pass'))
                                 <small class="text-muted text-danger">
                                     {{ $errors->first('pass')}}
                                 </small>
                                 @endif 
+                                
                             </div>
+
                         </div>
                         
                     </div>
@@ -79,7 +84,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
                           </div>
-                          <input type="text" class="form-control" id="nama" name="nama" placeholder="nama dosen" required>
+                          <input type="text" class="form-control" id="nama" value="{{$dt->nama}}" name="nama" placeholder="nama dosen" required>
                         </div>
                         @if($errors->has('nama'))
                         <small class="text-muted text-danger">
@@ -94,7 +99,7 @@
                                 <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
                             </div>
                             <select class="form-control" name="pendidikan" required>
-                                <option value="">Pilih...</option>
+                             <option value="{{$dt->pendidikan_terakhir}}" selected hidden>{{$dt->pendidikan_terakhir}}</option>
                                 <option value="S2">S2</option>
                                 <option value="S3">S3</option>
                             </select>
@@ -115,8 +120,10 @@
                             <select class="form-control" name="jurusan" required>
                                 @php
                                     $jur=\App\Model\Jurusan::all();
+                                    $jurx=\App\Model\Jurusan::where('id',$dt->id_jurusan)->first();
                                 @endphp
-                                <option value="">Pilih...</option>
+                                 <option value="{{$jurx->id}}" selected hidden>{{$jurx->nama}}</option>
+
                                 @foreach ($jur as $jr)
                                     <option value="{{$jr->id}}">{{$jr->nama}}</option>
                                 @endforeach
@@ -136,7 +143,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                           </div>
-                          <input type="email" class="form-control" id="email"  placeholder="ex:email@mail.com" name="email" required>
+                          <input type="email" class="form-control" id="email"  placeholder="ex:email@mail.com" value="{{$dt->email}}" name="email" required>
                         </div>
                         @if($errors->has('email'))
                         <small class="text-muted text-danger">
@@ -150,7 +157,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-phone-square-alt"></i></span>
                           </div>
-                          <input type="number" class="form-control" id="telepon" placeholder="no.telepon" name="telp">
+                          <input type="number" class="form-control" id="telepon" placeholder="no.telepon" value="{{$dt->telepon}}" name="telp">
                         </div>
                         @if($errors->has('telp'))
                         <small class="text-muted text-danger">
@@ -165,7 +172,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-home"></i></span>
                           </div>
-                          <input type="text" class="form-control" placeholder="Alamat" name="alamat">
+                          <input type="text" class="form-control" placeholder="Alamat" value="{{$dt->alamat}}" name="alamat">
                         </div>
                         @if($errors->has('alamat'))
                         <small class="text-muted text-danger">
@@ -179,6 +186,7 @@
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" id="avatar" name="avatar">
                             <label class="custom-file-label" for="avatar">unggah foto</label>
+                            <input type="hidden" name="sumber" value="{{$dt->id}}">
                           </div>
                           @if($errors->has('avatar'))
                           <small class="text-muted text-danger">
@@ -187,6 +195,10 @@
                           @endif 
                         </div>
                       </div> 
+
+                      <?php echo preview_user($dt->avatar)?>
+
+
                   </div>
                   <!-- /.card-body -->
   
@@ -194,6 +206,8 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </form>
+                @endforeach
+
               </div>
               <!-- /.card -->
             </div>

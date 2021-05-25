@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Session;
 use App\Model\Admin;
 use App\Model\Dosen;
 use App\Model\Mahasiswa;
+use App\Model\Pengguna;
+
 
 
 class PenggunaCtrl extends Controller
@@ -92,14 +94,65 @@ class PenggunaCtrl extends Controller
     }
 
     function dosen_edit($id){
-
+        $data=Dosen::where('id',$id)->get();
+        return view('admin.pengguna.dosenEdit',[
+            'data' => $data
+        ]);
     }
 
-    function dosen_update(Requset $request){
+    function dosen_update(Request $request){
+        $id=$request->sumber;
+        $this->validate($request, [
+            'nama' => 'required',
+            'nidn' => 'required',
+        ]);
+        $request->validate([
+            'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
+           ]);
+            
+           $avatar= $request->file('avatar');
+
+           if($avatar != ""){
+                $inf_avatar =rand(10000,99999)."_".rand(1000,9999).".".$avatar->getClientOriginalExtension();
+                $tujuan_upload ='upload/user';
+        
+                $avatar->move($tujuan_upload,$inf_avatar);
+
+                $avatar_hapus=Dosen::where('id',$id)->first();
+                File::delete('upload/user/'.$avatar_hapus->avatar);
+    
+                Dosen::where('id',$id)->update([
+                  'avatar' => $inf_avatar
+               ]);
+           }
+           DB::table('dosen')->where('id',$id)->update([
+               'nama' =>$request->nama,
+               'nidn' =>$request->nidn,
+               'pendidikan_terakhir' =>$request->pendidikan,
+               'id_jurusan' =>$request->jurusan,
+               'alamat' =>$request->alamat,
+               'telepon' =>$request->telp,
+               'email' =>$request->email
+           ]);
+
+           if($request->pass != "" ){
+                DB::table('pengguna')->where('username',$request->nidn)->update([
+                    'username' => $request->nidn,
+                    'password' => bcrypt($request->pass),
+                    'level' => '2',
+                    'status' => '1'
+                ]);
+            }
+            return redirect('/admin/pengguna/dosen')->with('alert-success','Data telah diubah');
 
     }
 
     function dosen_delete($id){
+        $avatar=Dosen::where('id',$id)->first();
+        File::delete('upload/user/'.$avatar->avatar);
+        Dosen::where('id',$id)->delete();
+        Pengguna::where('username',$avatar->nidn)->delete();
+        return redirect('/admin/pengguna/dosen')->with('alert-success','Data telah dihapus');
 
     }
 
