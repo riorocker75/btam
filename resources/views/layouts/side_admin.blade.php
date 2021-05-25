@@ -96,19 +96,19 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{url('pengguna/dosen')}}"class="nav-link  active">
+              <a href="{{url('admin/pengguna/dosen')}}"class="nav-link  active">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Dosen</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('pengguna/reviewer')}}" class="nav-link">
+              <a href="{{url('admin/pengguna/reviewer')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Reviewer</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('pengguna/mahasiswa')}}" class="nav-link">
+              <a href="{{url('admin/pengguna/mahasiswa')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Pengusul</p>
               </a>
@@ -197,7 +197,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{url('panduan/index')}}" class="nav-link">
+          <a href="{{url('/admin/panduan')}}" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
             <p>
               Panduan

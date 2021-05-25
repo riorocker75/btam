@@ -35,7 +35,10 @@
 
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-
+    <!-- jQuery -->
+    <script src="{{asset('asset/plugins/jquery/jquery.min.js')}}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{asset('asset/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
 
 </head>
@@ -78,10 +81,7 @@
 
 
 {{-- bagian js --}}
-<!-- jQuery -->
-<script src="{{asset('asset/plugins/jquery/jquery.min.js')}}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{asset('asset/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -110,6 +110,8 @@
 <script src="{{asset('asset/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('asset/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('asset/js/custom.js')}}"></script>
+<script src="{{asset('asset/js/file_review.js')}}"></script>
+
 
 
 <script src="{{asset('asset/js/adminlte.js')}}"></script>

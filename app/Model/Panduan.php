@@ -4,13 +4,13 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Dosen extends Model
+class Panduan extends Model
 {
-     protected $table= "dosen";
+    protected $table= "panduan";
     public $timestamps = false;
     protected $fillable =[
-      'nidn',
-      'nama',
-      'pendidikan_terakhir'
+        'nama',
+        'file_panduan'
     ];
+
 }

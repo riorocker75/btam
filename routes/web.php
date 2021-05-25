@@ -52,6 +52,15 @@ Route::get('/admin/jadwal-kegiatan/edit/{id}' ,'Admin\JadwalCtrl@jadwal_kegiatan
 Route::post('/admin/jadwal-kegiatan/update' ,'Admin\JadwalCtrl@jadwal_kegiatan_update');
 Route::get('/admin/jadwal-kegiatan/delete/{id}' ,'Admin\JadwalCtrl@jadwal_kegiatan_delete');
 
+/*
+=========================== 
+		Review File
+===========================
+*/
+
+//jadwal kegiatan berkas
+Route::get('/upload/berkas/{id}','AjaxCtrl@viewfile_pdf');
+
 
 
 // start prodi & jurusan
@@ -73,6 +82,36 @@ Route::get('/admin/daftar-prodi/delete/{id}' ,'Admin\ProdiCtrl@prodi_delete');
 
 
 
+// panduan 
+Route::get('/admin/panduan' ,'Admin\PanduanCtrl@panduan');
+Route::get('/admin/panduan/add' ,'Admin\PanduanCtrl@panduan_add');
+
+Route::post('/admin/panduan/act' ,'Admin\PanduanCtrl@panduan_act');
+Route::get('/admin/panduan/delete/{id}' ,'Admin\PanduanCtrl@panduan_delete');
+
+Route::get('/upload/panduan/{id}','AjaxCtrl@viewfile_panduan');
+
+// ----------------------------
+// data pengusul
+// data dosen
+
+Route::get('/admin/pengguna/dosen' ,'Admin\PenggunaCtrl@dosen');
+
+Route::get('/admin/pengguna/dosen/add' ,'Admin\PenggunaCtrl@dosen_add');
+Route::post('/admin/pengguna/dosen/act' ,'Admin\PenggunaCtrl@dosen_act');
+Route::get('/admin/pengguna/dosen/edit/{id}' ,'Admin\PenggunaCtrl@dosen_edit');
+Route::post('/admin/pengguna/dosen/update' ,'Admin\PenggunaCtrl@dosen_update');
+Route::get('/admin/pengguna/dosen/delete/{id}' ,'Admin\PenggunaCtrl@dosen_delete');
+
+
+
+// data reviewer
+
+
+// data mahasiswa
+
+
+// -----------------------
 
 
 /*

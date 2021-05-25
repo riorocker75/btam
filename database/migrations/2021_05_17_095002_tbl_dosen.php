@@ -17,10 +17,12 @@ class TblDosen extends Migration
             Schema::create('dosen', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('nidn',100);
+                $table->string('id_jurusan',100)->nullPable();
                 $table->string('nama',100);
                 $table->integer('telepon')->nullable();
                 $table->string('pendidikan_terakhir',100);
-                $table->string('email',100);
+                $table->text('alamat')->nullable();
+                $table->string('email',100)->nullable();
                 $table->text('avatar')->nullable();
             });
         }

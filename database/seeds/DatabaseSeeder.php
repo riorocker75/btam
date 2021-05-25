@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
          $this->call(Admin_seed::class);
          $this->call(Mahasiswa_seed::class);
          $this->call(Dosen_seed::class);
+         $this->call(Jurusan_seed::class);
+
 
     }
 }

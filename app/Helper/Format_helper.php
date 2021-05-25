@@ -71,23 +71,6 @@ function format_notif_jam($timestamp){
     }  
 } 
 
-function status_bayar_pinjaman($status){
-    switch($status){
-        case 0:
-            echo "<label class='badge badge-primary'>Tahap Ajukan</label>";
-        break;
-        case 1:
-            echo "<label class='badge badge-warning'>Masa Angsuran</label>";
-        break;
-        case 2:
-            echo"<label class='badge badge-success'>Lunas</label>";
-        break;
-        default:
-        echo "none ";
-        break;
-    }
-}
-
 function cek_status_anggota($status){
     switch($status){
         case 0:
@@ -105,36 +88,6 @@ function cek_status_anggota($status){
     }
 }
 
-function cek_status_simpanan($status){
-    switch($status){
-        case 0:
-            echo '<label class="badge badge-danger">Non aktif</label>';
-        break;
-        case 1:
-            echo '<label class="badge badge-success">Aktif</label>';
-        break;
-        case 3:
-            echo '<label class="badge badge-danger">Tutup Rekening</label>';
-        break;
-        default:
-            echo "tidak ada";
-         break;
-    }
-}
-
-function jenis_sukarela($kode){
-    switch($kode){
-        case 1:
-            echo "Simpanan Sukarela";
-        break;
-        case 2:
-            echo"Simpanan Wajib";
-        break;
-        default:
-        echo "Simpanan Lainya";
-    break;
-    }
-}
 
 function status_kas($status){
     switch($status){
@@ -181,14 +134,14 @@ function status_tarik($status){
 
 function preview_file($nama_file){ /*ini menggunakanan paramerter $nama_file*/
     $url_sh=substr($nama_file,0,-4);
-    $url_klik= url('upload/syarat/'.$nama_file);
+    $url_klik= url('upload/berkas/'.$nama_file);
     // ini link dari route
-    $url_pdf=url('review/syarat/'.$url_sh);
+    $url_pdf=url('upload/berkas/'.$url_sh);
     
     $link_image="window.open('".$url_klik."','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;";
     $link_pdf="window.open('".$url_pdf."','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;";
 
-    $file_path = pathinfo(storage_path().'/upload/syarat/'.$nama_file);
+    $file_path = pathinfo(storage_path().'/upload/berkas/'.$nama_file);
     switch(strtolower($file_path['extension'])){
         case"jpg":case"png":case"jpeg":
             echo '
@@ -197,14 +150,13 @@ function preview_file($nama_file){ /*ini menggunakanan paramerter $nama_file*/
             echo "Klik Untuk Lebih Detail";
             echo "</a>";
         break;
-        case"pdf":
+        case"pdf":case"PDF":
             echo '
             <a href="" onclick="'.$link_pdf.'">';
-            
+        
             echo "<i class='fas fa-file-pdf' style='font-size:100px;color:#D81F28'></i><br/>";
-            echo "Klik Untuk Lebih Detail<br>";
-            echo "Matikan IDM atau sejenisnya";
-
+            echo "Preview file <br>";
+         
             echo "</a>";
         break;	
         default:
@@ -215,6 +167,36 @@ function preview_file($nama_file){ /*ini menggunakanan paramerter $nama_file*/
 }
 
 // end preview syarat
+
+// preview panduan
+function preview_panduan($nama_file){
+  
+    $url_sh=substr($nama_file,0,-4);
+    // ini link dari route
+    $url_pdf=url('upload/panduan/'.$url_sh);
+    
+    $link_pdf="window.open('".$url_pdf."','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;";
+
+    $file_path = pathinfo(storage_path().'/upload/panduan/'.$nama_file);
+    switch(strtolower($file_path['extension'])){
+        case"pdf":case"PDF":
+            echo '
+            <a href="" onclick="'.$link_pdf.'">';
+        
+            echo "<i class='fas fa-file-pdf' style='font-size:20px;color:#D81F28'></i>";
+            echo " Preview<br>";
+         
+            echo "</a>";
+        break;	
+        default:
+        echo "File tidak ditemukan";
+        break;	
+
+    }
+
+}
+
+// end panduan
 
 // start perview bukti
 
