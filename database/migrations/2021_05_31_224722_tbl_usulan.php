@@ -32,14 +32,12 @@ class TblUsulan extends Migration
                 $table->text('surat_nyata')->nullable();
                 $table->date('tgl_unggah_proposal')->nullable();
                 $table->text('berkas_proposal')->nullable();
-                // $table->date('tgl_unggah_kemajuan')->nullable();
-                // $table->text('laporan_kemajuan')->nullable();
-                // $table->date('tgl_unggah_akhir')->nullable();
-                // $table->text('laporan_akhir')->nullable();
+    
 
-                $table->text('status')->nullable()->comment('1= Diproses, 2=Disetujui, 3=Didanai, 4=Ditolak');
-                $table->text('unggah_terakhir')->nullable()->comment('1= pencairan_dana, 2=lap_kemajuan, 3=lap_akhir');
-                $table->text('status_biaya')->nullable()->comment('0=belum dibiayai, 1=dibayai');
+                $table->text('status')->nullable()->comment('1= Diproses, 2=Disetujui, 3=Penilaian, 4=Didanai, 4=Ditolak');
+                $table->text('status_nilai')->nullable()->comment('1= Diproses, 2=Dinilai');
+                $table->text('status_rek')->nullable()->comment('1= Diproses, 2=Diterima,3=Tidak mengirim');
+
             });
         }                                    
     }
