@@ -22,7 +22,10 @@ Route::get('/','Admin\AdminCtrl');
 ===========================
 */
 Route::get('/login/user' ,'Auth\AdminLogin');
+
 Route::post('/LoginValidate','Auth\AdminLogin@loginCheck');
+Route::get('/logout/user' ,'Auth\AdminLogin@logout');
+// Route::get('/pengaturan/user' ,'Auth\AdminLogin@logout');
 
 
 /*
@@ -106,9 +109,24 @@ Route::get('/admin/pengguna/dosen/delete/{id}' ,'Admin\PenggunaCtrl@dosen_delete
 
 
 // data reviewer
+Route::get('/admin/pengguna/reviewer' ,'Admin\PenggunaCtrl@reviewer');
+
+Route::get('/admin/pengguna/reviewer/add' ,'Admin\PenggunaCtrl@reviewer_add');
+Route::post('/admin/pengguna/reviewer/act' ,'Admin\PenggunaCtrl@reviewer_act');
+Route::get('/admin/pengguna/reviewer/delete/{id}' ,'Admin\PenggunaCtrl@reviewer_delete');
+
 
 
 // data mahasiswa
+
+Route::get('/admin/pengguna/mahasiswa' ,'Admin\PenggunaCtrl@mahasiswa');
+
+Route::get('/admin/pengguna/mahasiswa/add' ,'Admin\PenggunaCtrl@mahasiswa_add');
+Route::post('/admin/pengguna/mahasiswa/act' ,'Admin\PenggunaCtrl@mahasiswa_act');
+Route::get('/admin/pengguna/mahasiswa/edit/{id}' ,'Admin\PenggunaCtrl@mahasiswa_edit');
+Route::post('/admin/pengguna/mahasiswa/update' ,'Admin\PenggunaCtrl@mahasiswa_update');
+Route::get('/admin/pengguna/mahasiswa/delete/{id}' ,'Admin\PenggunaCtrl@mahasiswa_delete');
+
 
 
 // -----------------------
@@ -119,3 +137,27 @@ Route::get('/admin/pengguna/dosen/delete/{id}' ,'Admin\PenggunaCtrl@dosen_delete
 		Dosen
 ===========================
 */
+Route::get('/dashboard/dosen' ,'Dospem\DsnCtrl');
+
+
+
+/*
+=========================== 
+		Mahasiswa
+===========================
+*/
+Route::get('/dashboard/mahasiswa' ,'Mahasiswa\MhsCtrl');
+
+// daftar usulan
+Route::get('/mahasiswa/daftar-usulan' ,'Mahasiswa\DaftarUsCtrl');
+
+// unggah proposal
+Route::get('/mahasiswa/daftar-usulan/unggah-proposal/{id}' ,'Mahasiswa\DaftarUsCtrl@unggah_proposal');
+Route::post('/mahasiswa/daftar-usulan/unggah-proposal/act' ,'Mahasiswa\DaftarUsCtrl@unggah_proposal_act');
+
+
+// unggah laporan kemajuan
+
+// unggah laporan final
+
+// unggah rekening

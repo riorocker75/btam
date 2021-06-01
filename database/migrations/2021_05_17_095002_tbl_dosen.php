@@ -23,6 +23,7 @@ class TblDosen extends Migration
                 $table->string('pendidikan_terakhir',100);
                 $table->text('alamat')->nullable();
                 $table->string('email',100)->nullable();
+                $table->text('lvl')->nullable()->comment('1=dosen,2=dospem,3=reviewer');
                 $table->text('avatar')->nullable();
             });
         }

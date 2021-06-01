@@ -59,11 +59,11 @@ class AdminLogin extends Controller
                 
                 if(Hash::check($password,$data->password)){
                     Session::put('ds_id', $data->id);
-                    Session::put('ds_username', $data_ds->username);
+                    Session::put('ds_username', $data_ds->nidn);
                     Session::put('nama', $data_ds->nama);
                     Session::put('level', 2);
                     Session::put('login-ds',TRUE);
-                    return redirect('/dashboard/dospem')->with('alert-success','Selamat Datang');
+                    return redirect('/dashboard/dosen')->with('alert-success','Selamat Datang');
                 }else{
                     return redirect('/login/user')->with('alert-danger','Password atau NIDN, Salah !');
                 }
@@ -74,7 +74,7 @@ class AdminLogin extends Controller
                    
                         if(Hash::check($password,$data->password)){
                         Session::put('rv_id', $data->id);
-                        Session::put('rv_username', $data_ds->username);
+                        Session::put('rv_username', $data_ds->nidn);
                         Session::put('nama', $data_ds->nama);
 
                         Session::put('level', 3);
@@ -85,12 +85,12 @@ class AdminLogin extends Controller
                         }   
 
             }elseif($data->level == 4){
-                Session::flush();
+                // Session::flush();
                 $data_mh=Mahasiswa::where('nim', $username)->first();
                 
                 if(Hash::check($password,$data->password)){
                     Session::put('mh_id', $data->id);
-                    Session::put('mh_username', $data_mh->username);
+                    Session::put('mh_username', $data_mh->nim);
                     Session::put('nama', $data_mh->nama);
                     Session::put('level', 4);
                     Session::put('login-mh',TRUE);

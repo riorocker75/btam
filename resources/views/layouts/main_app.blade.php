@@ -18,12 +18,21 @@
   <link rel="stylesheet" href="{{asset('asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{asset('asset/plugins/jqvmap/jqvmap.min.css')}}">
+
+      <!-- Select2 -->
+      <link rel="stylesheet" href="{{asset('asset/plugins/select2/css/select2.min.css')}}">
+      <link rel="stylesheet" href="{{asset('asset/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('asset/css/adminlte.min.css')}}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{asset('asset/plugins/daterangepicker/daterangepicker.css')}}">
+  <link rel="stylesheet" href="{{asset('asset/plugins/timepicker/timepicker.css')}}">
+  <link rel="stylesheet" href="{{asset('asset/plugins/bt-datepicker/datepicker.css')}}">
+
+
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('asset/plugins/summernote/summernote-bs4.min.css')}}">  
 
@@ -88,6 +97,10 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- Select2 -->
+<script src="{{asset('asset/plugins/select2/js/select2.full.min.js')}}"></script>
+
+
 <!-- ChartJS -->
 <script src="{{asset('asset/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
@@ -100,6 +113,10 @@
 <!-- daterangepicker -->
 <script src="{{asset('asset/plugins/moment/moment.min.js')}}"></script>
 <script src="{{asset('asset/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<script src="{{asset('asset/plugins/timepicker/timepicker.js')}}"></script>
+<script src="{{asset('asset/plugins/bt-datepicker/datepicker.js')}}"></script>
+
+
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{asset('asset/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Summernote -->
@@ -111,7 +128,6 @@
 <script src="{{asset('asset/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('asset/js/custom.js')}}"></script>
 <script src="{{asset('asset/js/file_review.js')}}"></script>
-
 
 
 <script src="{{asset('asset/js/adminlte.js')}}"></script>

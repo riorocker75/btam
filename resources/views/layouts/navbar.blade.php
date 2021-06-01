@@ -26,9 +26,23 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <div class="image" >
-            <img src=""  class="img-circle elevation-2" alt="User Image">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            tes
           </div>
+        
         </a>
+
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="{{ url('/logout/user')}}" class="dropdown-item">
+           <i class="fas fa-sign-out-alt "></i> Logout
+          </a>
+
+          <a href="" class="dropdown-item">
+            <i class="fas fa-sign-out-alt "></i> Pengaturan
+           </a>
+          
+          <div class="dropdown-divider"></div>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">

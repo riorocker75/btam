@@ -158,3 +158,30 @@ $(document).ready(function () {
   });
 });
 
+// year picker
+// $(function(){
+//   $('#datepickers').datepicker({
+//       changeMonth: false,
+//       changeYear: true,
+//       showButtonPanel: true,
+//       yearRange: '1950:2013', // Optional Year Range
+//       dateFormat: 'yy',
+//       onClose: function(dateText, inst) { 
+//           var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+//           $(this).datepicker('setDate', new Date(year, 0, 1));
+//       }});
+//   });
+
+$("#datepicker").datepicker({
+  format: "yyyy",
+  viewMode: "years", 
+  minViewMode: "years"
+});
+
+ //Initialize Select2 Elements
+ $('.select2').select2()
+
+ //Initialize Select2 Elements
+ $('.select2bs4').select2({
+   theme: 'bootstrap4'
+ })

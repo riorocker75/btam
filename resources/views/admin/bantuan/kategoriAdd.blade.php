@@ -58,8 +58,7 @@
                         </div>
                         <select class="form-control" name="jenjang" required>
                           <option value="">pilih</option>
-                          <option value="D3">D3</option>
-                          <option value="D4">D4</option>
+                          <option value="D3-D4">D3-D4</option>
                           <option value="S2">S2</option>
                         </select>
                         @if($errors->has('jenjang'))

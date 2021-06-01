@@ -46,9 +46,10 @@
                     </tr>
                     </thead>
                     <tbody>
+                        @foreach ($data as $dt)
+
                     <tr>
                         <?php $no=1;?>
-                        @foreach ($data as $dt)
                         <td>{{ $no++}}</td>
                         <td>{{ $dt->nama }}</td>
                         <td>
@@ -60,8 +61,8 @@
                             <a href="{{ url('/admin/kategori-bantuan/edit/'.$dt->id.'')}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
                             <a href="{{ url('/admin/kategori-bantuan/delete/'.$dt->id.'')}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                         </td>
-                        @endforeach
                     </tr>
+                    @endforeach
                     </tbody>
                 </table>
                 </div>

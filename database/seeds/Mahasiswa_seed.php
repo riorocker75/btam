@@ -19,7 +19,10 @@ class Mahasiswa_seed extends Seeder
             'nim' => '112233',
             'telepon' =>'0852765254',
             'email' => "Sumail@gmail.com",
-            'avatar' => 1
+            'jenjang' => "D4",
+            'angkatan' => '2017',            
+            'id_prodi' => '1',
+            'id_jurusan' => '1'            
         ]);
     }
 }

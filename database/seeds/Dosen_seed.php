@@ -22,8 +22,8 @@ class Dosen_seed extends Seeder
             'telepon' =>'0852765254',
             'pendidikan_terakhir' => "S2",
             'email' => "Budi@gmail.com",
-            'alamat' => "Tanah Abang"
-        
+            'alamat' => "Tanah Abang",
+            'lvl' => '1'
         ]);
 
         // reviewer
@@ -34,8 +34,8 @@ class Dosen_seed extends Seeder
             'telepon' =>'0852765254',
             'pendidikan_terakhir' => "S2",
             'email' => "Puppey@gmail.com",
-            'alamat' => "Tanah Abang"
-           
+            'alamat' => "Tanah Abang",
+            'lvl' => '3'
 
         ]);
     }

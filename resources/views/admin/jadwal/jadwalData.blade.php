@@ -58,8 +58,8 @@
                         <td>
                             Penawaran Bantuan: {{ format_tanggal(date('Y-m-d', strtotime($dt->pembukaan_tawaran))) }}<br> 
                             Deadline Proposal : {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_proposal))) }} <br>
-                            Deadline Rekening : {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_rek))) }} <br>
                             Deadline Deskevaluasi : {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_deskevaluasi))) }} <br>
+                            Deadline Rekening : {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_rek))) }} <br>
                             Deadline Kemajuan : {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_kemajuan))) }} <br>
                             Deadline Akhir : {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_akhir))) }} 
                         </td>

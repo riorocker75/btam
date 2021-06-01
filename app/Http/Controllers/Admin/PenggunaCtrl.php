@@ -47,30 +47,47 @@ class PenggunaCtrl extends Controller
 
     function dosen_act(Request $request){
 
+        $nidn=$request->nidn;
         $this->validate($request, [
             'nama' => 'required',
-            'nidn' => 'required',
+            'nidn' => 'required|unique:dosen,nidn'
         ]);
         $request->validate([
             'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
            ]);
    
         $avatar= $request->file('avatar');
-        $inf_avatar =rand(10000,99999)."_".rand(1000,9999).".".$avatar->getClientOriginalExtension();
-        $tujuan_upload ='upload/user';
+       
 
-        $avatar->move($tujuan_upload,$inf_avatar);
-
-        DB::table('dosen')->insert([
-            'nama' =>$request->nama,
-            'nidn' =>$request->nidn,
-            'pendidikan_terakhir' =>$request->pendidikan,
-            'id_jurusan' =>$request->jurusan,
-            'alamat' =>$request->alamat,
-            'telepon' =>$request->telp,
-            'email' =>$request->email,
-            'avatar' =>$inf_avatar
-        ]);
+        if($avatar != ""){
+            $inf_avatar =rand(10000,99999)."_".rand(1000,9999).".".$avatar->getClientOriginalExtension();
+            $tujuan_upload ='upload/user';
+    
+            $avatar->move($tujuan_upload,$inf_avatar);
+            DB::table('dosen')->insert([
+                'nama' =>$request->nama,
+                'nidn' =>$request->nidn,
+                'pendidikan_terakhir' =>$request->pendidikan,
+                'id_jurusan' =>$request->jurusan,
+                'alamat' =>$request->alamat,
+                'telepon' =>$request->telp,
+                'email' =>$request->email,
+                'lvl' => '1',
+                'avatar' =>$inf_avatar
+            ]);
+        }else{
+            DB::table('dosen')->insert([
+                'nama' =>$request->nama,
+                'nidn' =>$request->nidn,
+                'pendidikan_terakhir' =>$request->pendidikan,
+                'id_jurusan' =>$request->jurusan,
+                'alamat' =>$request->alamat,
+                'telepon' =>$request->telp,
+                'email' =>$request->email,
+                'lvl' => '1',
+            ]);
+        }
+      
 
         if($request->pass != "" ){
             DB::table('pengguna')->insert([
@@ -102,9 +119,10 @@ class PenggunaCtrl extends Controller
 
     function dosen_update(Request $request){
         $id=$request->sumber;
+        $nidn= $request->nidn;
         $this->validate($request, [
             'nama' => 'required',
-            'nidn' => 'required',
+            'nidn' => 'required|unique:dosen,nidn,'.$nidn.',nidn'
         ]);
         $request->validate([
             'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
@@ -159,26 +177,33 @@ class PenggunaCtrl extends Controller
 
 
     // bagian reviewer
-    function review(){
+    function reviewer(){
+        $data= Dosen::where('lvl','3')->get();
+        return view('admin.pengguna.reviewerData',[
+            'data' => $data
+        ]);
+    }
+ 
+    function reviewer_act(Request $request){
+        $this->validate($request, [
+            'nidn' => 'required'
+        ]);     
+
+        $nidn =$request->nidn;
+
+        DB::table('dosen')->where('nidn',$nidn)->update([
+            'lvl' => '3'
+        ]);
+        return redirect('/admin/pengguna/reviewer')->with('alert-success','Data telah ditambahkan');
 
     }
-    function review_add(){
 
-    }
-
-    function review_act(Requset $request){
-
-    }
-
-    function review_edit($id){
-
-    }
-
-    function review_update(Requset $request){
-
-    }
-
-    function review_delete($id){
+    function reviewer_delete($id){
+      
+        DB::table('dosen')->where('id',$id)->update([
+            'lvl' => '1'
+        ]);
+        return redirect('/admin/pengguna/reviewer')->with('alert-success','Data telah dihapus');
 
     }
 
@@ -188,27 +213,146 @@ class PenggunaCtrl extends Controller
     // bagian mahasiswa
 
     function mahasiswa(){
-
+        $data = Mahasiswa::orderBy('id','asc')->get();
+        return view('admin.pengguna.siswaData',[
+            'data' => $data
+        ]);
     }
     function mahasiswa_add(){
-
+        return view('admin.pengguna.siswaAdd');
     }
 
-    function mahasiswa_act(Requset $request){
+    function mahasiswa_act(Request $request){
+        $nim=$request->nim;
+        $this->validate($request, [
+            'nama' => 'required',
+            'nim' => 'required|unique:mahasiswa,nim',
+            'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+        // $request->validate([
+        //    ]);
+   
+        $avatar= $request->file('avatar');
+     
 
+        if($avatar != ""){
+            // $avatar= $request->file('avatar');
+
+            $inf_avatar =rand(10000,99999)."_".rand(1000,9999).".".$avatar->getClientOriginalExtension();
+            $tujuan_upload ='upload/user';
+    
+            $avatar->move($tujuan_upload,$inf_avatar);
+            DB::table('mahasiswa')->insert([
+                'nama' =>$request->nama,
+                'nim' =>$request->nim,
+                'jenjang' =>$request->jenjang,
+                'id_jurusan' =>$request->jurusan,
+                'id_prodi' =>$request->prodi,
+                'angkatan' =>$request->angkatan,
+                'telepon' =>$request->telp,
+                'email' =>$request->email,
+                'avatar' =>$inf_avatar
+            ]);
+        }else{
+            DB::table('mahasiswa')->insert([
+                'nama' =>$request->nama,
+                'nim' =>$request->nim,
+                'jenjang' =>$request->jenjang,
+                'id_jurusan' =>$request->jurusan,
+                'id_prodi' =>$request->prodi,
+                'angkatan' =>$request->angkatan,
+                'telepon' =>$request->telp,
+                'email' =>$request->email,
+            ]);
+        }
+     
+
+        if($request->pass != "" ){
+            DB::table('pengguna')->insert([
+                'username' => $request->nim,
+                'password' => bcrypt($request->pass),
+                'level' => '4',
+                'status' => '1'
+            ]);
+        }else{
+            DB::table('pengguna')->insert([
+                'username' => $request->nim,
+                'password' => bcrypt($request->nim),
+                'level' => '2',
+                'status' => '1'
+            ]);
+        }
+
+
+        return redirect('/admin/pengguna/mahasiswa')->with('alert-success','Data telah ditambahkan');   
     }
 
     function mahasiswa_edit($id){
-
+        $data=Mahasiswa::where('id',$id)->get();
+        return view('admin.pengguna.siswaEdit',[
+            'data' => $data
+        ]);
     }
 
     function mahasiswa_update(Requset $request){
+        $id=$request->sumber;
+        $nim= $request->nim;
+        $this->validate($request, [
+            'nama' => 'required',
+            'nim' => 'required|unique:mahasiswa,nim,'.$nim.',nim'
+        ]);
+        $request->validate([
+            'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
+           ]);
+            
+           $avatar= $request->file('avatar');
+
+           if($avatar != ""){
+                $inf_avatar =rand(10000,99999)."_".rand(1000,9999).".".$avatar->getClientOriginalExtension();
+                $tujuan_upload ='upload/user';
+        
+                $avatar->move($tujuan_upload,$inf_avatar);
+
+                $avatar_hapus=Mahasiswa::where('id',$id)->first();
+                File::delete('upload/user/'.$avatar_hapus->avatar);
+    
+                Mahasiswa::where('id',$id)->update([
+                  'avatar' => $inf_avatar
+               ]);
+           }
+           DB::table('mahasiswa')->where('id',$id)->update([
+               'nama' =>$request->nama,
+               'nim' =>$request->nim,
+               'jenjang' =>$request->jenjang,
+                'id_jurusan' =>$request->jurusan,
+                'id_prodi' =>$request->prodi,
+                'angkatan' =>$request->angkatan,
+                'telepon' =>$request->telp,
+                'email' =>$request->email
+           ]);
+
+           if($request->pass != "" ){
+                DB::table('pengguna')->where('username',$request->nim)->update([
+                    'username' => $request->nim,
+                    'password' => bcrypt($request->pass),
+                    'level' => '4',
+                    'status' => '1'
+                ]);
+            }
+            return redirect('/admin/pengguna/mahasiswa')->with('alert-success','Data telah diubah');
 
     }
 
     function mahasiswa_delete($id){
-
+        $avatar=Mahasiswa::where('id',$id)->first();
+        File::delete('upload/user/'.$avatar->avatar);
+        Mahasiswa::where('id',$id)->delete();
+        Pengguna::where('username',$avatar->nim)->delete();
+        return redirect('/admin/pengguna/mahasiswa')->with('alert-success','Data telah dihapus');
     }
+
+
+    // bagian reviewer
 
 
 

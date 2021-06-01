@@ -19,6 +19,8 @@ class TblMahasiswa extends Migration
                 $table->string('nama',100);
                 $table->string('nim',100);
                 $table->integer('telepon')->nullable();
+                $table->text('jenjang')->nullable();
+                $table->text('angkatan')->nullable();
                 $table->integer('id_jurusan')->nullable();
                 $table->integer('id_prodi')->nullable();
                 $table->string('email',100)->nullable();

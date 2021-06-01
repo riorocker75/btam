@@ -176,7 +176,7 @@ function preview_panduan($nama_file){
     $url_pdf=url('upload/panduan/'.$url_sh);
     
     $link_pdf="window.open('".$url_pdf."','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;";
-
+    if($nama_file!= ""){
     $file_path = pathinfo(storage_path().'/upload/panduan/'.$nama_file);
     switch(strtolower($file_path['extension'])){
         case"pdf":case"PDF":
@@ -191,7 +191,7 @@ function preview_panduan($nama_file){
         default:
         echo "File tidak ditemukan";
         break;	
-
+        }     
     }
 
 }
@@ -207,6 +207,8 @@ function preview_user($nama_file){ /*ini menggunakanan paramerter $nama_file*/
     
     $link_image="window.open('".$url_klik."','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;";
 
+    if($nama_file!= ""){
+
     $file_path = pathinfo(storage_path().'/upload/user/'.$nama_file);
     switch(strtolower($file_path['extension'])){
         case"jpg":case"png":case"jpeg":
@@ -219,6 +221,7 @@ function preview_user($nama_file){ /*ini menggunakanan paramerter $nama_file*/
         default:
         echo "File tidak ditemukan";
         break;	
+    }
 
     }
 }
@@ -243,117 +246,11 @@ function status_transfer($status){
 }
 
 // pengecekan link bukti bayar di admin
-    function link_bukti_bayar($jenis,$rek){
-        $url_umum = url('admin/pembayaran/simpanan-umum/detail/'.$rek);
-        $url_umroh = url('admin/pembayaran/simpanan-umroh/detail/'.$rek);
-        $url_pendidikan = url('/admin/pembayaran/simpanan-pendidikan/detail/'.$rek);
-        $url_pinjaman = url('/admin/pembayaran/pinjaman/detail/'.$rek);
-
-        if($jenis == "TRFU"){
-            echo "
-            <a href='$url_umum' style='padding:0 7px'> 
-                <i class='fa fa-eye'></i>
-            </a>
-            ";
-        }elseif($jenis == "TRFH"){
-            echo "
-            <a href='$url_umroh' style='padding:0 7px'> 
-                <i class='fa fa-eye'></i>
-            </a>
-            ";
-        }elseif($jenis == "TRFD"){
-            echo "
-            <a href='$url_pendidikan' style='padding:0 7px'> 
-                <i class='fa fa-eye'></i>
-             </a>   
-            ";
-        }elseif($jenis == "TRFP"){
-            echo "
-            <a href='$url_pinjaman' style='padding:0 7px'> 
-                <i class='fa fa-eye'></i>
-             </a> 
-            ";
-        }
-
-    }
+  
 
 
     // pengecekan link status tarik dana
-    function link_tarik_dana($jenis,$rek){
-        $url_umum = url('admin/pembayaran/simpanan-umum/detail/'.$rek);
-        $url_deposit = url('admin/pembayaran/simpanan-deposit/detail/'.$rek);
-        $url_umroh = url('admin/pembayaran/simpanan-umroh/detail/'.$rek);
-        $url_pendidikan = url('/admin/pembayaran/simpanan-pendidikan/detail/'.$rek);
-
-        if($jenis == "TDUM"){
-            echo "
-            <a href='$url_umum' style='padding:0 7px'> 
-                <i class='fa fa-eye'></i>
-            </a>
-            ";
-        }elseif($jenis == "TDBK"){
-            echo "
-            <a href='$url_deposit' style='padding:0 7px'> 
-                <i class='fa fa-eye'></i>
-            </a>
-            ";
-        }elseif($jenis == "TDUH"){
-            echo "
-            <a href='$url_umroh' style='padding:0 7px'> 
-                <i class='fa fa-eye'></i>
-            </a>   
-            ";
-        }elseif($jenis == "TRPN"){
-            echo "
-            <a href='$url_pendidikan' style='padding:0 7px'> 
-                <i class='fa fa-eye'></i>
-            </a> 
-            ";
-        }
-
-        // end else
-    }
-
-    // penarikan dana nulled
-        // pengecekan link status tarik dana
-        function link_tarik_dana_nulled($jenis,$rek){
-            $url_umum = url('admin/pembayaran/simpanan-umum/detail/'.$rek);
-            $url_deposit = url('admin/pembayaran/simpanan-deposit/detail/'.$rek);
-            $url_umroh = url('admin/pembayaran/simpanan-umroh/detail/'.$rek);
-            $url_pendidikan = url('/admin/pembayaran/simpanan-pendidikan/detail/'.$rek);
-    
-            if($jenis == "TDUM"){
-                echo $url_umum ;
-            }elseif($jenis == "TDBK"){
-                echo $url_deposit;
-            }elseif($jenis == "TDUH"){
-                echo $url_umroh;
-            }elseif($jenis == "TRPN"){
-                echo $url_pendidikan;
-            }
-    
-            // end else
-        }
-
-        function jabatan($status){
-            switch($status){
-                case 1:
-                    echo "Manager" ;
-                break;
-                case 2:
-                    echo "Asisten Manager" ;
-                break; 
-                case 3:
-                    echo "Pengurus" ;
-                break;
-                case 4:
-                    echo "Staf Lapangan" ;
-                break;
-                default:
-                echo "None jabatan";
-            break;
-            }
-        }
+   
 
         function akses($status){
             switch($status){
@@ -368,6 +265,110 @@ function status_transfer($status){
                 break;
                 default:
                 echo "Tidak ada akses";
+            break;
+            }
+        }
+
+        function luaran_wajib($status){
+            switch($status){
+                case 1:
+                    echo "Jurnal Nasional Terakreditasi";
+                break;
+                case 2:
+                    echo "Jurnal Nasional Tidak Terakreditasi";
+                break;
+                case 3: 
+                    echo  "Jurnal Internasional Bereputasi";
+                break;
+                case 4: 
+                    echo  "Jurnal Internasional Tidak Bereputasi";
+                break;
+                default:
+                echo "Tidak ada Luaran";
+            break;
+            }
+        }
+
+        function luaran_tambahan($status){
+            switch($status){
+                case 1:
+                    echo "Model";
+                break;
+                case 2:
+                    echo "Prototipe";
+                break;
+                case 3: 
+                    echo  "Teknologi Tepat Guna";
+                break;
+                case 4: 
+                    echo  "Draft Paten";
+                break;
+                case 5: 
+                    echo  "Desain Industri";
+                break;
+                case 6: 
+                    echo  "Hak Cipta";
+                break;
+                case 7: 
+                    echo  "Luaran Lainya";
+                break;
+                default:
+                echo "Tidak ada Luaran";
+            break;
+            }
+        }
+
+
+        function status_usulan($status){
+            switch($status){
+                case 0:
+                    echo "Pengajuan";
+                break;
+                case 1:
+                    echo "Diproses";
+                break;
+                case 2: 
+                    echo  "Disetujui";
+                break;
+                case 3: 
+                    echo  "Didanai";
+                break;
+                case 4: 
+                    echo  "Ditolak";
+                break;
+                default:
+                echo "Tidak ada status";
+            break;
+            }
+        }
+
+        function status_biaya($status){
+            switch($status){
+                case 0:
+                    echo "Belum Biayai";
+                break;
+                case 1:
+                    echo "Dibiayai";
+                break;
+                default:
+                echo "Tidak ada status";
+            break;
+            }
+        }
+
+        function status_unggah($status){
+            switch($status){
+                case 1:
+                    echo "Pencairan Dana";
+                break;
+                case 2:
+                    echo "Laporan Kemajuan";
+                break;
+                case 3:
+                    echo "Laporan Akhir";
+                break;
+                default:
+                echo "Tidak ada status";
             break;
             }
         }

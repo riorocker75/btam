@@ -4,7 +4,21 @@ namespace App\Http\Controllers\Dospem;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
+use Illuminate\Support\Str;
+
+use App\Model\Admin;
+use App\Model\Mahasiswa;
+use App\Model\Dosen;
+use App\Model\Pengguna;
+use App\Model\KategoriBantuan;
+use App\Model\JadwalKegiatan;
+use App\Model\Laporan;
+use App\Model\UnggahRek;
+
+use App\Model\Usulan;
 class DsnCtrl extends Controller
 {
     public function __construct()
@@ -18,6 +32,11 @@ class DsnCtrl extends Controller
         
     }
     public function __invoke(){
-        return  "dosen";
+        $nidn=Session::get('ds_username');
+        $data= Usulan::where('id_dospem1',$nidn)
+                ->orWhere('id_dospem2',$nidn)->get();
+        return view('dospem.dashboard',[
+            'data' =>$data
+        ]);
     }
 }
