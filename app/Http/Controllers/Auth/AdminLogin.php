@@ -111,6 +111,36 @@ class AdminLogin extends Controller
 
     }
 
+    function daftar_siswa(){
+        return view('login.daftar_siswa');
+    }
+
+    function daftar_siswa_act(Request $request){
+        $nim=$request->nim;
+        $this->validate($request, [
+            'nama' => 'required',
+            'nim' => 'required|unique:mahasiswa,nim'
+        ]);  
+        
+        DB::table('mahasiswa')->insert([
+            'nama' =>$request->nama,
+            'nim' =>$request->nim,
+            'jenjang' =>$request->jenjang,
+            'id_jurusan' =>$request->jurusan,
+            'id_prodi' =>$request->prodi,
+            'angkatan' =>$request->angkatan,
+        ]);
+
+        DB::table('pengguna')->insert([
+            'username' => $request->nim,
+            'password' => bcrypt($request->pass),
+            'level' => '4',
+            'status' => '1'
+        ]);
+        return redirect('/login/user')->with('alert-success','Daftar Berhasil Login dengan akun anda');
+
+    }
+
   public function logout(){
         Session::flush();
         return redirect('/login/user')->with('alert-success','Logout berhasil');

@@ -26,6 +26,17 @@ class Dosen_seed extends Seeder
             'lvl' => '1'
         ]);
 
+        Dosen::create([
+            'nama' => 'umam',
+            'nidn' => '734455',
+            'id_jurusan' => '1',
+            'telepon' =>'0852765254',
+            'pendidikan_terakhir' => "S2",
+            'email' => "canda@gmail.com",
+            'alamat' => "Tanah Abang",
+            'lvl' => '1'
+        ]);
+
         // reviewer
         Dosen::create([
             'nama' => 'Puppey',
@@ -34,6 +45,17 @@ class Dosen_seed extends Seeder
             'telepon' =>'0852765254',
             'pendidikan_terakhir' => "S2",
             'email' => "Puppey@gmail.com",
+            'alamat' => "Tanah Abang",
+            'lvl' => '3'
+
+        ]);
+        Dosen::create([
+            'nama' => 'sumarto',
+            'nidn' => '123355',
+            'id_jurusan' => '1',
+            'telepon' =>'0852765254',
+            'pendidikan_terakhir' => "S2",
+            'email' => "sumarto@gmail.com",
             'alamat' => "Tanah Abang",
             'lvl' => '3'
 

@@ -227,6 +227,36 @@ function preview_user($nama_file){ /*ini menggunakanan paramerter $nama_file*/
 }
 // end perview bukti
 
+// preview proposal
+function preview_proposal($nama_file){ /*ini menggunakanan paramerter $nama_file*/
+    $url_sh=substr($nama_file,0,-4);
+    // ini link dari route
+    $url_pdf=url('upload/syarat/'.$url_sh);
+    
+    $link_pdf="window.open('".$url_pdf."','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;";
+    if($nama_file!= ""){
+    $file_path = pathinfo(storage_path().'/upload/syarat/'.$nama_file);
+    switch(strtolower($file_path['extension'])){
+        case"pdf":case"PDF":
+            echo '
+            <a href="" onclick="'.$link_pdf.'">';
+        
+            echo "<i class='fas fa-file-pdf' style='font-size:20px;color:#D81F28'></i>";
+            echo " Preview<br>";
+         
+            echo "</a>";
+        break;	
+        default:
+        echo "File tidak ditemukan";
+        break;	
+        }     
+    }
+
+}
+
+
+// end preview porposal
+
 
 function status_transfer($status){
     switch($status){
@@ -292,6 +322,7 @@ function status_transfer($status){
         function luaran_tambahan($status){
             switch($status){
                 case 1:
+
                     echo "Model";
                 break;
                 case 2:
@@ -321,9 +352,7 @@ function status_transfer($status){
 
         function status_usulan($status){
             switch($status){
-                case 0:
-                    echo "Pengajuan";
-                break;
+                
                 case 1:
                     echo "Diproses";
                 break;
@@ -331,10 +360,13 @@ function status_transfer($status){
                     echo  "Disetujui";
                 break;
                 case 3: 
-                    echo  "Didanai";
+                    echo  "Penilaian";
                 break;
                 case 4: 
-                    echo  "Ditolak";
+                    echo  "Didanai";
+                break;
+                case 5:
+                    echo "Ditolak";
                 break;
                 default:
                 echo "Tidak ada status";

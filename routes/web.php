@@ -26,7 +26,9 @@ Route::get('/login/user' ,'Auth\AdminLogin');
 Route::post('/LoginValidate','Auth\AdminLogin@loginCheck');
 Route::get('/logout/user' ,'Auth\AdminLogin@logout');
 // Route::get('/pengaturan/user' ,'Auth\AdminLogin@logout');
-
+// daftar mahasiswa
+Route::get('/daftar/mahasiswa' ,'Auth\AdminLogin@daftar_siswa');
+Route::post('/daftar/mahasiswa/act' ,'Auth\AdminLogin@daftar_siswa_act');
 
 /*
 =========================== 
@@ -54,6 +56,16 @@ Route::post('/admin/jadwal-kegiatan/act' ,'Admin\JadwalCtrl@jadwal_kegiatan_act'
 Route::get('/admin/jadwal-kegiatan/edit/{id}' ,'Admin\JadwalCtrl@jadwal_kegiatan_edit');
 Route::post('/admin/jadwal-kegiatan/update' ,'Admin\JadwalCtrl@jadwal_kegiatan_update');
 Route::get('/admin/jadwal-kegiatan/delete/{id}' ,'Admin\JadwalCtrl@jadwal_kegiatan_delete');
+
+
+// start penugasan reviewer
+Route::get('/admin/penugasan-reviewer/' ,'Admin\Penugasan');
+Route::get('/admin/penugasan-reviewer/pilih/{id}' ,'Admin\Penugasan@pilih_review');
+
+Route::post('/admin/penugasan-reviewer/act' ,'Admin\Penugasan@tugas_act');
+
+
+
 
 /*
 =========================== 
@@ -139,6 +151,21 @@ Route::get('/admin/pengguna/mahasiswa/delete/{id}' ,'Admin\PenggunaCtrl@mahasisw
 */
 Route::get('/dashboard/dosen' ,'Dospem\DsnCtrl');
 
+Route::get('/dosen/review-proposal/{id}' ,'Dospem\DsnCtrl@review_proposal');
+Route::post('/dosen/review-proposal/act' ,'Dospem\DsnCtrl@review_proposal_act');
+
+
+
+/*
+=========================== 
+		Reviewer
+===========================
+*/
+
+Route::get('/dashboard/reviewer' ,'Reviewer\RvwCtrl');
+Route::get('/reviewer/review-proposal' ,'Reviewer\RvwCtrl@review_proposal');
+
+
 
 
 /*
@@ -157,7 +184,14 @@ Route::post('/mahasiswa/daftar-usulan/unggah-proposal/act' ,'Mahasiswa\DaftarUsC
 
 
 // unggah laporan kemajuan
+Route::get('/mahasiswa/daftar-usulan/unggah-kemajuan/{id}' ,'Mahasiswa\DaftarUsCtrl@unggah_kemajuan');
+Route::post('/mahasiswa/daftar-usulan/unggah-kemajuan/act' ,'Mahasiswa\DaftarUsCtrl@unggah_kemajuan_act');
 
 // unggah laporan final
+Route::get('/mahasiswa/daftar-usulan/unggah-akhir/{id}' ,'Mahasiswa\DaftarUsCtrl@unggah_akhir');
+Route::post('/mahasiswa/daftar-usulan/unggah-akhir/act' ,'Mahasiswa\DaftarUsCtrl@unggah_akhir_act');
+
 
 // unggah rekening
+Route::get('/mahasiswa/daftar-usulan/unggah-rekening/{id}' ,'Mahasiswa\DaftarUsCtrl@unggah_rekening');
+Route::post('/mahasiswa/daftar-usulan/unggah-rekening/act' ,'Mahasiswa\DaftarUsCtrl@unggah_rekening_act');

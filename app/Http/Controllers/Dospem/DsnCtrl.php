@@ -39,4 +39,25 @@ class DsnCtrl extends Controller
             'data' =>$data
         ]);
     }
+
+
+    function review_proposal($id){
+        $data=Usulan::where('id',$id)->get();
+        return view('dospem.review_proposal',[
+            'data' => $data
+        ]);
+    }
+
+    
+    function review_proposal_act(Request $request){
+        $id=$request->sumber;
+
+        DB::table('usulan')->where('id',$id)->update([
+            'status' => '2',
+        ]);
+        return redirect('/dashboard/dosen')->with('alert-success','Data telah diubah');
+
+    }
+
+
 }

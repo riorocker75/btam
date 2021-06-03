@@ -13,11 +13,10 @@ class TblRekening extends Migration
      */
     public function up()
     {
-      if (Schema::hasTable('bank')) {
+      if (!Schema::hasTable('bank')) {
           Schema::create('bank', function (Blueprint $table) {
               $table->bigIncrements('id');
               $table->text('nama');
-             
           });
       }
     }

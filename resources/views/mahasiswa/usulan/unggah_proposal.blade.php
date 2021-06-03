@@ -217,7 +217,7 @@
                         <div class="input-group">
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" name="surat_aktif" required>
-                            <label class="custom-file-label" for="avatar">unggah surat aktif</label>
+                            <label class="custom-file-label" for="avatar"></label>
                           </div>
                           @if($errors->has('surat_aktif'))
                           <small class="text-muted text-danger">
@@ -233,7 +233,7 @@
                         <div class="input-group">
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" name="surat_nyata" required>
-                            <label class="custom-file-label" for="avatar">unggah surat pernyataan</label>
+                            <label class="custom-file-label" for="avatar"></label>
                           </div>
                           @if($errors->has('surat_nyata'))
                           <small class="text-muted text-danger">
@@ -250,7 +250,7 @@
                         <div class="input-group">
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" name="surat_proposal" required>
-                            <label class="custom-file-label" for="avatar">unggah proposal</label>
+                            <label class="custom-file-label" for="avatar"></label>
                           </div>
                           @if($errors->has('surat_proposal'))
                           <small class="text-muted text-danger">

@@ -100,13 +100,122 @@ class DaftarUsCtrl extends Controller
             
         ]);
     
-        return redirect('/mahasiswa/daftar-usulan')->with('alert-success','Menunggu Proses Review');
+        return redirect('/dashboard/mahasiswa')->with('alert-success','Menunggu Proses Review');
 
     }
 
 
+    // bagian unggah rekening
+    function unggah_rekening($id){
+        $data = Usulan::where('id',$id)->get();
+       return view('mahasiswa.usulan.unggah_rekening',[
+           'data' =>$data
+       ]); 
+    }
 
+    function unggah_rekening_act(Request $request){
+        $this->validate($request, [
+            'sumber' => 'required',
+            'no_rek' => 'required',
+            'nama_rek' => 'required',
+            'nama_bank' => 'required',
+            'foto_rek' => 'required|mimes:jpeg,png,jpg|max:1000',
+        ]);
 
+        $tujuan_upload ='upload/berkas';
+
+        // surat aktif
+        $foto_rek= $request->file('foto_rek');
+        $inf_foto_rek =rand(10000,99999)."_".rand(1000,9999).".".$foto_rek->getClientOriginalExtension();
+        $foto_rek->move($tujuan_upload,$inf_foto_rek);      
+
+     
+        DB::table('unggah_rek')->insert([
+            'id_usulan' =>$request->sumber,
+            'nomor_rek' => $request->no_rek,
+            'nama_rek' => $request->nama_rek,
+            'nama_bank' => $request->nama_bank,
+            'foto' =>$inf_foto_rek,
+            'tgl' => date('Y-m-d')
+        ]);
+    
+        return redirect('/dashboard/mahasiswa')->with('alert-success','Data rekening telah di ajukan');
+
+    }
+
+       // bagian unggah kemajuan
+       function unggah_kemajuan($id){
+        //buat logic status disini jika tidak sama alihakan ke page lain
+            $data = Usulan::where('id',$id)->get();
+            return view('mahasiswa.usulan.unggah_kemajuan',[
+                'data' =>$data
+            ]); 
+         }
+
+         function unggah_kemajuan_act(Request $request){
+            $this->validate($request, [
+                'sumber' => 'required',
+                'log_book' => 'required|mimes:pdf|max:20000',
+                'laporan' => 'required|mimes:pdf|max:20000',
+            ]);
+    
+            $tujuan_upload ='upload/berkas';
+    
+            // logbook
+            $log_book= $request->file('log_book');
+            $inf_log_book =rand(10000,99999)."_".rand(1000,9999).".".$log_book->getClientOriginalExtension();
+            $log_book->move($tujuan_upload,$inf_log_book);      
+    
+                
+             // laporan
+             $laporan= $request->file('laporan');
+             $inf_laporan =rand(10000,99999)."_".rand(1000,9999).".".$laporan->getClientOriginalExtension();
+             $laporan->move($tujuan_upload,$inf_laporan);      
+     
+            DB::table('laporan')->insert([
+                'id_usulan' =>$request->sumber,
+                'jenis' => '1',
+                'berkas' =>  $inf_laporan,
+                'logbook' => $inf_log_book,
+                'tgl_laporan' => date('Y-m-d')
+            ]);
+        
+            return redirect('/dashboard/mahasiswa')->with('alert-success','Data telah dikirim');
+    
+        }
+
+       // bagian unggah akhir
+       function unggah_akhir($id){
+        //    buat logic status disini jika tidak sama alihakan ke page lain
+        $data = Usulan::where('id',$id)->get();
+            return view('mahasiswa.usulan.unggah_akhir',[
+                'data' =>$data
+            ]); 
+         }
+
+         function unggah_akhir_act(Request $request){
+            $this->validate($request, [
+                'sumber' => 'required',
+                'laporan' => 'required|mimes:pdf|max:20000',
+            ]);
+    
+            $tujuan_upload ='upload/berkas';
+          
+             // laporan
+             $laporan= $request->file('laporan');
+             $inf_laporan =rand(10000,99999)."_".rand(1000,9999).".".$laporan->getClientOriginalExtension();
+             $laporan->move($tujuan_upload,$inf_laporan);      
+     
+            DB::table('laporan')->insert([
+                'id_usulan' =>$request->sumber,
+                'jenis' => '2',
+                'berkas' =>  $inf_laporan,
+                'tgl_laporan' => date('Y-m-d')
+            ]);
+        
+            return redirect('/dashboard/mahasiswa')->with('alert-success','Data telah dikirim');
+    
+        }
 
 
 

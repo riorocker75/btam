@@ -39,6 +39,9 @@
                         <th>Biaya</th>
                         <th>Tahun</th>
                         <th>Keterangan</th>
+
+                        <th width="15%">Progress</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -61,6 +64,16 @@
                       
                         <td>
                            <label class="badge badge-primary">{{ status_usulan($dt->status)}} </label> 
+                        </td>
+
+                        <td>
+                          <label class="badge badge-default"> <p>Menunggu persetujuan...</p> </label>
+                          {{-- buat logika jika dia sudah status didanai tamplikan tobol ini --}}
+                          <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-rekening/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Data Rekening</a></p>
+                          <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-kemajuan/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Kemajuan</a></p>
+                          <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-akhir/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Akhir</a></p>
+
+     
                         </td>
                     </tr>
                     @endforeach

@@ -70,11 +70,7 @@
                       
                         <td>
                            <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-proposal/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Proposal</a></p>
-                           <p> <a href="" class="btn btn-block btn-outline-primary btn-sm">Unggah Data Rekening</a></p>
-                            <p> <a href="" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Kemajuan</a></p>
-                            <p> <a href="" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Akhir</a></p>
-
-       
+                      
 
                         </td>
                     </tr>

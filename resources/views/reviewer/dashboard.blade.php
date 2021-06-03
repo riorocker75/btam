@@ -12,7 +12,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item active">Daftar Proposal</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,44 +27,44 @@
         <div class="card">
             
             <div class="card-header">
-                <h3 class="card-title">Usulan Terkini</h3>
+                <h3 class="card-title">Daftar Proposal</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                 <table id="data1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
+                        <th>No.</th>
+                        <th>Kategori</th>
                         <th>Judul</th>
-                        <th>Nama Pengusul</th>
-                        <th>Tahun</th>
-                        <th>Status</th>
+                        <th>Pengusul</th>
+                        <th>Proposal</th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
                     <tbody>
+                        <?php $no=1?>
                         @foreach ($data as $dt)
                          
                          @php
-                            $kat = \App\Model\KategoriBantuan::where('id', $dt->id_kategoriBantuan)->first();
-                            $mhs = \App\Model\Mahasiswa::where('nim',$dt->id_ketua)->first();
-                         @endphp   
-                    <tr>
-                        <td>{{$dt->judul}}</td>
-                        <td>{{$mhs->nama}}</td>
-                       
+                            $usl = \App\Model\Usulan::where('id',$dt->id_usulan)->first();
+                            $kat = \App\Model\KategoriBantuan::where('id',$usl->id_kategoriBantuan)->first();
+                            $mhs = \App\Model\Mahasiswa::where('nim',$usl->id_ketua)->first();
 
-                        <td>
-                            {{ $dt->tahun_usulan}} 
-                        </td>
-                      
-                        <td>
-                           <label class="badge badge-primary">{{ status_usulan($dt->status)}} </label> 
-                        </td>
-                        <td>
-                            <a href="{{url('/dosen/review-proposal/'.$dt->id.'')}}">Review</a> 
-                         </td>
-                    </tr>
-                    @endforeach
+                         @endphp   
+                        <tr>
+                            <td>{{$no++}}</td>
+                            <td>{{$kat->nama}}</td>
+                            <td>{{$usl->judul}}</td>
+                            <td>{{$mhs->nama}}</td>
+                            <td>{{preview_proposal($usl->berkas_proposal)}}</td>
+                            <td>
+                                <a href="" class="badge badge-danger">Review</a>
+                            </td>
+
+
+                        </tr>
+                      @endforeach
 
                     </tbody>
                 </table>

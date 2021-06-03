@@ -4,6 +4,26 @@ namespace App\Http\Controllers\Reviewer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use File;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+
+
+use App\Model\Admin;
+use App\Model\Mahasiswa;
+use App\Model\Dosen;
+use App\Model\Pengguna;
+use App\Model\KategoriBantuan;
+use App\Model\JadwalKegiatan;
+use App\Model\Laporan;
+use App\Model\UnggahRek;
+
+use App\Model\Usulan;
+use App\Model\Nilai;
+
 
 class RvwCtrl extends Controller
 {
@@ -18,6 +38,18 @@ class RvwCtrl extends Controller
         
     }
     public function __invoke(){
-        return  "rv";
+        $id=Session::get('rv_username');
+        $data = Nilai::where('id_reviewer',$id)->get();
+        return view('reviewer.dashboard',[
+            'data' => $data
+        ]);
     }
+
+    function review_proposal(){
+
+    }
+
+
+
+
 }

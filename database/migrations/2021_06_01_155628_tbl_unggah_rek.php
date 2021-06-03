@@ -13,7 +13,7 @@ class TblUnggahRek extends Migration
      */
     public function up()
     {
-       if (Schema::hasTable('unggah_rek')) {
+       if (!Schema::hasTable('unggah_rek')) {
            Schema::create('unggah_rek', function (Blueprint $table) {
                $table->bigIncrements('id');
                $table->text('id_usulan');

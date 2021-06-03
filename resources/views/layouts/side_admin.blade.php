@@ -67,23 +67,12 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{url('penugasan/ta')}}"  class="nav-link active">
+              <a href="{{url('/admin/penugasan-reviewer/')}}"  class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Tugas Akhir</p>
+                <p>Penugasan Reviewer</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{url('penugasan/skripsi')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Skripsi</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('penugasan/tesis')}}"class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tesis</p>
-              </a>
-            </li>
+          
           </ul>
         </li>
         <li class="nav-item">

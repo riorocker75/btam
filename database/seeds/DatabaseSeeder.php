@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
          $this->call(Dosen_seed::class);
          $this->call(Jurusan_seed::class);
          $this->call(Prodi_seed::class);
+         $this->call(Bank_seed::class);
 
 
 

@@ -278,7 +278,7 @@ class PenggunaCtrl extends Controller
             DB::table('pengguna')->insert([
                 'username' => $request->nim,
                 'password' => bcrypt($request->nim),
-                'level' => '2',
+                'level' => '4',
                 'status' => '1'
             ]);
         }
@@ -294,9 +294,9 @@ class PenggunaCtrl extends Controller
         ]);
     }
 
-    function mahasiswa_update(Requset $request){
-        $id=$request->sumber;
+    function mahasiswa_update(Request $request){
         $nim= $request->nim;
+        $id=$request->sumber;
         $this->validate($request, [
             'nama' => 'required',
             'nim' => 'required|unique:mahasiswa,nim,'.$nim.',nim'

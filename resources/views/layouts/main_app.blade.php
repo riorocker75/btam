@@ -136,6 +136,10 @@
 <script src="{{asset('asset/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('asset/js/pages/dashboard.js')}}"></script>
+
+  <!-- bs-custom-file-input -->
+  <script src="{{asset('asset/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>  
+
 {{-- end bagian js --}}
 
 </body>
