@@ -33,6 +33,12 @@ class Riwayat extends Controller
     }
 
 
+    function riwayat_propsal(){
 
-    
+        $data = Usulan::where('status')
+    }
+
+
+
+
 }

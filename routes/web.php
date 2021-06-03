@@ -163,7 +163,8 @@ Route::post('/dosen/review-proposal/act' ,'Dospem\DsnCtrl@review_proposal_act');
 */
 
 Route::get('/dashboard/reviewer' ,'Reviewer\RvwCtrl');
-Route::get('/reviewer/review-proposal' ,'Reviewer\RvwCtrl@review_proposal');
+Route::get('/reviewer/review-proposal/{id}' ,'Reviewer\RvwCtrl@review_proposal');
+Route::post('/reviewer/review-proposal/act' ,'Reviewer\RvwCtrl@review_proposal_act');
 
 
 

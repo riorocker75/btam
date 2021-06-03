@@ -50,16 +50,17 @@
                             $usl = \App\Model\Usulan::where('id',$dt->id_usulan)->first();
                             $kat = \App\Model\KategoriBantuan::where('id',$usl->id_kategoriBantuan)->first();
                             $mhs = \App\Model\Mahasiswa::where('nim',$usl->id_ketua)->first();
-
                          @endphp   
                         <tr>
                             <td>{{$no++}}</td>
                             <td>{{$kat->nama}}</td>
-                            <td>{{$usl->judul}}</td>
+                            {{-- <td><a href="{{url('/reviewer/detal-proposal/'.$usl->id.'')}}">{{$usl->judul}}</a></td> --}}
+                            <td><a data-toggle="modal" data-target="#detail-{{$usl->id}}">{{$usl->judul}}</a></td>
+
                             <td>{{$mhs->nama}}</td>
                             <td>{{preview_proposal($usl->berkas_proposal)}}</td>
                             <td>
-                                <a href="" class="badge badge-danger">Review</a>
+                                <a href="{{url('/reviewer/review-proposal/'.$dt->id.'')}}" class="badge badge-danger">Review</a>
                             </td>
 
 
@@ -93,6 +94,93 @@
   <!-- /.control-sidebar -->
 
   
+
+  {{-- modal detail --}}
+  <div class="modal fade" id="detail-{{$usl->id}}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h4 class="modal-title">Detail {{substr($usl->judul, 0,60)}}</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="kategoriBantuan">Nama Ketua</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-hands-helping"></i></span>
+                  </div>
+                  <input type="text" class="form-control" value="{{$mhs->nama}}"  disabled>
+                
+                 </div>
+            </div>
+
+            <div class="form-group">
+                <label for="kategoriBantuan">Judul</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-book" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" value="{{$usl->judul}}"  disabled>
+                
+                 </div>
+            </div>
+
+            @if ($usl->nama_anggota1 != "")
+                <div class="form-group">
+                    <label for="kategoriBantuan">Anggota 1</label>
+                    <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    </div>
+                    <input type="text" class="form-control" value="{{$usl->nama_anggota1}}"  disabled>
+                    
+                    </div>
+                </div>
+            @endif
+
+            @if ($usl->nama_anggota2 != "")
+            <div class="form-group">
+                <label for="kategoriBantuan">Anggota 2</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" value="{{$usl->nama_anggota2}}"  disabled>
+                
+                 </div>
+            </div>
+            @endif
+
+            <div class="form-group">
+                <label for="kategoriBantuan">Biaya Pengajuan</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" value="Rp.{{number_format($usl->biaya)}}"  disabled>
+                
+                 </div>
+            </div>
+
+
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  {{-- end detail --}}
+
+
 </div>
 <!-- ./wrapper -->
 @endsection

@@ -38,4 +38,6 @@ class MhsCtrl extends Controller
             'data' =>$data
         ]);
     }
+
+    
 }

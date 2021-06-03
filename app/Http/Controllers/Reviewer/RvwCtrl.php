@@ -45,9 +45,40 @@ class RvwCtrl extends Controller
         ]);
     }
 
-    function review_proposal(){
+    function review_proposal($id){
+        $data = Nilai::where('id',$id)->get();
+        return view('reviewer.penilaian',[
+            'data' =>$data
+        ]);
+    }
+
+    function review_proposal_act(Request $request){
+        $nidn =Session::get('rv_username');
+        $id =$request->sumber;
+
+        $this->validate($request, [
+            'nilai_kreatif' => 'required',
+            'nilai_pustaka' => 'required',
+            'nilai_metode' => 'required',
+            'nilai_luaran' => 'required',
+            'nilai_jadwal' => 'required'
+        ]);
+
+        DB::table('nilai')->where('id',$id)->update([
+            'skor_kreatif' => $request->nilai_kreatif,
+            'skor_pustaka' => $request->nilai_pustaka,
+            'skor_metode' => $request->nilai_metode,
+            'skor_luaran' => $request->nilai_luaran,
+            'skor_jadwal' => $request->nilai_jadwal,
+            'jumlah' => $request->jumlah,
+            'komentar' => $request->komentar,
+            'dana_setuju' => $request->dana_setuju,
+
+        ]);     
+        return redirect('/dashboard/reviewer')->with('alert-success','Data telah submit');
 
     }
+
 
 
 
