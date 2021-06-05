@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-            <h3 class="m-0">Daftar Bantuan</h3>
+            <h3 class="m-0">Penugasan Reviewer</h3>
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Daftar Bantuan</li>
+                <li class="breadcrumb-item active">Penugasan Reviewer</li>
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -23,16 +23,12 @@
     <!-- Main content -->
     <section class="content">
         <!-- /.row -->
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <a class="btn btn-primary" href="{{url('admin/kategori-bantuan/add')}}" role="button">Tambah Daftar Bantuan</a>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
+      
         <div class="row">         
             <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                <h3 class="card-title">Daftar Bantuan</h3>
+                <h3 class="card-title">Penugasan</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body ">

@@ -107,33 +107,13 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{url('/admin/hasil-penilaian')}}" class="nav-link">
             <i class="nav-icon fas fa-history"></i>
             <p>
-              Riwayat Penilaian
-              <i class="right fas fa-angle-left"></i>
+              Hasil Penilaian
             </p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{url('riwayat_penilaian/tugas_akhir')}}" class="nav-link  active">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tugas Akhir</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('riwayat_penilaian/skripsi')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Skripsi</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('riwayat_penilaian/tesis')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tesis</p>
-              </a>
-            </li>
-          </ul>
+          
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
@@ -145,19 +125,19 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{url('riwayat_usulan/tahap_awal')}}" class="nav-link active">
+              <a href="{{url('/admin/riwayat/data-proposal')}}" class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Tahap Awal</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('riwayat_usulan/laporan_kemajuan')}}" class="nav-link">
+              <a href="{{url('/admin/riwayat/data-kemajuan')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Laporan Kemajuan</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('riwayat_usulan/laporan_akhir')}}" class="nav-link">
+              <a href="{{url('/admin/riwayat/data-akhir')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Laporan Akhir</p>
               </a>
@@ -180,7 +160,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('pencairan_dana/daftar_rekening')}}" class="nav-link">
+              <a href="{{url('/admin/riwayat/data-rekening')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Daftar Rekening</p>
               </a>

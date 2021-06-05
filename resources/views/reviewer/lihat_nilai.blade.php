@@ -42,7 +42,7 @@
                     @foreach ($data as $dt)
                         
                     @endforeach
-                        <form action="{{url('/reviewer/review-proposal/act')}}" method="post">
+                        <form  action="{{url('/reviewer/review-proposal/update')}}" method="post">
                            {{ csrf_field() }}
                           
                             <table class="table table-bordered table-hover">
@@ -73,9 +73,9 @@
                                         <td>20</td>
 
                                       
-                                        <td><input type="number" name="skor_kreatif" id="skor_kreatif" max="8" required></td>
+                                        <td><input type="number" name="skor_kreatif" id="skor_kreatif" max="8" value="{{$dt->skor_kreatif}}" required></td>
                                         <td>
-                                            <input type="number" name="nilai_kreatif" id="nilai_kreatif" required>
+                                            <input type="number" name="nilai_kreatif" id="nilai_kreatif" value="{{$dt->nilai_kreatif}}" required>
 
                                             <script>
                                                 $('#skor_kreatif').on('keyup',function(){
@@ -106,10 +106,10 @@
                                         <td>25</td>
 
                                       
-                                        <td><input type="number" name="skor_pustaka" max="8" required></td>
+                                        <td><input type="number" name="skor_pustaka" max="8" value="{{$dt->skor_pustaka}}" required></td>
 
                                         <td>
-                                            <input type="number" name="nilai_pustaka" required>
+                                            <input type="number" name="nilai_pustaka" value="{{$dt->nilai_pustaka}}" required>
                                             @if($errors->has('nilai_pustaka'))
                                             <small class="text-muted text-danger">
                                                 {{ $errors->first('nilai_pustaka')}}
@@ -124,16 +124,15 @@
                                         <td>
                                           <b>Metode Pelaksanaan :</b><br>
                                           a. Ketepatan dan kesesuaian metode yang digunakan<br>
-                                          
                                         </td>
 
                                         <td>10</td>
 
                                       
-                                        <td><input type="number" name="skor_metode" max="8" required></td>
+                                        <td><input type="number" name="skor_metode" max="8" value="{{$dt->skor_metode}}" required></td>
 
                                         <td>
-                                            <input type="number" name="nilai_metode" required>
+                                            <input type="number" name="nilai_metode" value="{{$dt->nilai_metode}}" required>
                                             @if($errors->has('nilai_metode'))
                                             <small class="text-muted text-danger">
                                                 {{ $errors->first('nilai_metode')}}
@@ -147,16 +146,16 @@
                                         <td>4</td>
                                         <td>
                                           <b>Peluang Luaran Penelitian:</b><br>
-                                          a. Publikasi Ilmiah<br>
-                                          b. Model,Produk,atau Jasa yang berpotensi menghasilkan paten<br>
+                                            a. Publikasi Ilmiah<br>
+                                            b. Model,Produk,atau Jasa yang berpotensi menghasilkan paten<br>
                                         </td>
 
                                         <td>25</td>
                                       
-                                        <td><input type="number" name="skor_luaran" max="8" required></td>
+                                        <td><input type="number" name="skor_luaran" max="8" value="{{$dt->skor_luaran}}" required></td>
 
                                         <td>
-                                            <input type="number" name="nilai_luaran" required>
+                                            <input type="number" name="nilai_luaran" value="{{$dt->nilai_luaran}}" required>
                                             @if($errors->has('nilai_luaran'))
                                             <small class="text-muted text-danger">
                                                 {{ $errors->first('nilai_luaran')}}
@@ -177,10 +176,10 @@
 
                                         <td>15</td>
                                       
-                                        <td><input type="number" name="skor_jadwal" max="8" required></td>
+                                        <td><input type="number" name="skor_jadwal" max="8" value="{{$dt->skor_jadwal}}" required></td>
 
                                         <td>
-                                            <input type="number" name="nilai_jadwal" required>
+                                            <input type="number" name="nilai_jadwal" value="{{$dt->nilai_jadwal}}" required>
                                             @if($errors->has('nilai_jadwal'))
                                             <small class="text-muted text-danger">
                                                 {{ $errors->first('nilai_jadwal')}}
@@ -197,7 +196,7 @@
 
                                        <td>100</td>
                                        <td></td>
-                                       <td><input type="number" name="jumlah"></td>
+                                       <td><input type="number" name="jumlah" value="{{$dt->jumlah}}"></td>
 
                                     </tr>
 
@@ -205,7 +204,7 @@
                                     <tr>
                                         <td></td>
                                         <td>Komentar</td>
-                                        <td><textarea name="komentar" id="" cols="30" rows="3"></textarea></td>
+                                        <td><textarea name="komentar" id="" cols="30" rows="3">{{$dt->komentar}}</textarea></td>
                                      </tr>
 
                                         {{-- komentar --}}
@@ -216,7 +215,7 @@
                                         @endphp
                                         <td></td>
                                         <td>Dana yang disetujui <b>(max dana: Rp. {{number_format($keg->max_biaya)}})</b></td>
-                                        <td><input type="number" name="dana_setuju" max="{{$keg->max_biaya}}"></td>
+                                        <td><input type="number" name="dana_setuju" value="{{$dt->dana_setuju}}" max="{{$keg->max_biaya}}"></td>
                                      </tr>
                                      <input type="hidden" name="sumber" value="{{$dt->id}}">
                                 </tbody>   

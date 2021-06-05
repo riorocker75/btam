@@ -64,12 +64,19 @@ class RvwCtrl extends Controller
             'nilai_jadwal' => 'required'
         ]);
 
-        DB::table('nilai')->where('id',$id)->update([
-            'skor_kreatif' => $request->nilai_kreatif,
-            'skor_pustaka' => $request->nilai_pustaka,
-            'skor_metode' => $request->nilai_metode,
-            'skor_luaran' => $request->nilai_luaran,
-            'skor_jadwal' => $request->nilai_jadwal,
+        DB::table('nilai')->where('id',$id)
+            ->where('id_reviewer',$nidn)->update([
+            'skor_kreatif' => $request->skor_kreatif,
+            'skor_pustaka' => $request->skor_pustaka,
+            'skor_metode' => $request->skor_metode,
+            'skor_luaran' => $request->skor_luaran,
+            'skor_jadwal' => $request->skor_jadwal,
+            'nilai_kreatif' => $request->nilai_kreatif,
+            'nilai_pustaka' => $request->nilai_pustaka,
+            'nilai_metode' => $request->nilai_metode,
+            'nilai_luaran' => $request->nilai_luaran,
+            'nilai_jadwal' => $request->nilai_jadwal,
+
             'jumlah' => $request->jumlah,
             'komentar' => $request->komentar,
             'dana_setuju' => $request->dana_setuju,
@@ -77,6 +84,47 @@ class RvwCtrl extends Controller
         ]);     
         return redirect('/dashboard/reviewer')->with('alert-success','Data telah submit');
 
+    }
+
+    function review_proposal_update(Request $request){
+        $nidn =Session::get('rv_username');
+        $id =$request->sumber;
+
+        $this->validate($request, [
+            'nilai_kreatif' => 'required',
+            'nilai_pustaka' => 'required',
+            'nilai_metode' => 'required',
+            'nilai_luaran' => 'required',
+            'nilai_jadwal' => 'required'
+        ]);
+
+        DB::table('nilai')->where('id',$id)
+            ->where('id_reviewer',$nidn)->update([
+            'skor_kreatif' => $request->skor_kreatif,
+            'skor_pustaka' => $request->skor_pustaka,
+            'skor_metode' => $request->skor_metode,
+            'skor_luaran' => $request->skor_luaran,
+            'skor_jadwal' => $request->skor_jadwal,
+            'nilai_kreatif' => $request->nilai_kreatif,
+            'nilai_pustaka' => $request->nilai_pustaka,
+            'nilai_metode' => $request->nilai_metode,
+            'nilai_luaran' => $request->nilai_luaran,
+            'nilai_jadwal' => $request->nilai_jadwal,
+
+            'jumlah' => $request->jumlah,
+            'komentar' => $request->komentar,
+            'dana_setuju' => $request->dana_setuju,
+
+        ]);     
+        return redirect('/dashboard/reviewer')->with('alert-success','Data telah submit');
+
+    }
+
+    function lihat_nilai($id){
+        $data = Nilai::where('id',$id)->get();
+        return view('reviewer.lihat_nilai',[
+            'data' =>$data
+        ]);
     }
 
 

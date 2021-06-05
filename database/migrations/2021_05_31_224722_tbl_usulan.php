@@ -36,6 +36,8 @@ class TblUsulan extends Migration
                 $table->text('status')->nullable()->comment('1= Diproses, 2=Disetujui, 3=Penilaian, 4=Didanai, 5=Ditolak');
                 $table->text('status_nilai')->nullable()->comment('1= Diproses, 2=Dinilai');
                 $table->text('status_rek')->nullable()->comment('1= Diproses, 2=Diterima,3=Tidak mengirim');
+                $table->text('status_kemajuan')->nullable()->comment('1= Diproses, 2=Diterima,3=Tidak mengirim');
+                $table->text('status_akhir')->nullable()->comment('1= Diproses, 2=Diterima,3=Tidak mengirim');
 
             });
         }                                    

@@ -32,10 +32,52 @@ class Riwayat extends Controller
         
     }
 
+    // riwayat unggah proposal
+    function riwayat_proposal(){
+        $data = Usulan::orderBy('id','desc')->get();
+        return view('admin.riwayat.proposal.proposalData',[
+            'data' =>$data
+        ]);
+    }
 
-    function riwayat_propsal(){
+    // riwayat unggah  laporan kemajua
 
-        $data = Usulan::where('status')
+    function riwayat_kemajuan(){
+        $data = Laporan::where('jenis','1')->get();
+        return view('admin.riwayat.kemajuan.kemajuanData',[
+            'data' =>$data
+        ]);
+    }
+
+
+    
+    // riwayat unggah  laporan akhit
+
+    function riwayat_akhir(){
+        $data = Laporan::where('jenis','2')->get();
+        return view('admin.riwayat.akhir.akhirData',[
+            'data' =>$data
+        ]);
+    }
+
+    // hasil peniliaian
+
+    function hasil_nilai(){
+        $data = Usulan::where('status','3')->get();
+        return view('admin.riwayat.penilaian.nilaiData',[
+            'data' =>$data
+        ]);
+    }
+
+
+        
+    // riwayat rekening
+
+    function riwayat_rekening(){
+        $data = UnggahRek::orderBy('id','desc')->get();
+        return view('admin.riwayat.rekening.rekeningData',[
+            'data' =>$data
+        ]);
     }
 
 

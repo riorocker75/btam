@@ -230,28 +230,45 @@ function preview_user($nama_file){ /*ini menggunakanan paramerter $nama_file*/
 // preview proposal
 function preview_proposal($nama_file){ /*ini menggunakanan paramerter $nama_file*/
     $url_sh=substr($nama_file,0,-4);
+    $url_klik= url('upload/berkas/'.$nama_file);
     // ini link dari route
-    $url_pdf=url('upload/syarat/'.$url_sh);
+    $url_pdf=url('upload/berkas/'.$url_sh);
     
+    $link_image="window.open('".$url_klik."','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;";
     $link_pdf="window.open('".$url_pdf."','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;";
-    if($nama_file!= ""){
-    $file_path = pathinfo(storage_path().'/upload/syarat/'.$nama_file);
+
+    $file_path = pathinfo(storage_path().'/upload/berkas/'.$nama_file);
     switch(strtolower($file_path['extension'])){
+        case"jpg":case"png":case"jpeg":
+            echo '
+            <a href="" onclick="'.$link_image.'">';
+            echo "<img src='$url_klik' style='width:100px; height:100px'><br/>";
+            echo "Klik Untuk Lebih Detail";
+            echo "</a>";
+        break;
         case"pdf":case"PDF":
             echo '
             <a href="" onclick="'.$link_pdf.'">';
         
-            echo "<i class='fas fa-file-pdf' style='font-size:20px;color:#D81F28'></i>";
-            echo " Preview<br>";
+            echo "<i class='fas fa-file-pdf' style='font-size:20px;color:#D81F28'></i><br/>";
+            echo "Preview file ";
          
             echo "</a>";
         break;	
         default:
         echo "File tidak ditemukan";
         break;	
-        }     
-    }
 
+    }
+}
+
+function download_file($file){
+    $url_sh=$file;
+    $url_klik= url('upload/berkas/'.$file);
+    // ini link dari route
+    $url_pdf=url('upload/berkas/'.$url_sh);
+    echo "<a download='$file' href='$url_pdf'> Download</a>";
+    // <a download='name_of_downloaded_file' href='path/to/the/download/file'> Download</a>
 }
 
 
@@ -367,6 +384,30 @@ function status_transfer($status){
                 break;
                 case 5:
                     echo "Ditolak";
+                break;
+                default:
+                echo "Tidak ada status";
+            break;
+            }
+        }
+
+        function label_usulan($status){
+            switch($status){
+                
+                case 1:
+                    echo "<label class='badge badge-secondary'>Diproses</label>";
+                break;
+                case 2: 
+                    echo  "<label class='badge badge-primary'>Disetujui</label>";
+                break;
+                case 3: 
+                    echo  "<label class='badge badge-info'>Penilaian</label>";
+                break;
+                case 4: 
+                    echo  "<label class='badge badge-success'>Didanai</label>";
+                break;
+                case 5:
+                    echo "<label class='badge badge-danger'>Didanai</label>";
                 break;
                 default:
                 echo "Tidak ada status";

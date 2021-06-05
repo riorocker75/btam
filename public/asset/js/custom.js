@@ -119,8 +119,6 @@ $(document).ready(function () {
     "columnDefs": [
       { "orderable": false, "targets": 0 }
     ],
-    "bSort" : false,
-    "ordering": false
 
    
   });
@@ -128,32 +126,28 @@ $(document).ready(function () {
     "columnDefs": [
       { "orderable": false, "targets": 0 }
     ],
-    "bSort" : false,
-    "ordering": false
+ 
 
   });
   $("#data3").DataTable({
     "columnDefs": [
       { "orderable": false, "targets": 0 }
     ],
-    "bSort" : false,
-    "ordering": false
+ 
 
   });
   $("#data4").DataTable({
     "columnDefs": [
       { "orderable": false, "targets": 0 }
     ],
-    "bSort" : false,
-    "ordering": false
+ 
 
   });
   $("#data5").DataTable({
     "columnDefs": [
       { "orderable": false, "targets": 0 }
     ],
-    "bSort" : false,
-    "ordering": false
+ 
 
   });
 });

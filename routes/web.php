@@ -66,6 +66,26 @@ Route::post('/admin/penugasan-reviewer/act' ,'Admin\Penugasan@tugas_act');
 
 
 
+// Riwayat
+
+// riwayat proposal
+Route::get('/admin/riwayat/data-proposal' ,'Admin\Riwayat@riwayat_proposal');
+
+// riwayat kemajuan
+Route::get('/admin/riwayat/data-kemajuan' ,'Admin\Riwayat@riwayat_kemajuan');
+
+// riwayat akhir
+Route::get('/admin/riwayat/data-akhir' ,'Admin\Riwayat@riwayat_akhir');
+
+// riwayat rekening
+Route::get('/admin/riwayat/data-rekening' ,'Admin\Riwayat@riwayat_rekening');
+Route::get('/admin/riwayat/detail/data-rekening/{id}' ,'Admin\Riwayat@riwayat_rekening_det');
+
+
+// hasil penilaian
+Route::get('/admin/hasil-penilaian' ,'Admin\Riwayat@hasil_nilai');
+
+
 
 /*
 =========================== 
@@ -165,6 +185,9 @@ Route::post('/dosen/review-proposal/act' ,'Dospem\DsnCtrl@review_proposal_act');
 Route::get('/dashboard/reviewer' ,'Reviewer\RvwCtrl');
 Route::get('/reviewer/review-proposal/{id}' ,'Reviewer\RvwCtrl@review_proposal');
 Route::post('/reviewer/review-proposal/act' ,'Reviewer\RvwCtrl@review_proposal_act');
+Route::post('/reviewer/review-proposal/update' ,'Reviewer\RvwCtrl@review_proposal_update');
+
+Route::get('/reviewer/lihat-nilai/{id}' ,'Reviewer\RvwCtrl@lihat_nilai');
 
 
 

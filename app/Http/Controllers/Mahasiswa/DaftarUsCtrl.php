@@ -61,7 +61,7 @@ class DaftarUsCtrl extends Controller
             'surat_proposal' => 'required|mimes:pdf|max:20000',
         ]);
 
-        $tujuan_upload ='upload/syarat';
+        $tujuan_upload ='upload/berkas';
 
         // surat aktif
         $surat_aktif= $request->file('surat_aktif');

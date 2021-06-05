@@ -50,17 +50,27 @@
                             $usl = \App\Model\Usulan::where('id',$dt->id_usulan)->first();
                             $kat = \App\Model\KategoriBantuan::where('id',$usl->id_kategoriBantuan)->first();
                             $mhs = \App\Model\Mahasiswa::where('nim',$usl->id_ketua)->first();
-                         @endphp   
+                         @endphp  
+
                         <tr>
                             <td>{{$no++}}</td>
                             <td>{{$kat->nama}}</td>
                             {{-- <td><a href="{{url('/reviewer/detal-proposal/'.$usl->id.'')}}">{{$usl->judul}}</a></td> --}}
-                            <td><a data-toggle="modal" data-target="#detail-{{$usl->id}}">{{$usl->judul}}</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#detail-{{$usl->id}}">{{$usl->judul}}</a></td>
 
                             <td>{{$mhs->nama}}</td>
                             <td>{{preview_proposal($usl->berkas_proposal)}}</td>
                             <td>
-                                <a href="{{url('/reviewer/review-proposal/'.$dt->id.'')}}" class="badge badge-danger">Review</a>
+                              @if ($dt->status_dana != "")
+                                 <label class="badge badge-secondary">Telah Berakhir</label>
+                              @else
+                                  @if ($dt->jumlah != "")
+                                    <a href="{{url('/reviewer/lihat-nilai/'.$dt->id.'')}}" class="badge badge-warning">Ubah</a>
+                                  @else
+                                    <a href="{{url('/reviewer/review-proposal/'.$dt->id.'')}}" class="badge badge-danger">Review</a>
+                                  @endif
+                              @endif
+
                             </td>
 
 
