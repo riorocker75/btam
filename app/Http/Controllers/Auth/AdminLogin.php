@@ -118,8 +118,8 @@ class AdminLogin extends Controller
     function daftar_siswa_act(Request $request){
         $nim=$request->nim;
         $this->validate($request, [
-            'nama' => 'required',
-            'nim' => 'required|unique:mahasiswa,nim'
+            'nama' => 'required|max:50',
+            'nim' => 'required|max:10|unique:mahasiswa,nim'
         ]);  
         
         DB::table('mahasiswa')->insert([

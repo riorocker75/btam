@@ -40,7 +40,7 @@ class PanduanCtrl extends Controller
 
     function panduan_act(Request $request){
         $this->validate($request, [
-            'nama' => 'required'
+            'nama' => 'required|max:100'
         ]);
         $request->validate([
              'berkas' => 'required|mimes:pdf|max:20000'

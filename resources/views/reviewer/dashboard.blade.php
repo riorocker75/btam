@@ -104,7 +104,8 @@
   <!-- /.control-sidebar -->
 
   
-
+@foreach ($data as $dx)
+    
   {{-- modal detail --}}
   <div class="modal fade" id="detail-{{$usl->id}}">
     <div class="modal-dialog">
@@ -189,6 +190,7 @@
   <!-- /.modal -->
 
   {{-- end detail --}}
+  @endforeach
 
 
 </div>

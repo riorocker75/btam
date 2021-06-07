@@ -189,6 +189,8 @@ Route::post('/reviewer/review-proposal/update' ,'Reviewer\RvwCtrl@review_proposa
 
 Route::get('/reviewer/lihat-nilai/{id}' ,'Reviewer\RvwCtrl@lihat_nilai');
 
+Route::post('/reviewer/riwayat-nilai' ,'Reviewer\RvwCtrl@riwayat_nilai');
+
 
 
 

@@ -66,7 +66,10 @@
                             // reviewer 2
                             $rv2=\App\Model\Nilai::where('status','2')->first();
                            
-                            $total =$rv1->jumlah + $rv2->jumlah / 2;
+                            if($count > 0){
+                              $total =$rv1->jumlah + $rv2->jumlah / 2;
+                            }
+                           
                          @endphp   
                     <tr>
                         <td>{{$no++}}</td>
@@ -124,7 +127,13 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-
+@foreach ($data as $dx)
+    
+  @php
+    $count1 = \App\Model\Nilai::where('id_usulan',$dx->id)->count();
+  @endphp
+  @if ($count > 0)
+    
   {{-- modal rv1 --}}
   <div class="modal fade" id="rv1-{{$rv1->id}}{{$rv1->id_usulan}}">
     <div class="modal-dialog modal-lg">
@@ -352,7 +361,8 @@
   <!-- /.modal -->
 
   {{-- end modal rv2 --}}
-
+  @endif
+  @endforeach
 
   
 </div>

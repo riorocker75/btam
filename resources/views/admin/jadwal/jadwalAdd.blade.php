@@ -164,7 +164,7 @@
                         </div>
                       </div>
                     </div>
-                  
+{{--                   
                     <div class="form-group">
                       <label for="deadProposal">Berkas Pengesahan</label>
                       <div class="input-group mb-3">
@@ -179,7 +179,7 @@
                           {{ $errors->first('berkas')}}
                       </small>
                       @endif 
-                    </div>
+                    </div> --}}
                      
                        
                   </div>

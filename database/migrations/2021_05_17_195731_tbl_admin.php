@@ -18,7 +18,7 @@ class TblAdmin extends Migration
                 $table->bigIncrements('id');
                 $table->string('username',100);
                 $table->string('nama',100);
-                $table->integer('telepon')->nullable();
+                $table->string('telepon',100)->nullable();
                 $table->string('email',100);
                 $table->text('avatar')->nullable();               
             });

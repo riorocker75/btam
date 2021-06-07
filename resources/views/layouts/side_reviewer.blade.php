@@ -24,7 +24,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="{{url('/dashboard/mahasiswa')}}" class="nav-link">
+          <a href="{{url('/dashboard/reviewer')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Dashboard
@@ -39,6 +39,15 @@
             <i class="nav-icon fas fa-book"></i>
             <p>
               Pengaturan
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{url('/reviewer/riwayat-nilai')}}" class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Riwayat Peniliaian
             </p>
           </a>
         </li>

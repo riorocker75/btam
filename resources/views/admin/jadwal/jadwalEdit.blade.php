@@ -172,7 +172,7 @@
 
                     @if ($dt->berkas_pengesahan != "")
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                       <label for="deadProposal">Berkas Pengesahan</label>
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -188,8 +188,7 @@
                     </div>
                     <div>
 
-                      <?php echo preview_file($dt->berkas_pengesahan)?>
-                    </div>
+                    </div> --}}
                    
                    
 

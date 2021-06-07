@@ -19,7 +19,7 @@ class TblDosen extends Migration
                 $table->string('nidn',100);
                 $table->string('id_jurusan',100)->nullPable();
                 $table->string('nama',100);
-                $table->integer('telepon')->nullable();
+                $table->string('telepon',100)->nullable();
                 $table->string('pendidikan_terakhir',100);
                 $table->text('alamat')->nullable();
                 $table->string('email',100)->nullable();

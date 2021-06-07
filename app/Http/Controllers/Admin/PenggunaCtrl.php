@@ -49,8 +49,9 @@ class PenggunaCtrl extends Controller
 
         $nidn=$request->nidn;
         $this->validate($request, [
-            'nama' => 'required',
-            'nidn' => 'required|unique:dosen,nidn'
+            'nama' => 'required|max:50',
+            'nidn' => 'required|max:16|unique:dosen,nidn',
+            'telp' => 'max:10'
         ]);
         $request->validate([
             'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
@@ -122,7 +123,8 @@ class PenggunaCtrl extends Controller
         $nidn= $request->nidn;
         $this->validate($request, [
             'nama' => 'required',
-            'nidn' => 'required|unique:dosen,nidn,'.$nidn.',nidn'
+            'nidn' => 'required|max:16|unique:dosen,nidn,'.$nidn.',nidn',
+            'telp' => 'max:10'
         ]);
         $request->validate([
             'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
@@ -225,9 +227,10 @@ class PenggunaCtrl extends Controller
     function mahasiswa_act(Request $request){
         $nim=$request->nim;
         $this->validate($request, [
-            'nama' => 'required',
-            'nim' => 'required|unique:mahasiswa,nim',
-            'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
+            'nama' => 'required|max:10',
+            'nim' => 'required|max:16|unique:mahasiswa,nim',
+            'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+            'telp' => 'max:10'
         ]);
         // $request->validate([
         //    ]);
@@ -298,8 +301,9 @@ class PenggunaCtrl extends Controller
         $nim= $request->nim;
         $id=$request->sumber;
         $this->validate($request, [
-            'nama' => 'required',
-            'nim' => 'required|unique:mahasiswa,nim,'.$nim.',nim'
+            'nama' => 'required|max:50',
+            'nim' => 'required|max:16|unique:mahasiswa,nim,'.$nim.',nim',
+            'telp' => 'max:16'
         ]);
         $request->validate([
             'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
