@@ -34,7 +34,7 @@
                 <table id="data1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        {{-- <th>Kategori</th> --}}
+                        <th>Kategori</th>
                         <th>Pengajuan</th>
                         <th>Syarat</th>
                         <th width="15%">Aksi</th>
@@ -44,35 +44,41 @@
                     <tbody>
                         @foreach ($data as $dt)
                          
-                         {{-- @php
-                            $kat = \App\Model\KategoriBantuan::where('id', $dt->id_kategoriBantuan)->first();
-                         @endphp    --}}
-                    <tr>
-                        {{-- <td>{{$kat->nama}}</td> --}}
-                
-                        <td>
-                          <b> Penawaran Bantuan: </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->pembukaan_tawaran))) }}<br>  
-                          <b>  Deadline Proposal : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_proposal))) }} <br> 
-                          <b>  Deadline Deskevaluasi : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_deskevaluasi))) }} <br> 
-                          <b> Deadline Rekening : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_rek))) }} <br>  
-                          <b>  Deadline Kemajuan : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_kemajuan))) }} <br> 
-                          <b> Deadline Akhir : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_akhir))) }}    
-                        </td>
+                         @php
+                            $nim= Session::get('mh_username');
+                            $mhs = \App\Model\Mahasiswa::where('nim',$nim)->first();
+                            $jenjang=strtolower($mhs->jenjang);
+                            $kat = \App\Model\KategoriBantuan::where('nama',$jenjang)->get();
+                         @endphp
+                             @foreach ($kat as $kt)
 
-                        <td>
-                            <b> Jenjang Pendidikan: </b> {{ $kat->syarat_pendidikan }}<br>  
-                            <b> Jumlah Anggota: </b>    {{$kat->min_anggota}} - {{$kat->max_anggota}}<br>  
-                            <b> Range Biaya: </b>    Rp.{{$kat->min_biaya}} s.d Rp.{{number_format($kat->max_biaya)}}<br>  
+                                <tr>
+                                    <td>{{bantuan($kt->nama)}}</td>
+                            
+                                    <td>
+                                    <b> Penawaran Bantuan: </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->pembukaan_tawaran))) }}<br>  
+                                    <b>  Deadline Proposal : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_proposal))) }} <br> 
+                                    <b>  Deadline Deskevaluasi : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_deskevaluasi))) }} <br> 
+                                    <b> Deadline Rekening : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_rek))) }} <br>  
+                                    <b>  Deadline Kemajuan : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_kemajuan))) }} <br> 
+                                    <b> Deadline Akhir : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_akhir))) }}    
+                                    </td>
 
-                         
-                        </td>
-                      
-                        <td>
-                           <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-proposal/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Proposal</a></p>
-                      
+                                    <td>
+                                        <b> Jenjang Pendidikan: </b> {{$kt->syarat_pendidikan }}<br>  
+                                        <b> Jumlah Anggota: </b>    {{$kt->min_anggota}} - {{$kt->max_anggota}}<br>  
+                                        <b> Range Biaya: </b>    Rp.{{$kt->min_biaya}} s.d Rp.{{number_format($kt->max_biaya)}}<br>  
+                                    
+                                    </td>
+                                
+                                    <td>
+                                    <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-proposal/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Proposal</a></p>
+                                
 
-                        </td>
-                    </tr>
+                                    </td>
+                                </tr>
+                        @endforeach   
+
                     @endforeach
 
                     </tbody>

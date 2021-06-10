@@ -38,29 +38,6 @@
                 <form role="form" action="{{url('/admin/jadwal-kegiatan/update')}}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                   <div class="card-body">  
-                    <div class="form-group">
-                      <label for="kategoriBantuan">Kategori Bantuan</label>
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
-                        </div>
-                        @php
-                            $kt = \App\Model\KategoriBantuan::get();
-                            $ktx =\App\Model\KategoriBantuan::where('id', $dt->id_kategoriBantuan)->first();
-                        @endphp
-                        <select class="form-control" name="kategori" required>
-                            <option value="{{$ktx->id}}" selected hidden>{{$ktx->nama}}</option>
-                            @foreach ($kt as $k)
-                             <option value="{{$k->id}}">{{$k->nama}}</option>
-                            @endforeach
-                        </select>
-                        @if($errors->has('kategori'))
-                        <small class="text-muted text-danger">
-                            {{ $errors->first('kategori')}}
-                            </small>
-                        @endif 
-                      </div>
-                    </div>
                     
                     <div class="row">
                       <div class="col-sm-6">
@@ -170,30 +147,7 @@
                     </div>
                   
 
-                    @if ($dt->berkas_pengesahan != "")
-
-                    {{-- <div class="form-group">
-                      <label for="deadProposal">Berkas Pengesahan</label>
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-file"></i></span>
-                        </div>
-                        <input type="file" class="form-control" name="berkas" >
-                      </div>
-                      @if($errors->has('berkas'))
-                      <small class="text-muted text-danger">
-                          {{ $errors->first('berkas')}}
-                      </small>
-                      @endif 
-                    </div>
-                    <div>
-
-                    </div> --}}
-                   
-                   
-
-
-                     @endif
+                 
                      
                        
                   </div>

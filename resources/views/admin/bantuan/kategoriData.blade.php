@@ -51,7 +51,7 @@
                     <tr>
                         <?php $no=1;?>
                         <td>{{ $no++}}</td>
-                        <td>{{ $dt->nama }}</td>
+                        <td>{{ bantuan($dt->nama) }}</td>
                         <td>
                             Jenjang Pendidikan : {{ $dt->syarat_pendidikan}}<br> 
                             Jumlah Anggota : {{$dt->min_anggota}} - {{$dt->max_anggota}}<br>

@@ -20,9 +20,10 @@
       
         </div><!-- /.container-fluid -->
         <!-- /.content-header -->
-        <div class="col-sm-12">
+        {{-- <div class="col-sm-12">
             <a class="btn btn-primary" href="{{url('/admin/pengguna/mahasiswa/add')}}" role="button">Tambah Daftar Pengusul</a>
-        </div><!-- /.col -->
+        </div> --}}
+        <!-- /.col -->
     </div>
 
     <!-- Main content -->

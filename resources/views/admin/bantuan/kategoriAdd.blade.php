@@ -39,10 +39,12 @@
                     <div class="form-group">
                       <label for="kategoriBantuan">Nama Kategori</label>
                       <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-hands-helping"></i></span>
-                        </div>
-                        <input type="text" class="form-control" name="nama" id="kategoriBantuan" placeholder="Nama kategori bantuan">
+                        <select class="form-control" name="nama" required>
+                            <option value="">Pilih Kategori</option>
+                            <option value="d3">Tugas Akhir</option>
+                            <option value="d4">Skripsi</option>
+                            <option value="s2">Tesis</option>
+                        </select>
                         @if($errors->has('nama'))
                         <small class="text-muted text-danger">
                             {{ $errors->first('nama')}}

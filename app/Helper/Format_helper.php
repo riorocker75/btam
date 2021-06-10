@@ -445,3 +445,20 @@ function status_transfer($status){
             break;
             }
         }
+
+        function bantuan($status){
+            switch($status){
+                case 'd3':
+                    echo "Tugas Akhir";
+                break;
+                case 'd4':
+                    echo "Skripsi";
+                break;
+                case 's2':
+                    echo "Tesis";
+                break;
+                default:
+                echo "Lainya";
+            break;
+            }
+        }

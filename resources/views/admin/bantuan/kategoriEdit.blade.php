@@ -45,7 +45,12 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-hands-helping"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="nama" id="kategoriBantuan" placeholder="Nama kategori bantuan" value="{{$dt->nama}}">
+                        <select class="form-control" name="nama" required>
+                          <option value="{{$dt->nama}}" selected hidden> {{ bantuan($dt->nama) }}</option>
+                          <option value="d3">Tugas Akhir</option>
+                          <option value="d4">Skripsi</option>
+                          <option value="s2">Tesis</option>
+                        </select>
                         <input type="text" class="form-control" name="sumber" value="{{$dt->id}}" hidden>
                         
                         @if($errors->has('nama'))

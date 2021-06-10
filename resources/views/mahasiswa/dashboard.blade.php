@@ -48,7 +48,7 @@
                         @foreach ($data as $dt)
                          
                          @php
-                            $kat = \App\Model\KategoriBantuan::where('id', $dt->id_kategoriBantuan)->first();
+                            // $kat = \App\Model\KategoriBantuan::where('id', $dt->id_kategoriBantuan)->first();
                             $mhs = \App\Model\Mahasiswa::where('nim',$dt->id_ketua)->first();
                          @endphp   
                     <tr>
