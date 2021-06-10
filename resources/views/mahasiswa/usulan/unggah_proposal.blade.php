@@ -143,10 +143,12 @@
 
                             @php
                                 $nim =Session::get('mh_username');
-                               $kat = \App\Model\KategoriBantuan::where('id', $dt->id_kategoriBantuan)->first();
+                           
                                $mhs= \App\Model\Mahasiswa::where('nim', $nim)->first();
+                               $jenjang=strtolower($mhs->jenjang);
+                                $kat = \App\Model\KategoriBantuan::where('nama',$jenjang)->first();
                             @endphp
-                                  <input type="hidden" name="kategori" value="{{$dt->id_kategoriBantuan}}">
+                                  <input type="hidden" name="kategori" value="{{$kat->id}}">
                                   <input type="hidden" name="id_jurusan" value="{{$mhs->id_jurusan}}">
 
                             <div class="form-group">
