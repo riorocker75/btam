@@ -31,8 +31,12 @@
               <div class="info-box-content">
                 <span class="info-box-text">Daftar Reviewer</span>
                 <span class="info-box-number">
-                  10
-                  <small>%</small>
+                  @php
+                      $rv = \App\Model\Dosen::where('lvl',3)->count();
+                      $ds = \App\Model\Dosen::where('lvl',1)->count();
+                  @endphp
+                 
+                  <b>{{ $rv}}</b>
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -46,7 +50,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Daftar Dosen</span>
-                <span class="info-box-number">41</span>
+                <span class="info-box-number">{{ $ds}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -60,10 +64,12 @@
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-info-circle"></i></span>
-
+              @php
+                  $bt=\App\Model\KategoriBantuan::count();
+              @endphp
               <div class="info-box-content">
                 <span class="info-box-text">Daftar Bantuan</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-number">{{$bt}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -73,10 +79,12 @@
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-university"></i></span>
-
+              @php
+                  $jr=\App\Model\Jurusan::count();
+              @endphp
               <div class="info-box-content">
                 <span class="info-box-text">Daftar Jurusan</span>
-                <span class="info-box-number">8</span>
+                <span class="info-box-number">{{$jr}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -101,9 +109,15 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-4 col-6">
+                    @php
+                        $d3= \App\Model\Usulan::where('jenjang','D3')->count();
+                        $d4= \App\Model\Usulan::where('jenjang','D4')->count();
+                        $s2= \App\Model\Usulan::where('jenjang','S2')->count();
+
+                    @endphp
                     <div class="description-block border-right">
                       <span class="description-percentage text-success">PENDIDIKAN D3</span>
-                      <h5 class="description-header">30</h5>
+                      <h5 class="description-header">{{ $d3}}</h5>
                       <span class="description-text">TOTAL PENGUSUL TUGAS AKHIR</span>
                     </div>
                     <!-- /.description-block -->
@@ -112,7 +126,7 @@
                   <div class="col-sm-4 col-6">
                     <div class="description-block border-right">
                       <span class="description-percentage text-warning">PENDIDIKAN D4</span>
-                      <h5 class="description-header">50</h5>
+                      <h5 class="description-header">{{ $d4 }}</h5>
                       <span class="description-text">TOTAL PENGUSUL SKRIPSI</span>
                     </div>
                     <!-- /.description-block -->
@@ -121,7 +135,7 @@
                   <div class="col-sm-4 col-6">
                     <div class="description-block" >
                       <span class="description-percentage text-danger">PENDIDIKAN S2</span>
-                      <h5 class="description-header">1200</h5>
+                      <h5 class="description-header">{{ $s2 }}</h5>
                       <span class="description-text">TOTAL PENGUSUL TESIS</span>
                     </div>
                     <!-- /.description-block -->

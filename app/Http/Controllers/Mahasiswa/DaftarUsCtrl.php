@@ -60,6 +60,9 @@ class DaftarUsCtrl extends Controller
             'surat_nyata' => 'required|mimes:pdf|max:20000',
             'surat_proposal' => 'required|mimes:pdf|max:20000',
         ]);
+         $nim= $request->nim_ketua;
+        $je=Mahasiswa::where('nim',$nim)->first();
+        
 
         $tujuan_upload ='upload/berkas';
 
@@ -85,6 +88,7 @@ class DaftarUsCtrl extends Controller
             'id_jurusan' => $request->id_jurusan,
             'id_dospem1' => $request->dosen_1,
             'id_dospem2' => $request->dosen_2,
+            'jenjang' => $je->jenjang,
             'judul' => $request->judul,
             'biaya' => $request->biaya,
             'nama_anggota1' => $request->anggota_1,
@@ -99,9 +103,7 @@ class DaftarUsCtrl extends Controller
             'status' => '1'
             
         ]);
-    
         return redirect('/dashboard/mahasiswa')->with('alert-success','Menunggu Proses Review');
-
     }
 
 

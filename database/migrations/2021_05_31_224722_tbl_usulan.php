@@ -19,6 +19,7 @@ class TblUsulan extends Migration
                 $table->integer('id_ketua');
                 $table->integer('id_kategoriBantuan');
                 $table->integer('id_jurusan');
+                $table->text('jenjang')->nullable();
                 $table->integer('id_dospem1');
                 $table->integer('id_dospem2')->nullable();
                 $table->text('judul');

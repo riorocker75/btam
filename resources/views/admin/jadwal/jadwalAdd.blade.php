@@ -35,7 +35,7 @@
                 <!-- form start -->
                 <form role="form" action="{{url('/admin/jadwal-kegiatan/act')}}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                  <div class="card-body">  
+                  {{-- <div class="card-body">  
                     <div class="form-group">
                       <label for="kategoriBantuan">Kategori Bantuan</label>
                       <div class="input-group mb-3">
@@ -57,7 +57,7 @@
                             </small>
                         @endif 
                       </div>
-                    </div>
+                    </div> --}}
                     
                     <div class="row">
                       <div class="col-sm-6">
@@ -164,22 +164,7 @@
                         </div>
                       </div>
                     </div>
-{{--                   
-                    <div class="form-group">
-                      <label for="deadProposal">Berkas Pengesahan</label>
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-file"></i></span>
-                        </div>
-                        <input type="file" class="form-control" name="berkas">
-                       
-                      </div>
-                      @if($errors->has('berkas'))
-                      <small class="text-muted text-danger">
-                          {{ $errors->first('berkas')}}
-                      </small>
-                      @endif 
-                    </div> --}}
+
                      
                        
                   </div>

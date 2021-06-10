@@ -40,7 +40,7 @@
                     <thead>
                     <tr>
                         <th width="5%">No.</th>
-                        <th width="20%">Kategori</th>
+                        {{-- <th width="20%">Kategori</th> --}}
                         <th>Jadwal</th>
                         <th width="15%">Aksi</th>
                     </tr>
@@ -51,10 +51,10 @@
                         @foreach ($data as $dt)
                         <td>{{ $no++}}</td>
 
-                        @php
+                        {{-- @php
                             $kt = \App\Model\KategoriBantuan::where('id',$dt->id_kategoriBantuan)->first();
-                        @endphp
-                        <td>{{ $kt->nama }}</td>
+                        @endphp --}}
+                        {{-- <td>{{ $kt->nama }}</td> --}}
                         <td>
                             Penawaran Bantuan: {{ format_tanggal(date('Y-m-d', strtotime($dt->pembukaan_tawaran))) }}<br> 
                             Deadline Proposal : {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_proposal))) }} <br>

@@ -34,7 +34,7 @@
                 <table id="data1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Kategori</th>
+                        {{-- <th>Kategori</th> --}}
                         <th>Pengajuan</th>
                         <th>Syarat</th>
                         <th width="15%">Aksi</th>
@@ -44,12 +44,12 @@
                     <tbody>
                         @foreach ($data as $dt)
                          
-                         @php
+                         {{-- @php
                             $kat = \App\Model\KategoriBantuan::where('id', $dt->id_kategoriBantuan)->first();
-                         @endphp   
+                         @endphp    --}}
                     <tr>
-                        <td>{{$kat->nama}}</td>
-
+                        {{-- <td>{{$kat->nama}}</td> --}}
+                
                         <td>
                           <b> Penawaran Bantuan: </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->pembukaan_tawaran))) }}<br>  
                           <b>  Deadline Proposal : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_proposal))) }} <br> 
@@ -57,7 +57,6 @@
                           <b> Deadline Rekening : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_rek))) }} <br>  
                           <b>  Deadline Kemajuan : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_kemajuan))) }} <br> 
                           <b> Deadline Akhir : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_akhir))) }}    
-                        
                         </td>
 
                         <td>

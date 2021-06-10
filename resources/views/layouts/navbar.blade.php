@@ -27,7 +27,7 @@
         <a class="nav-link" data-toggle="dropdown" href="#">
           <div class="image" >
             <i class="fa fa-user" aria-hidden="true"></i>
-            tes
+            {{Session::get('nama')}}
           </div>
         
         </a>

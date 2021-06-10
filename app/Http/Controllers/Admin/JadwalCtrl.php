@@ -44,7 +44,7 @@ class JadwalCtrl extends Controller
 
     function jadwal_kegiatan_act(Request $request){
         $this->validate($request, [
-            'kategori' => 'required',
+            // 'kategori' => 'required',
             'penawaran' => 'required',
             'deadline_proposal' => 'required',
             'deadline_rekening' => 'required',
@@ -64,7 +64,7 @@ class JadwalCtrl extends Controller
         // $berkas->move($tujuan_upload,$inf_berkas);
 
         DB::table('jadwalKegiatan')->insert([
-            'id_kategoriBantuan' =>$request->kategori,
+            // 'id_kategoriBantuan' =>$request->kategori,
             'pembukaan_tawaran' =>$request->penawaran,
             'deadline_proposal' =>$request->deadline_proposal,
             'deadline_rek' =>$request->deadline_rekening,
@@ -86,7 +86,7 @@ class JadwalCtrl extends Controller
 
     function jadwal_kegiatan_update(Request $request){
         $this->validate($request, [
-            'kategori' => 'required',
+            // 'kategori' => 'required',
             'penawaran' => 'required',
             'deadline_proposal' => 'required',
             'deadline_rekening' => 'required',
@@ -120,7 +120,7 @@ class JadwalCtrl extends Controller
         //    ]);
         // }
         JadwalKegiatan::where('id', $id)->update([
-            'id_kategoriBantuan' =>$request->kategori,
+            // 'id_kategoriBantuan' =>$request->kategori,
             'pembukaan_tawaran' =>$request->penawaran,
             'deadline_proposal' =>$request->deadline_proposal,
             'deadline_rek' =>$request->deadline_rekening,

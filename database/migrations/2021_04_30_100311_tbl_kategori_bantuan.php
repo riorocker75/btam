@@ -21,7 +21,7 @@ class TblKategoriBantuan extends Migration
                 $table->integer('min_anggota');
                 $table->integer('max_anggota');
                 $table->integer('min_biaya');
-                $table->integer('max_biaya');
+                $table->text('max_biaya');
             });
         }
     }

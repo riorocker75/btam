@@ -11,8 +11,8 @@ class JadwalKegiatan extends Model
     public $timestamps = false;
 
     protected $fillable=[
-        'id_kategoriBantuan',
-        'berkas_pengesahan',
+        // 'id_kategoriBantuan',
+        // 'berkas_pengesahan',
         'pembukaan_tawaran',
         'deadline_proposal',
         'deadline_rek',

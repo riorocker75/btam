@@ -16,8 +16,8 @@ class TblJadwalKegiatan extends Migration
         if (!Schema::hasTable('jadwalKegiatan')) {
             Schema::create('jadwalKegiatan', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->text('id_kategoriBantuan');
-                $table->text('berkas_pengesahan');
+                // $table->text('id_kategoriBantuan');
+                // $table->text('berkas_pengesahan');
                 $table->date('pembukaan_tawaran');
                 $table->date('deadline_proposal');
                 $table->date('deadline_rek');

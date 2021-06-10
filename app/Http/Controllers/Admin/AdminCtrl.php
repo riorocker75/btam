@@ -50,10 +50,10 @@ class AdminCtrl extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'jenjang' => 'required',
-            'minAnggota' => 'required|max:2',
-            'maxAnggota' => 'required|max:4',
-            'minBiaya' => 'required|max:10',
-            'maxBiaya' => 'required|max:10'
+            'minAnggota' => 'required|max:2|integer',
+            'maxAnggota' => 'required|max:4|integer',
+            'minBiaya' => 'required|max:10|integer',
+            'maxBiaya' => 'required|integer'
         ]);
         DB::table('kategoriBantuan')->insert([
 			'nama' =>$request->nama,
@@ -80,10 +80,10 @@ class AdminCtrl extends Controller
         $this->validate($request, [
             'nama' => 'required|max:100',
             'jenjang' => 'required|max:70',
-            'minAnggota' => 'required|max:3',
-            'maxAnggota' => 'required|max:10',
-            'minBiaya' => 'required|max:10',
-            'maxBiaya' => 'required|max:10'
+            'minAnggota' => 'required|max:3|integer',
+            'maxAnggota' => 'required|max:10|integer',
+            'minBiaya' => 'required|max:10|integer',
+            'maxBiaya' => 'required|integer'
         ]);
         KategoriBantuan::where('id',$id)->update([
             'nama' =>$request->nama,
