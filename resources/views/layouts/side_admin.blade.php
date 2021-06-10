@@ -11,7 +11,15 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{asset('asset/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+            @php
+              $username= Session::get('adm_username');
+              $gbr= \App\Model\Admin::where('username',$username)->first();
+             @endphp
+              @if ($gbr->avatar != "")
+              <img src="{{asset('upload/user/'.$gbr->avatar.'')}}" class="img-circle elevation-2" alt="User Image">
+              @else
+              <img src="{{asset('asset/img/user.png')}}" class="img-circle elevation-2" alt="User Image">
+              @endif
       </div>
       <div class="info">
        

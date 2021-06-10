@@ -128,7 +128,61 @@ class RvwCtrl extends Controller
     }
 
 
+    // profile
 
+    function profile(){
+        return view('reviewer.profileData'); 
+
+    }
+    function profile_edit(){
+        return view('reviewer.profileEdit'); 
+    }
+    function profile_update(Request $request){
+        $nidn= Session::get('rv_username');
+
+        $this->validate($request, [
+            'nama' => 'required',
+            'telp' => 'max:10'
+        ]);
+        $request->validate([
+            'avatar' => 'file|image|mimes:jpeg,png,jpg|max:2048'
+           ]);
+            
+           $avatar= $request->file('avatar');
+
+           if($avatar != ""){
+                $inf_avatar =rand(10000,99999)."_".rand(1000,9999).".".$avatar->getClientOriginalExtension();
+                $tujuan_upload ='upload/user';
+        
+                $avatar->move($tujuan_upload,$inf_avatar);
+
+                $avatar_hapus=Dosen::where('nidn',$nidn)->first();
+                File::delete('upload/user/'.$avatar_hapus->avatar);
+    
+                Dosen::where('nidn',$nidn)->update([
+                  'avatar' => $inf_avatar
+               ]);
+           }
+           DB::table('dosen')->where('nidn',$nidn)->update([
+               'nama' =>$request->nama,
+               'pendidikan_terakhir' =>$request->pendidikan,
+               'id_jurusan' =>$request->jurusan,
+               'alamat' =>$request->alamat,
+               'telepon' =>$request->telp,
+               'email' =>$request->email
+           ]);
+
+           if($request->pass != "" ){
+                DB::table('pengguna')->where('username',$nidn)->update([
+                    'username' => $request->nidn,
+                    'password' => bcrypt($request->pass),
+                    'level' => '3',
+                    'status' => '1'
+                ]);
+            }
+            return redirect('/reviewer/profile')->with('alert-success','Data telah diubah');
+
+    }
 
 
 }

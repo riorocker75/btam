@@ -221,3 +221,27 @@ Route::post('/mahasiswa/daftar-usulan/unggah-akhir/act' ,'Mahasiswa\DaftarUsCtrl
 // unggah rekening
 Route::get('/mahasiswa/daftar-usulan/unggah-rekening/{id}' ,'Mahasiswa\DaftarUsCtrl@unggah_rekening');
 Route::post('/mahasiswa/daftar-usulan/unggah-rekening/act' ,'Mahasiswa\DaftarUsCtrl@unggah_rekening_act');
+
+// panduan
+Route::get('/mahasiswa/panduan' ,'Mahasiswa\MhsCtrl@panduan');
+
+// pengatuaran profile mahaiswa
+Route::get('/mahasiswa/profile' ,'Mahasiswa\MhsCtrl@profile');
+Route::get('/mahasiswa/profile/edit' ,'Mahasiswa\MhsCtrl@profile_edit');
+Route::post('/mahasiswa/profile/update' ,'Mahasiswa\MhsCtrl@profile_update');
+
+// profile admin
+Route::get('/admin/profile' ,'Admin\AdminCtrl@profile');
+Route::get('/admin/profile/edit' ,'Admin\AdminCtrl@profile_edit');
+Route::post('/admin/profile/update' ,'Admin\AdminCtrl@profile_update');
+
+// profile dosen
+Route::get('/dosen/profile' ,'Dospem\DsnCtrl@profile');
+Route::get('/dosen/profile/edit' ,'Dospem\DsnCtrl@profile_edit');
+Route::post('/dosen/profile/update' ,'Dospem\DsnCtrl@profile_update');
+
+
+// profile Reviwer
+Route::get('/reviewer/profile' ,'Reviewer\RvwCtrl@profile');
+Route::get('/reviewer/profile/edit' ,'Reviewer\RvwCtrl@profile_edit');
+Route::post('/reviewer/profile/update' ,'Reviewer\RvwCtrl@profile_update');

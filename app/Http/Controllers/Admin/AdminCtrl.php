@@ -105,8 +105,19 @@ class AdminCtrl extends Controller
 
     // bagian jadwal kegiatan
 
+    // profile
 
+    function profile(){
 
+    }
+
+    function profile_edit(){
+        
+    }
+
+    function profile_update(Request $request){
+        
+    }
 
 
 

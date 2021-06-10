@@ -11,7 +11,15 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{asset('asset/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+        @php
+        $nim= Session::get('mh_username');
+        $gbr= \App\Model\Mahasiswa::where('nim',$nim)->first();
+      @endphp
+        @if ($gbr->avatar != "")
+        <img src="{{asset('upload/user/'.$gbr->avatar.'')}}" class="img-circle elevation-2" alt="User Image">
+        @else
+        <img src="{{asset('asset/img/user.png')}}" class="img-circle elevation-2" alt="User Image">
+        @endif
       </div>
       <div class="info">
         <a href="#" class="d-block">{{Session::get('nama')}}</a>
@@ -52,7 +60,7 @@
         </li>
      
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{url('/mahasiswa/panduan')}}" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
             <p>
               Panduan

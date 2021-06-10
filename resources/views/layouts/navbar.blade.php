@@ -13,9 +13,7 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="\" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Panduan BTAM</a>
-      </li>
+   
     </ul>
 
     <!-- Right navbar links -->
@@ -37,9 +35,29 @@
            <i class="fas fa-sign-out-alt "></i> Logout
           </a>
 
-          <a href="" class="dropdown-item">
-            <i class="fas fa-sign-out-alt "></i> Pengaturan
+          @if (Session::get('login-adm'))
+            <a href="{{url('/admin/profile')}}" class="dropdown-item">
+              <i class="fas fa-sign-out-alt "></i> Profile 
+            </a>
+          @endif
+
+          @if (Session::get('login-ds'))
+            <a href="{{url('/dosen/profile')}}" class="dropdown-item">
+              <i class="fas fa-sign-out-alt "></i> Profile
+            </a>
+          @endif
+
+          @if (Session::get('login-rv'))
+            <a href="{{url('/reviewer/profile')}}" class="dropdown-item">
+              <i class="fas fa-sign-out-alt "></i> Profile
            </a>
+         @endif
+
+         @if (Session::get('login-mh'))
+         <a href="{{url('/mahasiswa/profile')}}" class="dropdown-item">
+           <i class="fas fa-sign-out-alt "></i> Profile
+         </a>
+       @endif
           
           <div class="dropdown-divider"></div>
         </div>

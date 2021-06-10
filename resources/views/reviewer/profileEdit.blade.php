@@ -33,9 +33,11 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                @foreach ($data as $dt)
-                    
-                <form role="form" action="{{url('/admin/pengguna/dosen/update')}}" method="post" enctype="multipart/form-data">
+                @php
+                    $nidn= Session::get('rv_username');
+                    $dt= \App\Model\Dosen::where('nidn',$nidn)->first();
+                 @endphp
+                <form role="form" action="{{url('/reviewer/profile/update')}}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                 
                     <div class="card-body"> 
@@ -47,13 +49,9 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">ID</span>
                                   </div>
-                                  <input type="text" class="form-control" name="nidn" placeholder="NIDN" value="{{$dt->nidn}}" required>
+                                  <input type="text" class="form-control"  value="{{$dt->nidn}}" disabled>
                                 </div>
-                                @if($errors->has('nidn'))
-                                <small class="text-muted text-danger">
-                                    {{ $errors->first('nidn')}}
-                                </small>
-                                @endif 
+                               
                             </div>
                         </div>
                         
@@ -206,7 +204,6 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </form>
-                @endforeach
 
               </div>
               <!-- /.card -->
