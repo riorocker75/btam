@@ -108,11 +108,6 @@
 
                         <div class="col-lg-6 col-12">
 
-                         
-
-
-
-                            
                     <div class="form-group">
                         <label for="avatar">Preview Surat Aktif</label>
                         <br>
@@ -143,10 +138,15 @@
                    
                   </div>
                   <!-- /.card-body -->
-  
+                  @if ($dt->status == 2)
+                  @elseif($dt->status == 4)
+                  @elseif($dt->status == 5)
+                  @else
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary float-right">Setujui</button>
                   </div>
+                  @endif
+                 
                 </form>
               </div>
               <!-- /.card -->

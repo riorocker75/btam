@@ -113,7 +113,6 @@
                         $d3= \App\Model\Usulan::where('jenjang','D3')->count();
                         $d4= \App\Model\Usulan::where('jenjang','D4')->count();
                         $s2= \App\Model\Usulan::where('jenjang','S2')->count();
-
                     @endphp
                     <div class="description-block border-right">
                       <span class="description-percentage text-success">PENDIDIKAN D3</span>

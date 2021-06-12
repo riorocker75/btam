@@ -84,7 +84,9 @@ Route::get('/admin/riwayat/detail/data-rekening/{id}' ,'Admin\Riwayat@riwayat_re
 
 // hasil penilaian
 Route::get('/admin/hasil-penilaian' ,'Admin\Riwayat@hasil_nilai');
+Route::get('/admin/hasil-penilaian/review/{id}' ,'Admin\Riwayat@review_nilai');
 
+Route::post('/admin/hasil-penilaian/update' ,'Admin\Riwayat@review_nilai_update');
 
 
 /*
@@ -189,7 +191,7 @@ Route::post('/reviewer/review-proposal/update' ,'Reviewer\RvwCtrl@review_proposa
 
 Route::get('/reviewer/lihat-nilai/{id}' ,'Reviewer\RvwCtrl@lihat_nilai');
 
-Route::post('/reviewer/riwayat-nilai' ,'Reviewer\RvwCtrl@riwayat_nilai');
+Route::get('/reviewer/riwayat-nilai' ,'Reviewer\RvwCtrl@riwayat_nilai');
 
 
 

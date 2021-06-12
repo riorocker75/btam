@@ -11,7 +11,21 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="\" class="nav-link">Home</a>
+        @if (Session::get('login-adm'))
+        <a href="{{url('/dashboard/admin')}}" class="nav-link">Home</a>
+        @endif
+
+        @if (Session::get('login-ds'))
+        <a href="{{url('/dashboard/dosen')}}" class="nav-link">Home</a>
+        @endif
+
+        @if (Session::get('login-rv'))
+        <a href="{{url('/dashboard/reviewer')}}" class="nav-link">Home</a>
+        @endif
+
+        @if (Session::get('login-mh'))
+        <a href="{{url('/dashboard/mahasiswa')}}" class="nav-link">Home</a>
+        @endif
       </li>
    
     </ul>
@@ -25,7 +39,8 @@
         <a class="nav-link" data-toggle="dropdown" href="#">
           <div class="image" >
             <i class="fa fa-user" aria-hidden="true"></i>
-            {{Session::get('nama')}}
+            {{
+            Session::get('nama')}}
           </div>
         
         </a>

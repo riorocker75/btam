@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h3 class="m-0">Riwayat Usulan</h3>
+            <h3 class="m-0">Dashboard</h3>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item active">Daftar Proposal</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,60 +27,58 @@
         <div class="card">
             
             <div class="card-header">
-                <h3 class="card-title">Riwayat Proposal</h3>
+                <h3 class="card-title">Daftar Proposal</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                 <table id="data1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>No</th>
+                        <th>No.</th>
                         <th>Kategori</th>
                         <th>Judul</th>
                         <th>Pengusul</th>
-                        <th>Tahun</th>
-                        <th>Dana Final</th>
-                        <th>Progress</th>
-
-                        <th>Proposal</th>
+                        <th>Nilai</th>
+                        <th>Aksi</th>
                     </tr>
                     </thead>
                     <tbody>
+                        <?php $no=1?>
                         @foreach ($data as $dt)
                          
                          @php
-                             $no=1;
-                            $kat = \App\Model\KategoriBantuan::where('id', $dt->id_kategoriBantuan)->first();
-                            $mhs = \App\Model\Mahasiswa::where('nim',$dt->id_ketua)->first();
-                          
-                         @endphp   
-                    <tr>
-                        <td>{{$no++}}</td>
-                        <td>{{bantuan($kat->nama)}}</td>
+                            $usl = \App\Model\Usulan::where('id',$dt->id_usulan)->first();
+                            $kat = \App\Model\KategoriBantuan::where('id',$usl->id_kategoriBantuan)->first();
+                            $mhs = \App\Model\Mahasiswa::where('nim',$usl->id_ketua)->first();
+                         @endphp  
+                            @if ($usl->status_nilai == 2)
+                                
+                            <tr>
+                                <td>{{$no++}}</td>
+                                <td>{{bantuan($kat->nama)}}</td>
+                                {{-- <td><a href="{{url('/reviewer/detal-proposal/'.$usl->id.'')}}">{{$usl->judul}}</a></td> --}}
+                                <td><a href="" data-toggle="modal" data-target="#detail-{{$usl->id}}">{{$usl->judul}}</a></td>
 
-                        <td>
-                          <a href="" data-toggle="modal" data-target="#detail-{{$dt->id}}">{{$dt->judul}}</a> 
-                        </td>
+                                <td>{{$mhs->nama}}</td>
+                                <td>
+                                <a href="" data-toggle="modal" data-target="#rv-{{$dt->id}}{{$dt->id_usulan}}"> {{$dt->jumlah}}</a>   
+                                </td>
+                                <td>
+                                  @if ($dt->status_dana != "")
+                                    <label class="badge badge-info">Selesai</label>
+                                  @else
+                                      @if ($dt->jumlah != "")
+                                        <a href="{{url('/reviewer/lihat-nilai/'.$dt->id.'')}}" class="badge badge-warning">Ubah</a>
+                                      @else
+                                        <a href="{{url('/reviewer/review-proposal/'.$dt->id.'')}}" class="badge badge-danger">Review</a>
+                                      @endif
+                                  @endif
+
+                                </td>
+                          </tr>
+                          @endif
                        
-                        <td>{{$mhs->nama}}</td>
-                        <td>
-                            {{ $dt->tahun_usulan}} 
-                        </td>
-                        <td>  
-                          @if ($dt->status == '4')
-                            <b> Rp.{{ number_format($dt->biaya)}}</b>
-                             @else
-                               -
-                             @endif
-                        </td>
-                      <td>{{label_usulan($dt->status)}}</td>
-                        <td>
-                         {{preview_proposal($dt->berkas_proposal)}}
-                         {{download_file($dt->berkas_proposal)}}
-                        </td>
-
-                    </tr>
-                    @endforeach
+                      @endforeach
 
                     </tbody>
                 </table>
@@ -108,18 +106,16 @@
   </aside>
   <!-- /.control-sidebar -->
 
-  @foreach ($data as $dx)
-    @php
-          $mhsx = \App\Model\Mahasiswa::where('nim',$dx->id_ketua)->first();
-          $uslx= \App\Model\Usulan::where('id',$dx->id)->first();                 
-    @endphp
+  
+@foreach ($data as $dx)
+    
   {{-- modal detail --}}
-  <div class="modal fade" id="detail-{{$dx->id}}">
+  <div class="modal fade" id="detail-{{$usl->id}}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           
-          <h4 class="modal-title">Detail {{substr($uslx->judul, 0,60)}}</h4>
+          <h4 class="modal-title">Detail {{substr($usl->judul, 0,60)}}</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -131,7 +127,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-hands-helping"></i></span>
                   </div>
-                  <input type="text" class="form-control" value="{{$mhsx->nama}}"  disabled>
+                  <input type="text" class="form-control" value="{{$mhs->nama}}"  disabled>
                 
                  </div>
             </div>
@@ -142,51 +138,47 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-book" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" class="form-control" value="{{$uslx->judul}}"  disabled>
+                  <input type="text" class="form-control" value="{{$usl->judul}}"  disabled>
                 
                  </div>
             </div>
 
-            @if ($uslx->nama_anggota1 != "")
+            @if ($usl->nama_anggota1 != "")
                 <div class="form-group">
                     <label for="kategoriBantuan">Anggota 1</label>
                     <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
                     </div>
-                    <input type="text" class="form-control" value="{{$uslx->nama_anggota1}}"  disabled>
+                    <input type="text" class="form-control" value="{{$usl->nama_anggota1}}"  disabled>
                     
                     </div>
                 </div>
             @endif
 
-            @if ($uslx->nama_anggota2 != "")
+            @if ($usl->nama_anggota2 != "")
             <div class="form-group">
                 <label for="kategoriBantuan">Anggota 2</label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" class="form-control" value="{{$uslx->nama_anggota2}}"  disabled>
+                  <input type="text" class="form-control" value="{{$usl->nama_anggota2}}"  disabled>
                 
                  </div>
             </div>
             @endif
 
-            @if ($dx->status == 4)
             <div class="form-group">
-              <label for="kategoriBantuan">Dana Final</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-credit-card" aria-hidden="true"></i></span>
-                </div>
-                <input type="text" class="form-control" value="Rp.{{number_format($uslx->biaya)}}"  disabled>
-              
-               </div>
-          </div>
-            @endif
-           
-
+                <label for="kategoriBantuan">Biaya Pengajuan</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" value="Rp.{{number_format($usl->biaya)}}"  disabled>
+                
+                 </div>
+            </div>
 
         </div>
         <div class="modal-footer justify-content-between">
@@ -201,6 +193,8 @@
 
   {{-- end detail --}}
   @endforeach
+
+
 </div>
 <!-- ./wrapper -->
 @endsection

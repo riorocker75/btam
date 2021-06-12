@@ -43,7 +43,6 @@
                         <th>Tahun</th>
                         <th>Usulan Biaya</th>
                         <th>Aksi</th>
-                        
                     </tr>
                     </thead>
                     <tbody>
@@ -54,7 +53,6 @@
                             $dosen= \App\Model\Dosen::where('lvl','3')->get();
 
                         @endphp
-                    
                     <tr>
                         <?php $no=1;?>
                     

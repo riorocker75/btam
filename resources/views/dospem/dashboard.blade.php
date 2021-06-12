@@ -61,6 +61,9 @@
                            <label class="badge badge-primary">{{ status_usulan($dt->status)}} </label> 
                         </td>
                         <td>
+                          @if ($dt->status == 4)
+                              
+                          @endif
                             <a href="{{url('/dosen/review-proposal/'.$dt->id.'')}}">Review</a> 
                          </td>
                     </tr>

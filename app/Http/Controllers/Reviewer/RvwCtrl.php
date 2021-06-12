@@ -63,7 +63,12 @@ class RvwCtrl extends Controller
             'nilai_luaran' => 'required',
             'nilai_jadwal' => 'required'
         ]);
-
+        $nk=$request->nilai_kreatif;
+        $np=$request->nilai_pustaka;
+        $nm=$request->nilai_metode;
+        $nl=$request->nilai_luaran;
+        $nj =$request->nilai_jadwal;
+        $jumlah=$nk+$np+$nm+$nl+$nj;
         DB::table('nilai')->where('id',$id)
             ->where('id_reviewer',$nidn)->update([
             'skor_kreatif' => $request->skor_kreatif,
@@ -77,7 +82,7 @@ class RvwCtrl extends Controller
             'nilai_luaran' => $request->nilai_luaran,
             'nilai_jadwal' => $request->nilai_jadwal,
 
-            'jumlah' => $request->jumlah,
+            'jumlah' => $jumlah,
             'komentar' => $request->komentar,
             'dana_setuju' => $request->dana_setuju,
 
@@ -97,6 +102,12 @@ class RvwCtrl extends Controller
             'nilai_luaran' => 'required',
             'nilai_jadwal' => 'required'
         ]);
+        $nk=$request->nilai_kreatif;
+        $np=$request->nilai_pustaka;
+        $nm=$request->nilai_metode;
+        $nl=$request->nilai_luaran;
+        $nj =$request->nilai_jadwal;
+        $jumlah=$nk+$np+$nm+$nl+$nj;
 
         DB::table('nilai')->where('id',$id)
             ->where('id_reviewer',$nidn)->update([
@@ -110,8 +121,7 @@ class RvwCtrl extends Controller
             'nilai_metode' => $request->nilai_metode,
             'nilai_luaran' => $request->nilai_luaran,
             'nilai_jadwal' => $request->nilai_jadwal,
-
-            'jumlah' => $request->jumlah,
+            'jumlah' => $jumlah,
             'komentar' => $request->komentar,
             'dana_setuju' => $request->dana_setuju,
 
@@ -182,6 +192,14 @@ class RvwCtrl extends Controller
             }
             return redirect('/reviewer/profile')->with('alert-success','Data telah diubah');
 
+    }
+
+    function riwayat_nilai(){
+        $nidn =Session::get('rv_username');
+        $data = Nilai::where('id_reviewer',$nidn)->get();
+        return view('reviewer.riwayat_nilai',[
+            'data' =>$data
+        ]);
     }
 
 

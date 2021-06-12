@@ -67,7 +67,6 @@
                                           a. Gagasan (Unik dan Bermanfaat)<br>
                                           b. Perumusan Masalah<br>
                                           c. Tujuan<br>
-                                        
                                         </td>
 
                                         <td>20</td>
@@ -75,13 +74,14 @@
                                       
                                         <td><input type="number" name="skor_kreatif" id="skor_kreatif" max="8" required></td>
                                         <td>
-                                            <input type="number" name="nilai_kreatif" id="nilai_kreatif" required>
+                                            <input class="total-form" type="number" name="nilai_kreatif" id="nilai_kreatif" required readonly>
 
                                             <script>
                                                 $('#skor_kreatif').on('keyup',function(){
-                                                    var skor_kreatif =$this.val();
-
+                                                    var skor_kreatif =$(this).val();
+                                                    $('#nilai_kreatif').val(skor_kreatif*20);
                                                 });
+
                                             </script>
 
                                             @if($errors->has('nilai_kreatif'))
@@ -106,10 +106,18 @@
                                         <td>25</td>
 
                                       
-                                        <td><input type="number" name="skor_pustaka" max="8" required></td>
-
+                                        <td><input type="number" name="skor_pustaka" max="8" id="skor_pustaka" required></td>
+                                     
                                         <td>
-                                            <input type="number" name="nilai_pustaka" required>
+                                            <input class="total-form" type="number" name="nilai_pustaka" id="nilai_pustaka" required readonly>
+                                            <script>
+                                              $('#skor_pustaka').on('keyup',function(){
+                                                  var skor_pustaka =$(this).val();
+                                                  $('#nilai_pustaka').val(skor_pustaka*25);
+
+                                              });
+
+                                          </script>
                                             @if($errors->has('nilai_pustaka'))
                                             <small class="text-muted text-danger">
                                                 {{ $errors->first('nilai_pustaka')}}
@@ -130,10 +138,17 @@
                                         <td>10</td>
 
                                       
-                                        <td><input type="number" name="skor_metode" max="8" required></td>
-
+                                        <td><input type="number" name="skor_metode" max="8" id="skor_metode" required></td>
+                                        
                                         <td>
-                                            <input type="number" name="nilai_metode" required>
+                                            <input class="total-form" type="number" name="nilai_metode" id="nilai_metode" readonly required>
+                                            <script>
+                                              $('#skor_metode').on('keyup',function(){
+                                                  var skor_metode =$(this).val();
+                                                  $('#nilai_metode').val(skor_metode*10);
+                                              });
+                                          
+                                          </script>
                                             @if($errors->has('nilai_metode'))
                                             <small class="text-muted text-danger">
                                                 {{ $errors->first('nilai_metode')}}
@@ -153,10 +168,17 @@
 
                                         <td>25</td>
                                       
-                                        <td><input type="number" name="skor_luaran" max="8" required></td>
-
+                                        <td><input type="number" name="skor_luaran" max="8" id="skor_luaran" required></td>
+                  
                                         <td>
-                                            <input type="number" name="nilai_luaran" required>
+                                            <input class="total-form" type="number" name="nilai_luaran" id="nilai_luaran" readonly required>
+                                            <script>
+                                              $('#skor_luaran').on('keyup',function(){
+                                                  var skor_luaran =$(this).val();
+                                                  $('#nilai_luaran').val(skor_luaran*25);
+                                              });
+                                            
+                                          </script>
                                             @if($errors->has('nilai_luaran'))
                                             <small class="text-muted text-danger">
                                                 {{ $errors->first('nilai_luaran')}}
@@ -177,10 +199,16 @@
 
                                         <td>15</td>
                                       
-                                        <td><input type="number" name="skor_jadwal" max="8" required></td>
-
+                                        <td><input type="number" name="skor_jadwal" id="skor_jadwal" max="8" required></td>
                                         <td>
-                                            <input type="number" name="nilai_jadwal" required>
+                                            <input class="total-form" type="number" name="nilai_jadwal" id="nilai_jadwal" readonly required>
+                                            <script>
+                                              $('#skor_jadwal').on('keyup',function(){
+                                                  var skor_jadwal =$(this).val();
+                                                  $('#nilai_jadwal').val(skor_jadwal*15);
+                                              });
+                                          
+                                          </script>
                                             @if($errors->has('nilai_jadwal'))
                                             <small class="text-muted text-danger">
                                                 {{ $errors->first('nilai_jadwal')}}
@@ -197,10 +225,45 @@
 
                                        <td>100</td>
                                        <td></td>
-                                       <td><input type="number" name="jumlah"></td>
+                                       <td>
+                                         
+                                         {{-- <div class="hasil_form"></div> --}}
+                                      </td>
+                                        <script>
+                                        $(function() {
+                                            $('#nilai_kreatif').on('change',function(){
+                                                   jumlah();
+                                                });
+                                            $('#nilai_metode').on('change',function(){
+                                                jumlah();
+                                            });
+                                            $('#nilai_pustaka').on('change',function(){
+                                                   jumlah();
+                                             });
 
+                                             $('#nilai_luaran').on('change',function(){
+                                                  jumlah();
+                                              });
+
+                                              $('#nilai_jadwal').on('change',function(){
+                                                   jumlah();
+                                              });
+
+                                            function jumlah(){
+                                                var nilai_k = $('#nilai_kreatif').val();
+                                                var nilai_p = $('#nilai_pustaka').val();
+                                                
+                                                    var price = nilai_k + nilai_p;
+                                                 $('.hasil_form').html(price);
+                                                console.log(jumlah());
+                                            }
+
+
+                                        });
+                                        </script>
                                     </tr>
 
+                                  
                                     {{-- komentar --}}
                                     <tr>
                                         <td></td>

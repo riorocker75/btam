@@ -100,9 +100,9 @@
                     </thead>
                     <tbody>
 
+                        @foreach ($data as $dt)
                     <tr>
                         <?php $no=1;?>
-                        @foreach ($data as $dt)
                             
                         <td>{{$no++}}</td>
                         <td>{{$dt->nama}}</td>
@@ -120,9 +120,9 @@
                             <a href="{{ url('/admin/daftar-prodi/delete/'.$dt->id.'')}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
 
                         </td>
-                        @endforeach
-
+                        
                     </tr>
+                    @endforeach
                     </tbody>
                 </table>
                 </div>

@@ -88,7 +88,6 @@
                         <td>
                             <a href="{{ url('/admin/daftar-jurusan/edit/'.$dt->id.'')}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
                             <a href="{{ url('/admin/daftar-jurusan/delete/'.$dt->id.'')}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
-
                         </td>
 
                     </tr>

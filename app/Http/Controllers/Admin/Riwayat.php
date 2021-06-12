@@ -82,5 +82,48 @@ class Riwayat extends Controller
 
 
 
+    // review nilai
+    function review_nilai($id){
+        $data = Usulan::where('id',$id)->get();
+        return view('admin.riwayat.penilaian.nilaiReview',[
+            'data' =>$data
+        ]);
+    }
+
+    function review_nilai_update(Request $request){
+        
+        $id= $request->sumber;
+        // $setuju=$request->setuju;
+        // $tolak=$request->tolak;
+
+        if($request->has('setuju')){
+            $this->validate($request, [
+                'dana' => 'required',
+            ]);
+            DB::table('usulan')->where('id',$id)->update([
+                'biaya' => $request->dana,
+                'status' => '4',
+                'status_nilai' =>'2'
+            ]);
+
+            DB::table('nilai')->where('id_usulan',$id)->update([
+                'status_dana' => '1'
+            ]);
+
+        }elseif($request->has('tolak')){
+            DB::table('usulan')->where('id',$id)->update([
+                'status' => '5'
+            ]);
+
+            DB::table('nilai')->where('id_usulan',$id)->update([
+                'status_dana' => '0'
+            ]);
+        }
+       
+        return redirect('/admin/hasil-penilaian')->with('alert-success','Data telah submit');
+      
+    }
+
+
 
 }

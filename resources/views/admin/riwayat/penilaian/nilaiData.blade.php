@@ -62,18 +62,27 @@
                             $nilai= \App\Model\Nilai::where('id_usulan',$dt->id)->get();
                             foreach ($nilai as $nl) {}
                             // reviewer 1
-                            $rv1=\App\Model\Nilai::where('status','1')->first();
+                            $rv1=\App\Model\Nilai::where('status','1')->where('id_usulan',$dt->id)->first();
                             // reviewer 2
-                            $rv2=\App\Model\Nilai::where('status','2')->first();
+                            $rv2=\App\Model\Nilai::where('status','2')->where('id_usulan',$dt->id)->first();
+
+                            $rv1c=\App\Model\Nilai::where('status','1')->where('id_usulan',$dt->id)->count();
+                            $rv2c=\App\Model\Nilai::where('status','2')->where('id_usulan',$dt->id)->count();
+
+                            $count = \App\Model\Nilai::where('id_usulan',$dt->id)->count();
                            
                             if($count > 0){
-                              $total =$rv1->jumlah + $rv2->jumlah / 2;
+                              if($rv1c > 0 && $rv2c){
+                                $total =$rv1->jumlah + $rv2->jumlah / 2;
+                              }elseif($rv1c > 0){
+                                $total =$rv1->jumlah ;
+                              }
                             }
                            
                          @endphp   
                     <tr>
                         <td>{{$no++}}</td>
-                        <td>{{$kat->nama}}</td>
+                        <td>{{bantuan($kat->nama)}}</td>
 
                         <td>{{$dt->judul}}</td>
                         <td>{{$mhs->nama}}</td>
@@ -93,11 +102,11 @@
                         </td>
                         <td><b>{{$total}}</b></td>
                         <td>
-
+                          <label for="" class="badge badge-info"> {{status_usulan($dt->status)}}</label>
                         </td>
 
                         <td>
-
+                          <a href="{{url('/admin/hasil-penilaian/review/'.$dt->id.'')}}"> Review</a>
                         </td>
                     </tr>
                     @endforeach
