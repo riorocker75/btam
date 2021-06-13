@@ -210,6 +210,20 @@ Route::get('/mahasiswa/daftar-usulan' ,'Mahasiswa\DaftarUsCtrl');
 Route::get('/mahasiswa/daftar-usulan/unggah-proposal/{id}' ,'Mahasiswa\DaftarUsCtrl@unggah_proposal');
 Route::post('/mahasiswa/daftar-usulan/unggah-proposal/act' ,'Mahasiswa\DaftarUsCtrl@unggah_proposal_act');
 
+Route::get('/mahasiswa/daftar-usulan/unggah-proposal/review/{id}' ,'Mahasiswa\DaftarUsCtrl@unggah_proposal_review');
+Route::get('/mahasiswa/daftar-usulan/unggah-proposal/edit/{id}' ,'Mahasiswa\DaftarUsCtrl@unggah_proposal_edit');
+
+Route::post('/mahasiswa/daftar-usulan/unggah-proposal/update' ,'Mahasiswa\DaftarUsCtrl@unggah_proposal_update');
+
+
+// riwayat
+Route::get('/mahasiswa/riwayat' ,'Mahasiswa\MhsCtrl@riwayat_usulan');
+
+Route::get('/mahasiswa/rekening/edit/{id}' ,'Mahasiswa\MhsCtrl@rekening_edit');
+Route::post('/mahasiswa/rekening/update' ,'Mahasiswa\MhsCtrl@rekening_update');
+Route::post('/mahasiswa/rekening/review' ,'Mahasiswa\MhsCtrl@rekening_review');
+
+
 
 // unggah laporan kemajuan
 Route::get('/mahasiswa/daftar-usulan/unggah-kemajuan/{id}' ,'Mahasiswa\DaftarUsCtrl@unggah_kemajuan');
@@ -226,6 +240,10 @@ Route::post('/mahasiswa/daftar-usulan/unggah-rekening/act' ,'Mahasiswa\DaftarUsC
 
 // panduan
 Route::get('/mahasiswa/panduan' ,'Mahasiswa\MhsCtrl@panduan');
+
+
+
+
 
 // pengatuaran profile mahaiswa
 Route::get('/mahasiswa/profile' ,'Mahasiswa\MhsCtrl@profile');

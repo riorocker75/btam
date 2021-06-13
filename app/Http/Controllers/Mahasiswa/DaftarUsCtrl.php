@@ -220,7 +220,98 @@ class DaftarUsCtrl extends Controller
         }
 
 
+        // edit proposal
+        function unggah_proposal_review($id){
+            $nim = Session::get('mh_username');
+            $data = Usulan::where('id_ketua',$nim)->get();
+            return view('mahasiswa.usulan.usulanView',[
+                'data' => $data
+            ]);  
+        }
+        function unggah_proposal_edit($id){
+            $nim = Session::get('mh_username');
+           $data = Usulan::where('id_ketua',$nim)->get();
+           return view('mahasiswa.usulan.usulanEdit',[
+               'data' => $data
+           ]); 
+        }
 
+        function unggah_proposal_update(Request $request){
+            $this->validate($request, [
+                'dosen_1' => 'required',
+                'judul' => 'required',
+                'luaran_wajib' => 'required',
+                'biaya' => 'required',
+                'surat_aktif' => 'mimes:pdf|max:20000',
+                'surat_nyata' => 'mimes:pdf|max:20000',
+                'surat_proposal' => 'mimes:pdf|max:20000',
+            ]);
+             $nim= $request->nim_ketua;
+             $je=Mahasiswa::where('nim',$nim)->first();
+            
+    
+            $tujuan_upload ='upload/berkas';
+            $sa= $request->file('surat_aktif');
+            $sn= $request->file('surat_nyata');
+            $sp= $request->file('surat_proposal');
+    
+    
+            // surat aktif
+            if($sa != ""){
+                $surat_aktif= $request->file('surat_aktif');
+                $inf_surat_aktif =rand(10000,99999)."_".rand(1000,9999).".".$surat_aktif->getClientOriginalExtension();
+                $surat_aktif->move($tujuan_upload,$inf_surat_aktif); 
+    
+                $sa_hapus=Usulan::where('nim_ketua',$nim)->first();
+                File::delete('upload/berkas/'. $sa_hapus->surat_aktif);
+                Usulan::where('nim_ketua',$nim)->update([
+                    'surat_aktif' => $inf_surat_aktif
+                ]);
+            }
+    
+    
+            // surat pernyataan
+            if($sn != ""){
+                $surat_nyata= $request->file('surat_nyata');
+                $inf_surat_nyata =rand(100000,999999)."_".rand(1000,9999).".".$surat_nyata->getClientOriginalExtension();
+                $surat_nyata->move($tujuan_upload,$inf_surat_nyata);  
+    
+                $sn_hapus=Usulan::where('nim_ketua',$nim)->first();
+                File::delete('upload/berkas/'. $sn_hapus->surat_nyata);
+                Usulan::where('nim_ketua',$nim)->update([
+                    'surat_nyata' => $inf_surat_nyata
+                ]);
+            }
+            
+    
+    
+            //surat Proposal
+            if($sp != "" ){
+                $surat_proposal= $request->file('surat_proposal');
+                $inf_surat_proposal =rand(1000,9999)."_".rand(1000,9999).".".$surat_proposal->getClientOriginalExtension();
+                $surat_proposal->move($tujuan_upload,$inf_surat_proposal); 
+    
+                $sp_hapus=Usulan::where('nim_ketua',$nim)->first();
+                File::delete('upload/berkas/'. $sp_hapus->surat_nyata);
+                Usulan::where('nim_ketua',$nim)->update([
+                    'surat_proposal' => $inf_surat_proposal
+                ]); 
+            }
+         
+       
+            DB::table('usulan')->where('nim_ketua',$nim)->update([
+                'id_dospem1' => $request->dosen_1,
+                'id_dospem2' => $request->dosen_2,
+                'judul' => $request->judul,
+                'biaya' => $request->biaya,
+                'nama_anggota1' => $request->anggota_1,
+                'nama_anggota2' => $request->anggota_2,
+                'luaran' => $request->luaran_wajib,
+                'luaran_tambah' => $request->luaran_tambahan,
+                'status' => '1'
+            ]);
+            return redirect('/mahasiswa/riwayat')->with('alert-success','Telah diubah');  
+        }
 
 
 

@@ -109,7 +109,60 @@ class MhsCtrl extends Controller
 
     }
 
+    function riwayat_usulan(){
+        $nim =Session::get('mh_username');
+        $data=Usulan::where('id_ketua',$nim)->get();
+        return view('mahasiswa.riwayatData',[
+            'data' => $data
+        ]);
+    }
 
+
+    function rekening_edit($id){
+        $nim =Session::get('mh_username');
+        $data=UnggahRek::where('id_usulan',$id)->get();
+        return view('mahasiswa.usulan.rekeningEdit',[
+            'data' => $data
+        ]);
+    }
+    function rekening_update(Request $request){
+        $this->validate($request, [
+            'no_rek' => 'required',
+            'nama_rek' => 'required',
+            'nama_bank' => 'required',
+            'foto_rek' => 'mimes:jpeg,png,jpg|max:1000',
+        ]);
+        $id= $request->sumber;
+        $tujuan_upload ='upload/berkas';
+        
+        $fr= $request->file('surat_aktif');
+        
+        if($fr != ""){
+            $foto_rek= $request->file('foto_rek');
+            $inf_foto_rek =rand(10000,99999)."_".rand(1000,9999).".".$foto_rek->getClientOriginalExtension();
+            $foto_rek->move($tujuan_upload,$inf_foto_rek);  
+        
+            $fr_hapus=UnggahRek::where('id_usulan',$id)->first();
+            File::delete('upload/berkas/'. $fr_hapus->foto);
+            UnggahRek::where('id_usulan',$id)->update([
+                'foto' => $inf_foto_rek
+            ]);    
+        }
+        
+        
+        
+        DB::table('unggah_rek')->where('id_usulan',$id)->update([
+            'nomor_rek' => $request->no_rek,
+            'nama_rek' => $request->nama_rek,
+            'nama_bank' => $request->nama_bank
+        ]);
+        
+        return redirect('/mahasiswa/riwayat')->with('alert-success','Data telah diubah');
+         
+    }
+    function rekening_review($id){
+
+    }
 
     
 }

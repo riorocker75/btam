@@ -16,12 +16,12 @@ class TblUsulan extends Migration
         if (!Schema::hasTable('usulan')) {
             Schema::create('usulan', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->integer('id_ketua');
-                $table->integer('id_kategoriBantuan');
-                $table->integer('id_jurusan');
+                $table->bigInteger('id_ketua');
+                $table->bigInteger('id_kategoriBantuan');
+                $table->bigInteger('id_jurusan');
                 $table->text('jenjang')->nullable();
-                $table->integer('id_dospem1');
-                $table->integer('id_dospem2')->nullable();
+                $table->bigInteger('id_dospem1');
+                $table->bigInteger('id_dospem2')->nullable();
                 $table->text('judul');
                 $table->text('biaya')->nullable();
                 $table->string('nama_anggota1',100)->nullable();
