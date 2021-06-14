@@ -221,7 +221,19 @@ Route::get('/mahasiswa/riwayat' ,'Mahasiswa\MhsCtrl@riwayat_usulan');
 
 Route::get('/mahasiswa/rekening/edit/{id}' ,'Mahasiswa\MhsCtrl@rekening_edit');
 Route::post('/mahasiswa/rekening/update' ,'Mahasiswa\MhsCtrl@rekening_update');
-Route::post('/mahasiswa/rekening/review' ,'Mahasiswa\MhsCtrl@rekening_review');
+Route::get('/mahasiswa/rekening/review/{id}' ,'Mahasiswa\MhsCtrl@rekening_review');
+
+Route::get('/mahasiswa/kemajuan/edit/{id}' ,'Mahasiswa\MhsCtrl@kemajuan_edit');
+Route::post('/mahasiswa/kemajuan/update' ,'Mahasiswa\MhsCtrl@kemajuan_update');
+Route::get('/mahasiswa/kemajuan/review/{id}' ,'Mahasiswa\MhsCtrl@kemajuan_review');
+
+
+Route::get('/mahasiswa/akhir/edit/{id}' ,'Mahasiswa\MhsCtrl@akhir_edit');
+Route::post('/mahasiswa/akhir/update' ,'Mahasiswa\MhsCtrl@akhir_update');
+Route::get('/mahasiswa/akhir/review/{id}' ,'Mahasiswa\MhsCtrl@akhir_review');
+
+
+
 
 
 

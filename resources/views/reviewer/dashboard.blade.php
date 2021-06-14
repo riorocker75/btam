@@ -51,7 +51,7 @@
                             $kat = \App\Model\KategoriBantuan::where('id',$usl->id_kategoriBantuan)->first();
                             $mhs = \App\Model\Mahasiswa::where('nim',$usl->id_ketua)->first();
                          @endphp  
-                      @if ($usl->status == 2)
+                      @if ($usl->status == 3)
                             <tr>
                                 <td>{{$no++}}</td>
                                 <td>{{bantuan($kat->nama)}}</td>

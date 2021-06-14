@@ -16,7 +16,6 @@ class Jurusan_seed extends Seeder
         DB::table('jurusan')->delete();
         // dospem
         Jurusan::create([
-            'id' => 1,
             'nama' => 'Teknik Informatika & Komputer',
         ]);
     }

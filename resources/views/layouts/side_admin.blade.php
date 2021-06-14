@@ -3,7 +3,7 @@
   <!-- Brand Logo -->
   <a href="index3.html" class="brand-link">
     <img src="{{asset('asset/img/pnj.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">BTAM</span>
+    <span class="brand-text font-weight-light">SISTEM BTAM</span>
   </a>
 
   <!-- Sidebar -->
@@ -34,21 +34,21 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="{{url('/')}}" class="nav-link">
+            <a href="{{url('dashboard/admin')}}" class="nav-link {{Request::path() === 'dashboard/admin' ? 'bg-light' : ''}}">
             <i class="nav-icon fas fa-th"></i>
             <p>
-              Dashboard
+              Halaman Utama
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{url('admin/kategori-bantuan')}}" class="nav-link">
+          <a href="{{url('admin/kategori-bantuan')}}" class="nav-link {{Request::path() === 'admin/kategori-bantuan' ? 'bg-light' : ''}}"">
             <i class="nav-icon fas fa-hands-helping"></i>
             <p>Daftar Bantuan</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{url('/admin/jadwal-kegiatan')}}" class="nav-link">
+          <a href="{{url('/admin/jadwal-kegiatan')}}" class="nav-link {{Request::path() === 'admin/jadwal-kegiatan' ? 'bg-light' : ''}}">
             <i class="nav-icon fas fa-calendar-alt"></i>
             <p>
               Jadwal Kegiatan
@@ -56,37 +56,48 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{url('/admin/daftar-jurusan')}}"  class="nav-link">
+          <a href="{{url('/admin/daftar-jurusan')}}"  class="nav-link {{Request::path() === 'admin/daftar-jurusan' ? 'bg-light' : ''}}">
             <i class="nav-icon fas fa-university"></i>
             <p>Daftar Jurusan</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{url('/admin/daftar-prodi')}}" class="nav-link">
-            <i class="nav-icon fas fa-chalkboard"></i>
+          <a href="{{url('/admin/daftar-prodi')}}" class="nav-link {{Request::path() === 'admin/daftar-prodi' ? 'bg-light' : ''}}">
+            <i class="nav-icon fa fa-graduation-cap"></i>
             <p>Daftar Program Studi</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link ">
+          <a href="{{url('admin/penugasan-reviewer')}}" class="nav-link {{Request::path() === 'admin/penugasan-reviewer' ? 'bg-light' : ''}}">
             <i class="nav-icon fas fa-user-clock"></i>
             <p>
               Penugasan Reviewer
-              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
+        </li>
+          <!-- <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{url('/admin/penugasan-reviewer/')}}"  class="nav-link active">
+              <a href="{{url('penugasan/ta')}}"  class="nav-link {{Request::path() === '' ? 'bg-light' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Penugasan Reviewer</p>
+                <p>Tugas Akhir</p>
               </a>
             </li>
-          
-          </ul>
-        </li>
+            <li class="nav-item">
+              <a href="{{url('penugasan/skripsi')}}" class="nav-link {{Request::path() === '' ? 'bg-light' : ''}}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Skripsi</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('penugasan/tesis')}}"class="nav-link {{Request::path() === '' ? 'bg-light' : ''}}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tesis</p>
+              </a>
+            </li>
+          </ul> -->
+        
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{url('/admin/pengguna/Dosen')}}" class="nav-link {{Request::path() === '/admin/pengguna/dosen' ? 'bg-light' : ''}}">
             <i class="nav-icon fas fa-users"></i>
             <p>
               Daftar Pengguna
@@ -95,19 +106,19 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{url('admin/pengguna/dosen')}}"class="nav-link  active">
+              <a href="{{url('admin/pengguna/dosen')}}" class="nav-link {{Request::path() === 'admin/pengguna/dosen' ? 'bg-light' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Dosen</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('admin/pengguna/reviewer')}}" class="nav-link">
+              <a href="{{url('admin/pengguna/reviewer')}}" class="nav-link {{Request::path() === 'admin/pengguna/reviewer' ? 'bg-light' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Reviewer</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('admin/pengguna/mahasiswa')}}" class="nav-link">
+              <a href="{{url('admin/pengguna/mahasiswa')}}" class="nav-link {{Request::path() === 'admin/pengguna/mahasiswa' ? 'bg-light' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Pengusul</p>
               </a>
@@ -115,16 +126,15 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{url('/admin/hasil-penilaian')}}" class="nav-link">
+          <a href="{{url('admin/hasil-penilaian')}}" class="nav-link {{Request::path() === 'admin/hasil-penilaian' ? 'bg-light' : ''}}">
             <i class="nav-icon fas fa-history"></i>
             <p>
               Hasil Penilaian
             </p>
           </a>
-          
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link {{Request::path() === '' ? 'bg-light' : ''}}">
             <i class="nav-icon fas fa-history"></i>
             <p>
               Riwayat Usulan
@@ -133,19 +143,19 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{url('/admin/riwayat/data-proposal')}}" class="nav-link active">
+              <a href="{{url('admin/riwayat/data-proposal')}}" class="nav-link {{Request::path() === 'admin/riwayat/data-proposal' ? 'bg-light' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Tahap Awal</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('/admin/riwayat/data-kemajuan')}}" class="nav-link">
+              <a href="{{url('admin/riwayat/data-kemajuan')}}" class="nav-link {{Request::path() === 'admin/riwayat/data-kemajuan' ? 'bg-light' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Laporan Kemajuan</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('/admin/riwayat/data-akhir')}}" class="nav-link">
+              <a href="{{url('admin/riwayat/data-akhir')}}" class="nav-link {{Request::path() === 'admin/riwayat/data-akhir' ? 'bg-light' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Laporan Akhir</p>
               </a>
@@ -153,7 +163,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link {{Request::path() === '' ? 'bg-light' : ''}}">
             <i class="nav-icon fas fa-address-card"></i>
             <p>
               Pencairan Dana
@@ -162,13 +172,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{url('pencairan_dana/daftar_bank')}}" class="nav-link active">
+              <a href="{{url('admin/riwayat/data-rekening')}}" class="nav-link {{Request::path() === 'admin/riwayat/data-rekening' ? 'bg-light' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Daftar Bank</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('/admin/riwayat/data-rekening')}}" class="nav-link">
+              <a href="{{url('admin/riwayat/data-rekening')}}" class="nav-link {{Request::path() === 'admin/riwayat/data-rekening' ? 'bg-light' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Daftar Rekening</p>
               </a>
@@ -176,7 +186,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{url('/admin/panduan')}}" class="nav-link">
+          <a href="{{url('admin/panduan')}}" class="nav-link {{Request::path() === 'admin/panduan' ? 'bg-light' : ''}}">
             <i class="nav-icon fas fa-book"></i>
             <p>
               Panduan

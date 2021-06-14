@@ -69,9 +69,20 @@
                         <td>
                           <label class="badge badge-default"> <p>Menunggu persetujuan...</p> </label>
                           {{-- buat logika jika dia sudah status didanai tamplikan tobol ini --}}
-                          <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-rekening/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Data Rekening</a></p>
-                          <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-kemajuan/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Kemajuan</a></p>
-                          <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-akhir/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Akhir</a></p>
+                            {{-- cek tanggal dulu baru aksi status --}}
+
+                            @if($dt->status_rek != '2')
+                             <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-rekening/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Data Rekening</a></p>
+                            @endif
+
+                           @if($dt->status_kemajuan != '2')
+                            <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-kemajuan/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Kemajuan</a></p>
+                           @endif
+
+
+                            @if($dt->status_akhir != '2')
+                             <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-akhir/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Akhir</a></p>
+                            @endif
 
      
                         </td>

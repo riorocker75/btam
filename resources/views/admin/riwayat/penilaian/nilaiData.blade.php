@@ -94,11 +94,13 @@
                             @endif
                         </td>
                         <td> 
-                            @if ($rv2->jumlah != "")
-                            <a href="" data-toggle="modal" data-target="#rv2-{{$rv2->id}}{{$rv2->id_usulan}}" >{{$rv2->jumlah}}</a>
-                            @else
-                                belum ada nilai
-                            @endif
+                          @if ($rv2c >0)
+                              @if ($rv2->jumlah != "")
+                              <a href="" data-toggle="modal" data-target="#rv2-{{$rv2->id}}{{$rv2->id_usulan}}" >{{$rv2->jumlah}}</a>
+                              @else
+                                  belum ada nilai
+                              @endif
+                          @endif
                         </td>
                         <td><b>{{$total}}</b></td>
                         <td>
@@ -257,7 +259,7 @@
   {{-- end modal rv1 --}}
 
 
-
+  @if ($rv2c >0)
 {{-- modal rv2 --}}
 <div class="modal fade" id="rv2-{{$rv2->id}}{{$rv2->id_usulan}}">
     <div class="modal-dialog modal-lg">
@@ -370,6 +372,7 @@
   <!-- /.modal -->
 
   {{-- end modal rv2 --}}
+  @endif
   @endif
   @endforeach
 

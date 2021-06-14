@@ -140,6 +140,10 @@ class DaftarUsCtrl extends Controller
             'foto' =>$inf_foto_rek,
             'tgl' => date('Y-m-d')
         ]);
+
+        DB::table('usulan')->where('id',$request->sumber)->update([
+            'status_rek' => '2'
+        ]);
     
         return redirect('/dashboard/mahasiswa')->with('alert-success','Data rekening telah di ajukan');
 
@@ -181,9 +185,10 @@ class DaftarUsCtrl extends Controller
                 'logbook' => $inf_log_book,
                 'tgl_laporan' => date('Y-m-d')
             ]);
-        
+            DB::table('usulan')->where('id',$request->sumber)->update([
+                'status_kemajuan' => '2'
+            ]);
             return redirect('/dashboard/mahasiswa')->with('alert-success','Data telah dikirim');
-    
         }
 
        // bagian unggah akhir
@@ -214,7 +219,9 @@ class DaftarUsCtrl extends Controller
                 'berkas' =>  $inf_laporan,
                 'tgl_laporan' => date('Y-m-d')
             ]);
-        
+            DB::table('usulan')->where('id',$request->sumber)->update([
+                'status_akhir' => '2'
+            ]);
             return redirect('/dashboard/mahasiswa')->with('alert-success','Data telah dikirim');
     
         }

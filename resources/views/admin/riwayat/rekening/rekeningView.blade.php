@@ -110,7 +110,7 @@
                   <!-- /.card-body -->
   
                   <div class="card-footer">
-                    <a href="{{url('/mahasiswa/riwayat')}}" class="btn btn-primary float-right">Kembali</a>
+                    <a href="{{url('/admin/riwayat/data-rekening')}}" type="submit" class="btn btn-primary float-right">Kembali</a>
                   </div>
               </div>
               <!-- /.card -->

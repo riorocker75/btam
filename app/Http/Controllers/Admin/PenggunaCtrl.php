@@ -196,6 +196,9 @@ class PenggunaCtrl extends Controller
         DB::table('dosen')->where('nidn',$nidn)->update([
             'lvl' => '3'
         ]);
+        DB::table('pengguna')->where('username',$nidn)->update([
+            'level' => '3'
+        ]);
         return redirect('/admin/pengguna/reviewer')->with('alert-success','Data telah ditambahkan');
 
     }
@@ -204,6 +207,9 @@ class PenggunaCtrl extends Controller
       
         DB::table('dosen')->where('id',$id)->update([
             'lvl' => '1'
+        ]);
+        DB::table('pengguna')->where('username',$nidn)->update([
+            'level' => '2'
         ]);
         return redirect('/admin/pengguna/reviewer')->with('alert-success','Data telah dihapus');
 

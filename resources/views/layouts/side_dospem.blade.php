@@ -46,7 +46,7 @@
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
             <p>
-              Pengaturan
+              Riwayat 
             </p>
           </a>
         </li>

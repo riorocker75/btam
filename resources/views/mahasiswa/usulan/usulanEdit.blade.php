@@ -91,6 +91,7 @@
                                     $dosen= \App\Model\Dosen::where('lvl','1')->get();
                                     $ds1= \App\Model\Dosen::where('nidn',$dt->id_dospem1)->first();
                                     $ds2= \App\Model\Dosen::where('nidn',$dt->id_dospem2)->first();
+                                    $ds2c= \App\Model\Dosen::where('nidn',$dt->id_dospem2)->count();
 
                                 @endphp
                                 <div class="form-group">
@@ -112,7 +113,12 @@
                                 <div class="form-group">
                                     <label>Dosen Pembimbing 2</label>
                                     <select name="dosen_2" class="form-control select2" style="width: 100%;">
-                                        <option  value="{{ $ds1->nidn }}" selected hidden>{{ $ds1->nama }}</option>
+                                      @if ($ds2c > 0)
+                                        <option  value="{{ $ds2->nidn }}" selected hidden>{{ $ds2->nama }}</option>
+                                      @else
+                                      <option value="" >Pilih Dosen Pembimbimg 2</option>
+
+                                      @endif
                                       @foreach ($dosen as $ds)
                                          <option value="{{$ds->nidn}}">{{$ds->nidn}}  {{$ds->nama}}</option>
                                       @endforeach

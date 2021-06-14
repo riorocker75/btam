@@ -72,8 +72,16 @@
                                     </td>
                                 
                                     <td>
-                                    <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-proposal/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Proposal</a></p>
-                                
+                                        @php
+                                            $usl=\App\Model\Usulan::where('id_ketua',$nim)->count();
+                                        @endphp
+
+                                        {{-- cek nanti di tanggal berkas proposal --}}
+                                        @if ($usl > 0)
+                                            <label for="" class="badge badge-warning">Telah Mengajukan..</label>
+                                        @else
+                                        <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-proposal/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Proposal</a></p>
+                                        @endif
 
                                     </td>
                                 </tr>

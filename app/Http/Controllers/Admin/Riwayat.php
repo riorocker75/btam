@@ -124,6 +124,14 @@ class Riwayat extends Controller
       
     }
 
+    function riwayat_rekening_det($id){
+        $data=UnggahRek::where('id_usulan',$id)->get();
+        return view('admin.riwayat.rekening.rekeningView',[
+            'data' => $data
+        ]);
+            
+    }
+
 
 
 }

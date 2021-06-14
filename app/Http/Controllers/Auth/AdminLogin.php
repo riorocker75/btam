@@ -119,7 +119,7 @@ class AdminLogin extends Controller
         $nim=$request->nim;
         $this->validate($request, [
             'nama' => 'required|max:50',
-            'nim' => 'required|max:10|unique:mahasiswa,nim'
+            'nim' => 'required|max:12|unique:mahasiswa,nim'
         ]);  
         
         DB::table('mahasiswa')->insert([

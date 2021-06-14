@@ -161,8 +161,60 @@ class MhsCtrl extends Controller
          
     }
     function rekening_review($id){
-
+        $data = UnggahRek::where('id_usulan',$id)->get();
+        return view('mahasiswa.usulan.rekeningView',[
+            'data' => $data
+        ]);
     }
+
+
+
+    function kemajuan_edit($id){
+        $nim =Session::get('mh_username');
+        $data=Laporan::where('id_usulan',$id)->where('jenis','1')->get();
+        return view('mahasiswa.riwayat.kemajuanEdit',[
+            'data' => $data
+        ]);
+    }
+
+    function kemajuan_update(Request $request){
+        $this->validate($request, [
+            'sumber' => 'required',
+            'log_book' => 'mimes:pdf|max:20000',
+            'laporan' => 'mimes:pdf|max:20000',
+        ]);
+
+        $tujuan_upload ='upload/berkas';
+
+        // logbook
+        $log_book= $request->file('log_book');
+        $inf_log_book =rand(10000,99999)."_".rand(1000,9999).".".$log_book->getClientOriginalExtension();
+        $log_book->move($tujuan_upload,$inf_log_book);      
+
+            
+         // laporan
+         $laporan= $request->file('laporan');
+         $inf_laporan =rand(10000,99999)."_".rand(1000,9999).".".$laporan->getClientOriginalExtension();
+         $laporan->move($tujuan_upload,$inf_laporan);      
+ 
+        DB::table('laporan')->where('id_usulan',$request->sumber)->
+            where('jenis','1')->update([
+            'berkas' =>  $inf_laporan,
+            'logbook' => $inf_log_book
+        ]);
+      
+        return redirect('/mahasiswa/riwayat')->with('alert-success','Data telah dikirim');
+    }
+
+    function kemajuan_review($id){
+        $nim =Session::get('mh_username');
+        $data=Laporan::where('id_usulan',$id)->where('jenis','1')->get();
+        return view('mahasiswa.riwayat.kemajuanView',[
+            'data' => $data
+        ]);
+    }
+
+    
 
     
 }

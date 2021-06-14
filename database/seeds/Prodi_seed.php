@@ -16,7 +16,6 @@ class Prodi_seed extends Seeder
         DB::table('prodi')->delete();
         // dospem
         Prodi::create([
-            'id' => 1,
             'id_jurusan' => 1,
             'nama' => 'Teknik',
         ]);

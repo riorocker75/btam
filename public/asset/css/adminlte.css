@@ -10,7 +10,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-:root {
+ :root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -11273,7 +11273,7 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
 }
 
 .layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
-  background-color: #343a40;
+  background-color: #1C4147;
 }
 
 .layout-navbar-fixed .wrapper .sidebar-light-primary .brand-link:not([class*="navbar"]) {
@@ -11434,7 +11434,7 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
 }
 
 .layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
-  background-color: #343a40;
+  background-color: #1c4147;
 }
 
 .layout-navbar-fixed .wrapper .sidebar-light-primary .brand-link:not([class*="navbar"]) {
@@ -13188,7 +13188,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 [class*="sidebar-dark"] .user-panel {
-  border-bottom: 1px solid #4f5962;
+  border-bottom: 1px solid #1c4147;
 }
 
 [class*="sidebar-light"] .user-panel {
@@ -13438,7 +13438,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 [class*="sidebar-dark-"] {
-  background-color: #343a40;
+  background-color: #064E5B;
 }
 
 [class*="sidebar-dark-"] .user-panel a:hover {
@@ -16096,7 +16096,7 @@ body.text-sm .control-sidebar {
 }
 
 .navbar-dark {
-  background-color: #343a40;
+  background-color: #064E5B;
   border-color: #4b545c;
 }
 
