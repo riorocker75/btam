@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h3 class="m-0">Riwayat Usulan</h3>
+            <h3 class="m-0">Riwayat Pendanaan</h3>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item active">Riwayat Pendanaan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,11 +27,11 @@
         <div class="card">
             
             <div class="card-header">
-                <h3 class="card-title">Riwayat Proposal</h3>
+                <h3 class="card-title">Riwayat Pendanaan</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                        b:php
+                       
                      <form action="{{url('admin/riwayat-pendanaan/cetak')}}" method="post">
                      @csrf
                 <div class="row">
