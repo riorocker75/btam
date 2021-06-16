@@ -26,6 +26,10 @@
         @if (Session::get('login-mh'))
         <a href="{{url('/dashboard/mahasiswa')}}" class="nav-link">Home</a>
         @endif
+
+        @if (Session::get('login-kj'))
+        <a href="{{url('/dashboard/kajur')}}" class="nav-link">Home</a>
+        @endif
       </li>
    
     </ul>
@@ -72,7 +76,13 @@
          <a href="{{url('/mahasiswa/profile')}}" class="dropdown-item">
            <i class="fas fa-sign-out-alt "></i> Profile
          </a>
-       @endif
+         @endif
+
+         @if (Session::get('login-kj'))
+         <a href="{{url('/kajur/profile')}}" class="dropdown-item">
+           <i class="fas fa-sign-out-alt "></i> Profile
+         </a>
+         @endif
           
           <div class="dropdown-divider"></div>
         </div>

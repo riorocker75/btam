@@ -39,7 +39,7 @@ class Penugasan extends Controller
     }
 
     public function __invoke(){
-        $data= Usulan::where('status',2)->get();
+        $data= Usulan::where('status',2)->where('status_kajur','2')->get();
         return view('admin.penugasan.penugasanData',[
             'data' =>$data
         ]);
@@ -60,7 +60,7 @@ class Penugasan extends Controller
 
         DB::table('usulan')->where('id',$id)->update([
             'status' => 3,
-            'status_nilai' => 1
+            'status_nilai' => 1,
         ]);
 
         if($request->review1 != ""){

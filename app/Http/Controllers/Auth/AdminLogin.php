@@ -99,7 +99,24 @@ class AdminLogin extends Controller
                     return redirect('/login/user')->with('alert-danger','Password atau NIIM, Salah !');
                 }
 
-        }else{
+        }elseif($data->level == 5){
+           
+            Session::flush();
+           
+           if(Hash::check($password,$data->password)){
+               Session::put('kj_id', $data->id);
+               Session::put('kj_username', $data_ds->nidn);
+               Session::put('nama', $data_ds->nama);
+               Session::put('level', 5);
+               Session::put('login-kj',TRUE);
+               return redirect('/dashboard/kajur')->with('alert-success','Selamat Datang');
+           }else{
+               return redirect('/login/user')->with('alert-danger','Password atau NIDN, Salah !');
+           }
+    
+       // end cek data ada atau tidak
+       }
+        else{
                 return redirect('/login/user')->with('alert-danger','Tidak meliki akses kesini');
             }
                 // end cek level 

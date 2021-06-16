@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use File;
 
 use Illuminate\Support\Str;
 use App\Model\Admin;
@@ -132,6 +133,14 @@ class Riwayat extends Controller
             
     }
 
+
+    // riwayat pendanaan
+    function riwayat_pendanaan(){
+        $data=Usulan::where('status','4')->orWhere('status','5')->get();
+        return view('admin.riwayat.pendanaan.pendanaanData',[
+            'data' => $data
+        ]);
+    }
 
 
 }

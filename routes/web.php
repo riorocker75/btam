@@ -88,6 +88,9 @@ Route::get('/admin/hasil-penilaian/review/{id}' ,'Admin\Riwayat@review_nilai');
 
 Route::post('/admin/hasil-penilaian/update' ,'Admin\Riwayat@review_nilai_update');
 
+// riwayat pendanaan
+Route::get('admin/riwayat-pendanaan' ,'Admin\Riwayat@riwayat_pendanaan');
+
 
 /*
 =========================== 
@@ -149,7 +152,12 @@ Route::get('/admin/pengguna/reviewer/add' ,'Admin\PenggunaCtrl@reviewer_add');
 Route::post('/admin/pengguna/reviewer/act' ,'Admin\PenggunaCtrl@reviewer_act');
 Route::get('/admin/pengguna/reviewer/delete/{id}' ,'Admin\PenggunaCtrl@reviewer_delete');
 
+// data kajur
+Route::get('/admin/pengguna/kajur' ,'Admin\PenggunaCtrl@kajur');
 
+Route::get('/admin/pengguna/kajur/add' ,'Admin\PenggunaCtrl@kajur_add');
+Route::post('/admin/pengguna/kajur/act' ,'Admin\PenggunaCtrl@kajur_act');
+Route::get('/admin/pengguna/kajur/delete/{id}' ,'Admin\PenggunaCtrl@kajur_delete');
 
 // data mahasiswa
 
@@ -194,6 +202,16 @@ Route::get('/reviewer/lihat-nilai/{id}' ,'Reviewer\RvwCtrl@lihat_nilai');
 Route::get('/reviewer/riwayat-nilai' ,'Reviewer\RvwCtrl@riwayat_nilai');
 
 
+/*
+=========================== 
+		Kajur
+===========================
+*/
+Route::get('/dashboard/kajur' ,'Kajur\KajurCtrl');
+
+Route::get('/kajur/review-proposal/{id}' ,'Kajur\KajurCtrl@review_proposal');
+Route::post('/kajur/review-proposal/act' ,'Kajur\KajurCtrl@review_proposal_act');
+Route::post('/kajur/approve-proposal/act' ,'Kajur\KajurCtrl@setuju_proposal_act');
 
 
 /*
@@ -277,3 +295,9 @@ Route::post('/dosen/profile/update' ,'Dospem\DsnCtrl@profile_update');
 Route::get('/reviewer/profile' ,'Reviewer\RvwCtrl@profile');
 Route::get('/reviewer/profile/edit' ,'Reviewer\RvwCtrl@profile_edit');
 Route::post('/reviewer/profile/update' ,'Reviewer\RvwCtrl@profile_update');
+
+
+// profile kajur
+Route::get('/kajur/profile' ,'Kajur\KajurCtrl@profile');
+Route::get('/kajur/profile/edit' ,'Kajur\KajurCtrl@profile_edit');
+Route::post('/kajur/profile/update' ,'Kajur\KajurCtrl@profile_update');

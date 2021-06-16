@@ -60,5 +60,16 @@ class Dosen_seed extends Seeder
             'lvl' => '3'
 
         ]);
+
+        Dosen::create([
+            'nama' => 'Kajur PNJ',
+            'nidn' => '6777888',
+            'id_jurusan' => '1',
+            'telepon' =>'0852765254',
+            'pendidikan_terakhir' => "S3",
+            'email' => "kajur@gmail.com",
+            'alamat' => "Tanah Abang",
+            'lvl' => '4'
+        ]);
     }
 }

@@ -67,6 +67,8 @@
   @include('layouts/side_reviewer')
 @elseif(Session::get('level') == '4')
   @include('layouts/side_mahasiswa')
+@elseif(Session::get('level') == '5')
+  @include('layouts/side_kajur')
 @endif
 
 <!-- end sidebar -->

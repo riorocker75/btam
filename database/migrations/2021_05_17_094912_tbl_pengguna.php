@@ -18,7 +18,7 @@ class TblPengguna extends Migration
                 $table->bigIncrements('id');
                 $table->text('username');
                 $table->text('password');
-                $table->text('level')->comment('1=admin,2=dosen,3=review,4=mahasiswa');
+                $table->text('level')->comment('1=admin,2=dosen,3=review,4=mahasiswa,5=kajur');
                 $table->text('status')->comment('1=aktif, 0=non');
             });
         }

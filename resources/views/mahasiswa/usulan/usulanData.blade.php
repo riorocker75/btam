@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-            <h3 class="m-0">Daftar Pengguna</h3>
+            <h3 class="m-0">Daftar usulan</h3>
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Daftar Pengguna</li>
+                <li class="breadcrumb-item active">Daftar usulan</li>
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->

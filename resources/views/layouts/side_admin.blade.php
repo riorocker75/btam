@@ -117,10 +117,17 @@
                 <p>Reviewer</p>
               </a>
             </li>
+
+            <li class="nav-item">
+              <a href="{{url('admin/pengguna/kajur')}}" class="nav-link {{Request::path() === 'admin/pengguna/kajur' ? 'bg-light' : ''}}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kajur</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="{{url('admin/pengguna/mahasiswa')}}" class="nav-link {{Request::path() === 'admin/pengguna/mahasiswa' ? 'bg-light' : ''}}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Pengusul</p>
+                <p>Mahasiswa</p>
               </a>
             </li>
           </ul>
@@ -161,6 +168,15 @@
               </a>
             </li>
           </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{url('admin/riwayat-pendanaan')}}" class="nav-link {{Request::path() === 'admin/riwayat-pendanaan' ? 'bg-light' : ''}}">
+            <i class="nav-icon fas fa-history"></i>
+            <p>
+             Riwayat Pendanaan
+            </p>
+          </a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link {{Request::path() === '' ? 'bg-light' : ''}}">

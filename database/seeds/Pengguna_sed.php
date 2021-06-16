@@ -56,5 +56,12 @@ class Pengguna_sed extends Seeder
             'level' => 4,
             'status' => 1
         ]);
+
+        Pengguna::create([
+            'username' => '6777888',
+            'password' =>bcrypt("kajur"),
+            'level' => 5,
+            'status' => 1
+        ]);
     }
 }

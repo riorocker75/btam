@@ -53,6 +53,9 @@
                 case 4:
                     echo "Mahasiswa";
                      break;   
+                     case 5:
+                        echo "Kajur";
+                         break; 
             default:
                echo "tidak ada";
                 break;

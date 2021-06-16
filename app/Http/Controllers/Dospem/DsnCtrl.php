@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Str;
+use File;
 
 use App\Model\Admin;
 use App\Model\Mahasiswa;
@@ -54,6 +55,7 @@ class DsnCtrl extends Controller
 
         DB::table('usulan')->where('id',$id)->update([
             'status' => '2',
+            'status_kajur' =>'1'
         ]);
         return redirect('/dashboard/dosen')->with('alert-success','Data telah diubah');
 

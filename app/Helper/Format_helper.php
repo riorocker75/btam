@@ -462,3 +462,17 @@ function status_transfer($status){
             break;
             }
         }
+
+        function status_catatan($status){
+            switch($status){
+                case '4':
+                    echo "Lolos Didanai";
+                break;
+                case '5':
+                    echo "Tidak Lolos Didanai";
+                break;
+                default:
+                echo "Lainya";
+            break;
+            }
+        }

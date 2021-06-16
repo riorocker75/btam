@@ -52,7 +52,7 @@ class AdminCtrl extends Controller
             'jenjang' => 'required',
             'minAnggota' => 'required|max:2|integer',
             'maxAnggota' => 'required|max:4|integer',
-            'minBiaya' => 'required|max:10|integer',
+            'minBiaya' => 'required|integer',
             'maxBiaya' => 'required|integer'
         ]);
         DB::table('kategoriBantuan')->insert([

@@ -215,8 +215,42 @@ class PenggunaCtrl extends Controller
 
     }
 
+    // bagian kajur
+    function kajur(){
+        $data= Dosen::where('lvl','4')->get();
+        return view('admin.pengguna.kajurData',[
+            'data' => $data
+        ]);
+    }
 
+    function kajur_act(Request $request){
+        $this->validate($request, [
+            'nidn' => 'required'
+        ]);     
 
+        $nidn =$request->nidn;
+
+        DB::table('dosen')->where('nidn',$nidn)->update([
+            'lvl' => '4'
+        ]);
+        DB::table('pengguna')->where('username',$nidn)->update([
+            'level' => '5'
+        ]);
+        return redirect('/admin/pengguna/kajur')->with('alert-success','Data telah ditambahkan');
+
+    }
+
+    function kajur_delete($id){
+      
+        DB::table('dosen')->where('id',$id)->update([
+            'lvl' => '1'
+        ]);
+        DB::table('pengguna')->where('username',$nidn)->update([
+            'level' => '2'
+        ]);
+        return redirect('/admin/pengguna/kajur')->with('alert-success','Data telah dihapus');
+
+    }
 
     // bagian mahasiswa
 
