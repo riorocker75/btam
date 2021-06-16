@@ -142,5 +142,30 @@ class Riwayat extends Controller
         ]);
     }
 
+    function cetak_pendanaan(Request $request){
+        $dari =$request->dari;
+        $sampai =$request->sampai;  
+
+        $fdari=format_tanggal(date('Y-m-d',strtotime($dari)));
+        $fsampai=format_tanggal(date('Y-m-d',strtotime($sampai)));
+
+        $cek_data=DB::table('usulan')
+                ->where('status','4')
+                ->orWhere('status','5')
+                ->whereBetween('tgl_unggah_proposal', [$dari, $sampai])
+                ->orderBy('tgl_unggah_proposal','DESC')
+                ->get();
+
+        if(count($cek_data) < 1){
+             return redirect()->back();
+        }
+                
+        return view('cetak.cetakDana',[
+            'data' =>$cek_data,
+            'dari' => $fdari,
+            'sampai' => $fsampai,
+        ]);
+    }
+
 
 }

@@ -90,6 +90,7 @@ Route::post('/admin/hasil-penilaian/update' ,'Admin\Riwayat@review_nilai_update'
 
 // riwayat pendanaan
 Route::get('admin/riwayat-pendanaan' ,'Admin\Riwayat@riwayat_pendanaan');
+Route::post('admin/riwayat-pendanaan/cetak' ,'Admin\Riwayat@cetak_pendanaan');
 
 
 /*

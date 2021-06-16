@@ -31,6 +31,39 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                        b:php
+                     <form action="{{url('admin/riwayat-pendanaan/cetak')}}" method="post">
+                     @csrf
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="">Dari Tanggal</label>
+                           <input type="date" class="form-control" name="dari" id="dari" value="{{date('Y-m-d')}}">
+                          </div> 
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="">Sampai Tanggal</label>
+                            <input type="date" class="form-control" name="sampai" id="sampai" value="{{date('Y-m-d')}}">
+
+                          </div> 
+                    </div>
+
+                    
+
+            
+
+                  @if(count($data) > 0)
+                  <button type="submit" style="margin-top:32px;margin-bottom:20px" 
+                    class="btn btn-outline-primary float-right">
+                    Print &nbsp;
+                    <i class="fa fa-print"></i>
+                    </button>
+                  @endif
+                
+                  
+                </div>
+              </form>
                 <table id="data1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
