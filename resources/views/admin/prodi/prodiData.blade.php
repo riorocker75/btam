@@ -94,10 +94,10 @@
                     </tr>
                     </thead>
                     <tbody>
+                        <?php $no=1;?>
 
                         @foreach ($data as $dt)
                     <tr>
-                        <?php $no=1;?>
                             
                         <td>{{$no++}}</td>
                         <td>{{$dt->nama}}</td>
