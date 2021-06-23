@@ -66,12 +66,22 @@
                                     <td>{{bantuan($kt->nama)}}</td>
                             
                                     <td>
-                                    <b> Penawaran Bantuan: </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->pembukaan_tawaran))) }}<br>  
-                                    <b>  Deadline Proposal : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_proposal))) }} <br> 
-                                    <b>  Deadline Deskevaluasi : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_deskevaluasi))) }} <br> 
-                                    <b> Deadline Rekening : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_rek))) }} <br>  
-                                    <b>  Deadline Kemajuan : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_kemajuan))) }} <br> 
-                                    <b> Deadline Akhir : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_akhir))) }}    
+                                    <b>  Penawaran Bantuan: </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->pembukaan_tawaran))) }}<br>  
+                                    @if ($waktu < $jad_proposal)
+                                         <b>  Deadline Proposal : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_proposal))) }} <br> 
+                                    @endif
+
+                               
+                                    @if ($waktu < $jad_rek)
+                                         <b>  Deadline Rekening : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_rek))) }} <br>  
+                                    @endif
+                                    @if ($waktu < $jad_maju)
+                                        <b>  Deadline Kemajuan : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_kemajuan))) }} <br> 
+                                    @endif
+
+                                    @if ($waktu < $jad_akhir)
+                                         <b>  Deadline Akhir : </b> {{ format_tanggal(date('Y-m-d', strtotime($dt->deadline_akhir))) }}    
+                                    @endif
                                     </td>
 
                                     <td>
