@@ -37,6 +37,9 @@
                         <th>No</th>
                         <th>NIM</th>
                         <th>Nama</th>
+                        <th>Jurusan</th>
+                        <th>Prodi</th>
+
                         <th>Judul</th>
                         <th>Jenjang Pendidikan</th>
                         <th>Tahun</th>
@@ -52,13 +55,16 @@
                             $usl= \App\Model\Usulan::where('id',$dt->id_usulan)->first();
                             $kat = \App\Model\KategoriBantuan::where('id', $usl->id_kategoriBantuan)->first();
                             $mhs = \App\Model\Mahasiswa::where('nim',$usl->id_ketua)->first();
+                            $jur= \App\Model\Jurusan::where('id',$mhs->id_jurusan)->first();
+                            $pro= \App\Model\Prodi::where('id_jurusan',$jur->id)->first();
 
                          @endphp   
                     <tr>
                         <td>{{$no++}}</td>
                         <td>{{$mhs->nim}}</td>
                         <td>{{$mhs->nama}}</td>
-
+                        <td>{{$jur->nama }}</td>
+                        <td>{{$pro->nama }}</td>
                         <td>{{$usl->judul}}</td>
                         <td>{{$mhs->jenjang}} </td>
                         <td>
@@ -67,10 +73,8 @@
                         <td>
                             <a href="{{url('/admin/riwayat/detail/data-rekening/'.$dt->id.'')}}" class="badge badge-danger">Detail</a>
                         </td>
-
                     </tr>
                     @endforeach
-
                     </tbody>
                 </table>
                 </div>

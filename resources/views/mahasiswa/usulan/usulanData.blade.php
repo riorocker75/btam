@@ -50,6 +50,16 @@
                             $jenjang=strtolower($mhs->jenjang);
                             $kat = \App\Model\KategoriBantuan::where('nama',$jenjang)->get();
                          @endphp
+
+                            @php
+                            $waktu=date("Y-m-d");
+                            $jad= \App\Model\JadwalKegiatan::where('id','1')->first();
+                            $jad_proposal= date("Y-m-d", strtotime($jad->deadline_proposal));
+                            $jad_rek= date("Y-m-d", strtotime($jad->deadline_rek));
+                            $jad_maju= date("Y-m-d", strtotime($jad->deadline_kemajuan));
+                            $jad_akhir= date("Y-m-d", strtotime($jad->deadline_akhir));
+
+                            @endphp
                              @foreach ($kat as $kt)
 
                                 <tr>
@@ -80,7 +90,9 @@
                                         @if ($usl > 0)
                                             <label for="" class="badge badge-warning">Telah Mengajukan..</label>
                                         @else
-                                        <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-proposal/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Proposal</a></p>
+                                            @if ($waktu < $jad_proposal)
+                                                <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-proposal/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Proposal</a></p>
+                                            @endif
                                         @endif
 
                                     </td>

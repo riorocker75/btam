@@ -131,7 +131,7 @@ class MhsCtrl extends Controller
             'no_rek' => 'required',
             'nama_rek' => 'required',
             'nama_bank' => 'required',
-            'foto_rek' => 'mimes:jpeg,png,jpg|max:1000',
+            'foto_rek' => 'mimes:jpeg,png,jpg,pdf|max:1000',
         ]);
         $id= $request->sumber;
         $tujuan_upload ='upload/berkas';

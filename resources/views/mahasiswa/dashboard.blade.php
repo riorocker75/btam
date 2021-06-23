@@ -67,21 +67,50 @@
                         </td>
 
                         <td>
-                          <label class="badge badge-default"> <p>Menunggu persetujuan...</p> </label>
+                          @if ($dt->status  == 1)
+                            <label class="badge badge-default"> <p>Menunggu persetujuan...</p> </label>
+                          @endif
+
+                          @if ($dt->status  == 5)
+                            <label class="badge badge-danger"> <p>Permohonan Anda Di Tolak</p> </label>
+                           @endif
                           {{-- buat logika jika dia sudah status didanai tamplikan tobol ini --}}
                             {{-- cek tanggal dulu baru aksi status --}}
+                            @php
+                                 $waktu=date("Y-m-d");
+                                $jad= \App\Model\JadwalKegiatan::where('id','1')->first();
+                                $jad_proposal= date("Y-m-d", strtotime($jad->deadline_proposal));
+                                $jad_rek= date("Y-m-d", strtotime($jad->deadline_rek));
+                                $jad_maju= date("Y-m-d", strtotime($jad->deadline_kemajuan));
+                                $jad_akhir= date("Y-m-d", strtotime($jad->deadline_akhir));
 
-                            @if($dt->status_rek != '2')
-                             <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-rekening/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Data Rekening</a></p>
+                            @endphp
+                                {{-- {{ $jad_proposal}} --}}
+
+                            @if ($waktu > $jad_proposal)
+                              @if ($waktu < $jad_rek )
+                                  @if($dt->status_rek != '2')
+                                  <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-rekening/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Data Rekening</a></p>
+                                  @endif
+                              @endif
                             @endif
 
-                           @if($dt->status_kemajuan != '2')
-                            <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-kemajuan/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Kemajuan</a></p>
+                            @if ($waktu > $jad_rek)
+                              @if ($waktu < $jad_maju )
+                                  @if($dt->status_kemajuan != '2')
+                                    <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-kemajuan/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Kemajuan</a></p>
+                                  @endif
+                               @endif
+
                            @endif
 
+                           @if ($waktu > $jad_maju)
+                               @if ($waktu < $jad_akhir )
+                                  @if($dt->status_akhir != '2')
+                                  <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-akhir/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Akhir</a></p>
+                                  @endif
+                              @endif
 
-                            @if($dt->status_akhir != '2')
-                             <p> <a href="{{ url('/mahasiswa/daftar-usulan/unggah-akhir/'.$dt->id.'')}}" class="btn btn-block btn-outline-primary btn-sm">Unggah Laporan Akhir</a></p>
                             @endif
 
      

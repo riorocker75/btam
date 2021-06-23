@@ -204,7 +204,8 @@ class PenggunaCtrl extends Controller
     }
 
     function reviewer_delete($id){
-      
+        $ds=Dosen::where('id',$id)->first();
+        $nidn=$ds->nidn;
         DB::table('dosen')->where('id',$id)->update([
             'lvl' => '1'
         ]);
@@ -241,7 +242,8 @@ class PenggunaCtrl extends Controller
     }
 
     function kajur_delete($id){
-      
+        $ds=Dosen::where('id',$id)->first();
+        $nidn=$ds->nidn;
         DB::table('dosen')->where('id',$id)->update([
             'lvl' => '1'
         ]);

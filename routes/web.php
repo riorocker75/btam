@@ -30,6 +30,9 @@ Route::get('/logout/user' ,'Auth\AdminLogin@logout');
 Route::get('/daftar/mahasiswa' ,'Auth\AdminLogin@daftar_siswa');
 Route::post('/daftar/mahasiswa/act' ,'Auth\AdminLogin@daftar_siswa_act');
 
+// ajax daftar
+Route::post('/ajax/daftar/cek-prodi' ,'AjaxCtrl@cek_prodi');
+
 /*
 =========================== 
 		Admin

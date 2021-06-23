@@ -39,6 +39,8 @@
                         <th>Judul</th>
                         <th>Pengusul</th>
                         <th>Tahun</th>
+                        <th>Total</th>
+
                         <th>Dana Final</th>
                         <th>Progress</th>
 
@@ -65,6 +67,12 @@
                         <td>{{$mhs->nama}}</td>
                         <td>
                             {{ $dt->tahun_usulan}} 
+                        </td>
+
+                        <td>
+                          @if ($dt->jumlah != "")
+                             {{ number_format($dt->jumlah)}} 
+                          @endif
                         </td>
                         <td>  
                           @if ($dt->status == '4')

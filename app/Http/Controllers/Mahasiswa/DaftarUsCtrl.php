@@ -122,7 +122,7 @@ class DaftarUsCtrl extends Controller
             'no_rek' => 'required',
             'nama_rek' => 'required',
             'nama_bank' => 'required',
-            'foto_rek' => 'required|mimes:jpeg,png,jpg|max:1000',
+            'foto_rek' => 'required|mimes:jpeg,png,jpg,pdf|max:1000',
         ]);
 
         $tujuan_upload ='upload/berkas';
@@ -270,9 +270,9 @@ class DaftarUsCtrl extends Controller
                 $inf_surat_aktif =rand(10000,99999)."_".rand(1000,9999).".".$surat_aktif->getClientOriginalExtension();
                 $surat_aktif->move($tujuan_upload,$inf_surat_aktif); 
     
-                $sa_hapus=Usulan::where('nim_ketua',$nim)->first();
+                $sa_hapus=Usulan::where('id_ketua',$nim)->first();
                 File::delete('upload/berkas/'. $sa_hapus->surat_aktif);
-                Usulan::where('nim_ketua',$nim)->update([
+                Usulan::where('id_ketua',$nim)->update([
                     'surat_aktif' => $inf_surat_aktif
                 ]);
             }
@@ -284,9 +284,9 @@ class DaftarUsCtrl extends Controller
                 $inf_surat_nyata =rand(100000,999999)."_".rand(1000,9999).".".$surat_nyata->getClientOriginalExtension();
                 $surat_nyata->move($tujuan_upload,$inf_surat_nyata);  
     
-                $sn_hapus=Usulan::where('nim_ketua',$nim)->first();
+                $sn_hapus=Usulan::where('id_ketua',$nim)->first();
                 File::delete('upload/berkas/'. $sn_hapus->surat_nyata);
-                Usulan::where('nim_ketua',$nim)->update([
+                Usulan::where('id_ketua',$nim)->update([
                     'surat_nyata' => $inf_surat_nyata
                 ]);
             }
@@ -299,15 +299,15 @@ class DaftarUsCtrl extends Controller
                 $inf_surat_proposal =rand(1000,9999)."_".rand(1000,9999).".".$surat_proposal->getClientOriginalExtension();
                 $surat_proposal->move($tujuan_upload,$inf_surat_proposal); 
     
-                $sp_hapus=Usulan::where('nim_ketua',$nim)->first();
+                $sp_hapus=Usulan::where('id_ketua',$nim)->first();
                 File::delete('upload/berkas/'. $sp_hapus->surat_nyata);
-                Usulan::where('nim_ketua',$nim)->update([
+                Usulan::where('id_ketua',$nim)->update([
                     'surat_proposal' => $inf_surat_proposal
                 ]); 
             }
          
        
-            DB::table('usulan')->where('nim_ketua',$nim)->update([
+            DB::table('usulan')->where('id_ketua',$nim)->update([
                 'id_dospem1' => $request->dosen_1,
                 'id_dospem2' => $request->dosen_2,
                 'judul' => $request->judul,

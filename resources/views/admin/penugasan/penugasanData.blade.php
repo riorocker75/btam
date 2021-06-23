@@ -38,7 +38,8 @@
                     <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama Pengusul.</th>
+                        <th>Nama Pengusul</th>
+                        <th>Jurusan</th>
                         <th>Judul</th>
                         <th>Tahun</th>
                         <th>Usulan Biaya</th>
@@ -51,7 +52,7 @@
                         @php
                             $mhs = \App\Model\Mahasiswa::where('nim',$dt->id_ketua)->first();
                             $dosen= \App\Model\Dosen::where('lvl','3')->get();
-
+                            $jur= \App\Model\Jurusan::where('id',$mhs->id_jurusan)->first();
                         @endphp
                     <tr>
                         <?php $no=1;?>
@@ -59,6 +60,7 @@
 
                         <td>{{ $no++}}</td>
                         <td>{{ $mhs->nama }}</td>
+                        <td>{{ $jur->nama }}</td>
                         <td> {{ $dt->judul }} </td>
                         <td>{{ $dt->tahun_usulan }}</td>
                         <td> Rp.{{ number_format($dt->biaya) }} </td>

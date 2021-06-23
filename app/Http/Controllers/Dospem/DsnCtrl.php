@@ -53,10 +53,17 @@ class DsnCtrl extends Controller
     function review_proposal_act(Request $request){
         $id=$request->sumber;
 
-        DB::table('usulan')->where('id',$id)->update([
-            'status' => '2',
-            'status_kajur' =>'1'
-        ]);
+        if($request->has('setuju')){
+            DB::table('usulan')->where('id',$id)->update([
+                'status' => '2',
+                'status_kajur' =>'1'
+            ]);
+        }elseif($request->has('tolak')){
+            DB::table('usulan')->where('id',$id)->update([
+                'status' => '5'
+            ]);
+        }
+       
         return redirect('/dashboard/dosen')->with('alert-success','Data telah diubah');
 
     }

@@ -35,7 +35,12 @@ class KajurCtrl extends Controller
     }
 
     public function __invoke(){
-        $data= Usulan::where('status','2')->where('status_kajur','1')->get();
+        $nidn= Session::get('kj_username');
+        $ds=Dosen::where('nidn',$nidn)->first();
+        $data= Usulan::where('status','2')
+                    ->where('status_kajur','1')
+                    ->where('id_jurusan',$ds->id_jurusan)
+                    ->get();
         return view('kajur.dashboard',[
             'data' =>$data
         ]);

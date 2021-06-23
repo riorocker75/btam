@@ -64,7 +64,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
                 </div>
-                <select class="form-control" name="jurusan" required>
+                <select class="form-control" name="jurusan" id="jurusan" required>
                     @php
                         $jur=\App\Model\Jurusan::all();
                     @endphp
@@ -82,7 +82,8 @@
             </div>
         </div>
 
-          <div class="form-group">
+        <div id="prodi"></div>
+          {{-- <div class="form-group">
             <label>PRODI</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -104,7 +105,8 @@
                 </small>
                 @endif 
             </div>
-        </div>
+        </div> --}}
+       
 
         <div class="form-group">
             <label>Jenjang</label>
@@ -162,5 +164,26 @@
     <!-- /.login-card-body -->
   </div>
 </div>
+<script>
+  $(document).ready(function () {
+    $('#jurusan').change(function () {
+    var jurusan =$('#jurusan').children("option:selected").val(); 
+      if(jurusan.length > 0){ 
+
+          $.ajax({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+            type:"post",
+            url:"/ajax/daftar/cek-prodi",
+            data:{jurusan:jurusan},
+            success: function(data){          
+              $('#prodi').html(data);
+            }
+          });
+        }
+  });
+  });
+</script>
 <!-- /.login-box --> 
 @endsection

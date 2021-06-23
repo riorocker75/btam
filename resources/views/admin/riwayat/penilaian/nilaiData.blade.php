@@ -38,12 +38,7 @@
                         <th>Kategori</th>
                         <th>Judul</th>
                         <th>Pengusul</th>
-                        <th>
-                           Reviewer 1
-                        </th>
-                        <th>
-                           Reviewer 2
-                        </th>
+                       
                         <th>Total</th>
 
                         <th>Status</th>
@@ -86,23 +81,10 @@
 
                         <td>{{$dt->judul}}</td>
                         <td>{{$mhs->nama}}</td>
-                        <td>
-                            @if ($rv1->jumlah != "")
-                                 <a href="" data-toggle="modal" data-target="#rv1-{{$rv1->id}}{{$rv1->id_usulan}}">{{$rv1->jumlah}}</a>
-                            @else
-                                belum ada nilai
-                            @endif
-                        </td>
+                     
                         <td> 
-                          @if ($rv2c >0)
-                              @if ($rv2->jumlah != "")
-                              <a href="" data-toggle="modal" data-target="#rv2-{{$rv2->id}}{{$rv2->id_usulan}}" >{{$rv2->jumlah}}</a>
-                              @else
-                                  belum ada nilai
-                              @endif
-                          @endif
+                          <a href="" data-toggle="modal" data-target="#rv1-{{$rv1->id_usulan}}"><b>{{$dt->jumlah}}</b></a>
                         </td>
-                        <td><b>{{$total}}</b></td>
                         <td>
                           <label for="" class="badge badge-info"> {{status_usulan($dt->status)}}</label>
                         </td>
@@ -142,20 +124,27 @@
     
   @php
     $count1 = \App\Model\Nilai::where('id_usulan',$dx->id)->count();
+    // reviewer 1
+    $rv1=\App\Model\Nilai::where('status','1')->where('id_usulan',$dx->id)->first();
+    // reviewer 2
+    $rv2=\App\Model\Nilai::where('status','2')->where('id_usulan',$dx->id)->first();
+    $rv2c=\App\Model\Nilai::where('status','2')->where('id_usulan',$dx->id)->count();
   @endphp
-  @if ($count > 0)
+  @if ($count1 > 0)
     
   {{-- modal rv1 --}}
-  <div class="modal fade" id="rv1-{{$rv1->id}}{{$rv1->id_usulan}}">
+  <div class="modal fade" id="rv1-{{$rv1->id_usulan}}">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Penilaian Reviewer 1</h4>
+          <h4 class="modal-title">Penilaian Reviewer</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
+          <h5 >Penilaian Reviewer 1</h5>
+           
             <table class="table table-sm">
                 <thead>
                   <tr>
@@ -245,33 +234,13 @@
             
                 </tbody>
               </table>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
 
-  {{-- end modal rv1 --}}
+              {{-- akhir Reviewer1   --}}
+              <br>
+              @if ($rv2c >0)
+             <h5 >Penilaian Reviewer 2</h5>
 
-
-  @if ($rv2c >0)
-{{-- modal rv2 --}}
-<div class="modal fade" id="rv2-{{$rv2->id}}{{$rv2->id_usulan}}">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Penilaian Reviewer 2</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <table class="table table-sm">
+              <table class="table table-sm">
                 <thead>
                   <tr>
                     <th >Kriteria Penilaian</th>
@@ -360,6 +329,9 @@
 
                 </tbody>
               </table>
+              @endif
+
+              {{-- akhir revier 2 --}}
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -371,8 +343,6 @@
   </div>
   <!-- /.modal -->
 
-  {{-- end modal rv2 --}}
-  @endif
   @endif
   @endforeach
 

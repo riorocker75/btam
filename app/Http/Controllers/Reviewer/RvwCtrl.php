@@ -55,6 +55,8 @@ class RvwCtrl extends Controller
     function review_proposal_act(Request $request){
         $nidn =Session::get('rv_username');
         $id =$request->sumber;
+        $nl=Nilai::where('id',$id)->first();
+        $usl = Usulan::where('id',$nl->id_usulan)->first();
 
         $this->validate($request, [
             'nilai_kreatif' => 'required',
@@ -81,12 +83,24 @@ class RvwCtrl extends Controller
             'nilai_metode' => $request->nilai_metode,
             'nilai_luaran' => $request->nilai_luaran,
             'nilai_jadwal' => $request->nilai_jadwal,
-
             'jumlah' => $jumlah,
             'komentar' => $request->komentar,
             'dana_setuju' => $request->dana_setuju,
 
-        ]);     
+        ]);   
+        
+        if($usl->jumlah > 1){
+            $jumlah_lama = $usl->jumlah;
+            $total=$jumlah + $jumlah_lama;
+            DB::table('usulan')->where('id',$usl->id)->update([
+                'jumlah' => $total
+            ]); 
+        }else{
+            DB::table('usulan')->where('id',$usl->id)->update([
+                'jumlah' => $jumlah
+            ]); 
+        }
+        
         return redirect('/dashboard/reviewer')->with('alert-success','Data telah submit');
 
     }
@@ -94,6 +108,8 @@ class RvwCtrl extends Controller
     function review_proposal_update(Request $request){
         $nidn =Session::get('rv_username');
         $id =$request->sumber;
+        $nl=Nilai::where('id',$id)->first();
+        $usl = Usulan::where('id',$nl->id_usulan)->first();
 
         $this->validate($request, [
             'nilai_kreatif' => 'required',
@@ -125,7 +141,12 @@ class RvwCtrl extends Controller
             'komentar' => $request->komentar,
             'dana_setuju' => $request->dana_setuju,
 
-        ]);     
+        ]);   
+        
+    
+        DB::table('usulan')->where('id',$usl->id)->update([
+            'jumlah' => $jumlah
+        ]); 
         return redirect('/dashboard/reviewer')->with('alert-success','Data telah submit');
 
     }

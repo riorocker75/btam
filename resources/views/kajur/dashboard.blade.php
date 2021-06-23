@@ -70,7 +70,7 @@
                         </td>
                       
                         <td>
-                           <label class="badge badge-primary">{{ status_usulan($dt->status)}} </label> 
+                           <label class="badge badge-primary">Menunggu persetujuan</label> 
                         </td>
                         <td>
                           @if ($dt->status == 4)

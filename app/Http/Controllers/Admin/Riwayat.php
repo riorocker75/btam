@@ -64,7 +64,7 @@ class Riwayat extends Controller
     // hasil peniliaian
 
     function hasil_nilai(){
-        $data = Usulan::where('status','3')->get();
+        $data = Usulan::where('status','3')->orderBy('jumlah','desc')->get();
         return view('admin.riwayat.penilaian.nilaiData',[
             'data' =>$data
         ]);

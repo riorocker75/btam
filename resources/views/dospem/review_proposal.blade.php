@@ -143,7 +143,8 @@
                   @elseif($dt->status == 5)
                   @else
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary float-right">Setujui</button>
+                    <input type="submit" value="Setujui" class="btn btn-primary" name="setuju" id="setuju">
+                    <input type="submit" value="Tolak" class="btn btn-danger" name="tolak" id="tolak">
                   </div>
                   @endif
                  

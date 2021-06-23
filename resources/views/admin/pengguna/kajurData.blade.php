@@ -74,16 +74,22 @@
                         <th>Nama</th>
                         <th>NIDN</th>
                         <th>Telepon</th>
+                        <th>Jurusan</th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
                     <tbody>
+
                         @foreach ($data as $dt)
-                         
+                         @php
+                             $jur=\App\Model\Jurusan::where('id',$dt->id_jurusan)->first();
+                         @endphp
                     <tr>
                         <td>{{$dt->nama}}</td>
                         <td>{{$dt->nidn}}</td>
                         <td>{{$dt->telepon}}</td>
+                        <td>{{$jur->nama}}</td>
+
                         <td>
                             <a href="{{ url('/admin/pengguna/kajur/delete/'.$dt->id.'')}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                         </td>
